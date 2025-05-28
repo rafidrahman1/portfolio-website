@@ -1,11 +1,10 @@
-import Header from "./components/layout/Header/Navbar";
 import Footer from "./components/layout/Footer/Footer";
-
+import Navbar from "./components/layout/Header/Navbar";
 
 export default function NotFound() {
     return (
         <div className="flex min-h-screen flex-col">
-            <Header />
+            <Navbar/>
             <main className="flex-1">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
                     <div className="text-center">
@@ -18,7 +17,7 @@ export default function NotFound() {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <Footer/>
         </div>
 
     );

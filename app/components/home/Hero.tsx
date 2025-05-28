@@ -49,7 +49,7 @@ function Hero() {
                     width={1024}
                     height={1024}
                     alt="team work"
-                    src="/images/image-7.svg"
+                    src="/images/profile.jpg"
                     className="h-[36rem] w-full rounded-xl object-cover"
                 />
             </div>
