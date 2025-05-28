@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Timestamp } from './components/Timestamp'
-import Button from './components/ui/Button'
+import Button from '../components/ui/Button'
 
 export default async function Home() {
   return (
@@ -26,16 +25,6 @@ export default async function Home() {
             </div>
           </div>
         </main>
-
-        <footer className="border-t border-gray-200 dark:border-dark-border-subtle">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-            <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-              <p>
-                © <Timestamp /> Mode. Built for Next.js Fundamentals.
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
   )
 }
