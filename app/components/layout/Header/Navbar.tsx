@@ -40,7 +40,6 @@ interface NavItemProps {
 function NavItem({ children, href }: NavItemProps) {
     return (
         <li>
-            {/* @ts-ignore */}
             <Typography
                 as="a"
                 href={href || "#"}
@@ -66,8 +65,7 @@ export function Navbar() {
             () => window.innerWidth >= 960 && setOpen(false)
         );
     }, []);
-
-    // @ts-ignore
+    
     return (
         <MTNavbar 
             shadow={false} 
@@ -76,7 +74,6 @@ export function Navbar() {
             placeholder={undefined}
         >
             <div className="container mx-auto flex items-center justify-between">
-                {/* @ts-ignore */}
                 <Typography color="blue-gray" className="text-lg font-bold">
                     Material Tailwind
                 </Typography>
@@ -89,14 +86,11 @@ export function Navbar() {
                     ))}
                 </ul>
                 <div className="hidden items-center gap-2 lg:flex">
-                    {/* @ts-ignore */}
                     <Button variant="text">Sign In</Button>
                     <a href="https://www.material-tailwind.com/blocks" target="_blank">
-                        {/* @ts-ignore */}
                         <Button color="gray">blocks</Button>
                     </a>
                 </div>
-                {/* @ts-ignore */}
                 <IconButton
                     variant="text"
                     color="gray"
@@ -121,10 +115,8 @@ export function Navbar() {
                         ))}
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
-                        {/* @ts-ignore */}
                         <Button variant="text">Sign In</Button>
                         <a href="https://www.material-tailwind.com/blocks" target="_blank">
-                            {/* @ts-ignore */}
                             <Button color="gray">blocks</Button>
                         </a>
                     </div>
