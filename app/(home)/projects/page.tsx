@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { CheckCircle2, XCircle } from 'lucide-react'
+import {
+    FaCheckCircle,
+    FaRegCheckCircle,
+} from "react-icons/fa";
 
 export default function PricingPage() {
     return (
@@ -144,9 +147,9 @@ function PricingCard({
                 {features.map((feature, index) => (
                     <li key={index} className="flex items-start">
                         {feature.included ? (
-                            <CheckCircle2 className="h-5 w-5 text-green-300 mr-2 flex-shrink-0" />
+                            <FaCheckCircle className="h-5 w-5 text-green-300 mr-2 flex-shrink-0" />
                         ) : (
-                            <XCircle className="h-5 w-5 text-gray-500 mr-2 flex-shrink-0" />
+                            <FaRegCheckCircle className="h-5 w-5 text-gray-500 mr-2 flex-shrink-0" />
                         )}
                         <span
                             className={
