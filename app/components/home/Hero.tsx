@@ -12,7 +12,7 @@ export default function Hero() {
                         Hi, I&apos;m Rafid — a fullstack developer passionate about building clean, user-focused web experiences.
                         I specialize in modern frameworks like Next.js, love experimenting with AI integrations,
                         and enjoy crafting thoughtful UI with solid backend logic. Currently leveling up in Meta
-                        Graph API and AI agent workflows. Let's build something awesome together.
+                        Graph API and AI agent workflows. Let&apos;s build something awesome together.
                     </p>
                     <div className="grid">
                         <label className="mb-2 text-gray-900 font-medium" htmlFor="email">
