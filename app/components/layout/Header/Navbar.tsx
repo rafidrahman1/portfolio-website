@@ -10,21 +10,9 @@ import {
 } from "@heroicons/react/24/solid";
 
 const NAV_MENU = [
-    {
-        name: "Page",
-        icon: RectangleStackIcon,
-        link: "/",
-    },
-    {
-        name: "Account",
-        icon: UserCircleIcon,
-        link: "/projects",
-    },
-    {
-        name: "Docs",
-        icon: CommandLineIcon,
-        link: "/",
-    },
+    { name: "Page", icon: RectangleStackIcon, link: "/" },
+    { name: "Account", icon: UserCircleIcon, link: "/projects" },
+    { name: "Docs", icon: CommandLineIcon, link: "/" },
 ];
 
 function NavItem({ children, link }: { children: React.ReactNode; link?: string }) {
@@ -36,8 +24,8 @@ function NavItem({ children, link }: { children: React.ReactNode; link?: string 
                 </Link>
             ) : (
                 <span className="flex items-center gap-2 font-medium text-gray-900">
-          {children}
-        </span>
+                    {children}
+                </span>
             )}
         </li>
     );
@@ -55,7 +43,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="bg-white border-b sticky top-0 z-50">
+        <nav className="bg-white/80 backdrop-blur-md border-b border-white/40 sticky top-0 z-50">
             <div className="container mx-auto flex items-center justify-between py-4 px-4">
                 <span className="text-lg font-bold text-blue-gray-900">Material Tailwind</span>
                 <ul className="ml-10 hidden items-center gap-8 lg:flex">
@@ -68,7 +56,11 @@ export default function Navbar() {
                 </ul>
                 <div className="hidden items-center gap-2 lg:flex">
                     <button className="px-4 py-2 rounded-lg font-medium text-gray-800 hover:bg-gray-100 transition">Sign In</button>
-                    <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://www.material-tailwind.com/blocks"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <button className="px-4 py-2 rounded-lg font-medium bg-gray-800 text-white hover:bg-gray-700 transition">blocks</button>
                     </a>
                 </div>
@@ -86,7 +78,7 @@ export default function Navbar() {
             </div>
             {/* Mobile Menu */}
             {open && (
-                <div className="lg:hidden bg-white border-t border-gray-200 px-4 pt-4 pb-2">
+                <div className="lg:hidden bg-white/90 border-t border-gray-200 px-4 pt-4 pb-2 backdrop-blur-md">
                     <ul className="flex flex-col gap-4">
                         {NAV_MENU.map(({ name, icon: Icon, link }) => (
                             <NavItem key={name} link={link}>
@@ -97,7 +89,11 @@ export default function Navbar() {
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
                         <button className="px-4 py-2 rounded-lg font-medium text-gray-800 hover:bg-gray-100 transition">Sign In</button>
-                        <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://www.material-tailwind.com/blocks"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <button className="px-4 py-2 rounded-lg font-medium bg-gray-800 text-white hover:bg-gray-700 transition">blocks</button>
                         </a>
                     </div>
