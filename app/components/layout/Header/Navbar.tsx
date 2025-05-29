@@ -48,7 +48,7 @@ export default function Navbar() {
     return (
         <nav className="bg-white/80 backdrop-blur-md border-b border-white/40 sticky top-0 z-50">
             <div className="container mx-auto flex items-center justify-between py-4 px-4">
-                <span className="text-lg font-bold text-blue-gray-900">Made with &lt;code&gt; &amp; ☕</span>
+                <span className="text-lg font-bold text-gray-900">Made with &lt;code&gt; &amp; ☕</span>
                 <ul className="ml-10 hidden items-center gap-8 lg:flex">
                     {NAV_MENU.map(({ name, icon: Icon, link }) => (
                         <NavItem key={name} link={link}>
