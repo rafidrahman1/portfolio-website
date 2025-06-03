@@ -6,7 +6,7 @@ import Navbar from "./components/layout/Header/Navbar";
 
 export const metadata: Metadata = {
   title: "Rafid Rahman | Fullstack Developer",
-  description: "Rafid Rahman is a fullstack developer passionate about building user-focused web apps using Next.js and AI integrations.",
+  description: "I am a fullstack developer passionate about building user-focused web apps using Next.js and AI integrations.",
 };
 
 export default function RootLayout({
