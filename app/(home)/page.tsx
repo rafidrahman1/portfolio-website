@@ -4,6 +4,7 @@
 
 import UnderDevelopment from "./UnderDevelopment";
 
+
 export default async function Home() {
   return (
   <div>
@@ -11,6 +12,7 @@ export default async function Home() {
     {/*<Resume/>*/}
     {/*<Projects/>*/}
     <UnderDevelopment />
+
   </div>
   )
 }
