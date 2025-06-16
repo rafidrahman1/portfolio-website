@@ -33,8 +33,7 @@ export default function Resume() {
                 <div>
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">My Resume</h2>
                     <p className="mb-4 mt-3 w-9/12 font-normal text-gray-500">
-                        Highly skilled and creative Web Developer with 5+ years of experience in crafting visually stunning and functionally robust websites and web applications.
-                    </p>
+                        I'm Rafid Rahman, a passionate Fullstack Developer with 1+ years of experience building scalable and responsive web applications. I specialize in React, Next.js, and Node.js, and I enjoy integrating AI-powered features to solve real-world problems. I care deeply about clean code, smooth user experiences, and modern tech.                    </p>
                     <button
                         type="button"
                         className="flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium transition"
