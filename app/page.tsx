@@ -1,4 +1,5 @@
 "use client";
+
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
 import { Experience } from "@/components/portfolio/Experience";
