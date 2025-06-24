@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc. are defined here. */
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -35,14 +36,20 @@
 
     --radius: 0.5rem;
 
-    /* Sidebar-specific variables */
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -74,8 +81,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-
-    /* Sidebar-specific variables for dark mode */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -87,8 +92,17 @@
   }
 }
 
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
 
-/* Root container styling */
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -96,23 +110,19 @@
   text-align: center;
 }
 
-/* Logo styling */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
-
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-/* Logo animation */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -128,12 +138,10 @@
   }
 }
 
-/* Card styling */
 .card {
   padding: 2em;
 }
 
-/* Documentation link styling */
 .read-the-docs {
   color: #888;
 }
