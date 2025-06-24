@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Footer from "./components/layout/Footer/Footer";
-import Navbar from "./components/layout/Header/Navbar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TooltipProvider } from "@/components/ui/tooltip";
+const queryClient = new QueryClient();
 
 export const metadata: Metadata = {
   title: "Rafid Rahman | Fullstack Developer",
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <Navbar/>
-      {children}
-      <Footer/>
-      <SpeedInsights/>
+      {/*<QueryClientProvider client={queryClient}>*/}
+          {/*<TooltipProvider>*/}
+          {children}
+          <SpeedInsights/>
+          {/*</TooltipProvider>*/}
+      {/*</QueryClientProvider>*/}
       </body>
     </html>
   );
