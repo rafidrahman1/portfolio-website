@@ -35,23 +35,16 @@ export const Hero = () => {
             
             <div className="flex items-center gap-4">
               <Button variant="outline" size="lg" asChild>
-                <a href="https://github.com/rafid0001" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/rafidrahman1" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </a>
               </Button>
               
               <Button variant="outline" size="lg" asChild>
-                <a href="https://linkedin.com/in/rafid-rahman" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/rafidrahman1" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
-                </a>
-              </Button>
-              
-              <Button variant="outline" size="lg" asChild>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Portfolio
                 </a>
               </Button>
             </div>

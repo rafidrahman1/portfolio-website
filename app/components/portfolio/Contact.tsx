@@ -197,7 +197,7 @@ export const Contact = () => {
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground">
-            © 2024 Rafid Rahman. Built with React and passion for great user experiences.
+            © 2024 Rafid Rahman. Built with Coffee.
           </p>
         </div>
       </div>
