@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         const data = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>', // Must be a verified domain on Resend
             to: toEmail,
-            subject: `New Message from Portfolio: ${subject}`,
+            subject: `rafid.me: ${subject}`,
             replyTo: email,
             html: `
         <p><strong>Name:</strong> ${name}</p>
