@@ -11,9 +11,8 @@ interface Props {
 
 export const ContributionCell: React.FC<Props> = ({ level, isDark, isAnimated, count, date }) => (
     <div
-        className={`
-      w-3 h-3 rounded-sm border border-gray-400 dark:border-gray-700
-      transition-all duration-500
+        className={
+        `w-3 h-3 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500
       ${isAnimated
             ? `${getContributionColor(level, isDark)} opacity-100 animate-tetris-drop`
             : 'bg-transparent opacity-30'

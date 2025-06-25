@@ -76,27 +76,26 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
       Math.floor((contributions?.length || 365) * ((i + 1) / legendSteps))
   );
 
-  if (isLoading) {
-    return (
-        <div className="w-full max-w-4xl mx-auto p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-56">
-        <div className="w-full max-w-4xl mx-auto p-4">
-          <h3 className="text-lg font-semibold mb-6 text-center">GitHub Contributions</h3>
-          <div className="grid grid-flow-col gap-1 min-w-fit mx-auto" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '212px' }}>
-            {Array.from({ length: 53 }).map((_, weekIdx) =>
-                Array.from({ length: 7 }).map((_, dayIdx) => {
-                  const cellIndex = weekIdx * 7 + dayIdx;
-                  if (cellIndex >= 365) return null;
-                  return (
-                      <div key={`${weekIdx}-${dayIdx}`} className="w-3 h-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-sm transition-all duration-500 opacity-30" />
-                  );
-                })
-            )}
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-2">Loading contribution data...</p>
-        </div>
-        </div>
-    );
-  }
+    if (isLoading) {
+        return (
+            <div className="w-full max-w-4xl mx-auto p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-56">
+            <div className="w-full max-w-4xl mx-auto p-4">
+                <h3 className="text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
+                <div className="grid grid-flow-col gap-1 min-w-fit mx-auto opacity-50"
+                     style={{
+                       gridTemplateRows: 'repeat(7, 1fr)',
+                       minWidth: '212px'
+                }}>
+                    {Array.from({ length: 53 }).map((_, weekIdx) =>
+                        Array.from({ length: 7 }).map((_, dayIdx) => (
+                            <div key={`${weekIdx}-${dayIdx}`} className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 animate-pulse" />
+                        ))
+                    )}
+                </div>
+            </div>
+            </div>
+        );
+    }
 
   if (error) {
     return (
