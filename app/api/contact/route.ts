@@ -16,7 +16,7 @@ export async function POST(request: Request) {
             from: 'Portfolio Contact <onboarding@resend.dev>', // Must be a verified domain on Resend
             to: toEmail,
             subject: `New Message from Portfolio: ${subject}`,
-            reply_to: email,
+            replyTo: email,
             html: `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
