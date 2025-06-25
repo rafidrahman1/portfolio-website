@@ -1,7 +1,7 @@
 
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { GitHubCalendar } from "@/components/portfolio/GitHubCalendar";
+import { GitHubCalendar } from "@/components/github-calendar/GitHubCalendar";
 
 export const Hero = () => {
   const scrollToAbout = () => {
@@ -18,11 +18,8 @@ export const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Rafid Rahman
-          </h1>
-          <h2 className="text-xl md:text-3xl text-muted-foreground mb-8 font-light">
             Full-Stack Developer
-          </h2>
+          </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
             Passionate about building scalable web applications with React, Next.js, and Node.js.
             Specializing in AI integration and creating user-centric digital experiences.

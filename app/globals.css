@@ -161,3 +161,40 @@
 .read-the-docs {
   color: #888;
 }
+
+@keyframes tetris-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scaleY(0.5);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(2px) scaleY(1.07);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+.animate-tetris-drop {
+  animation: tetris-drop 0.4s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Optional: Fade-in keyframes for text */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px);}
+  to   { opacity: 1; transform: none;}
+}
+.animate-fade-in-up { animation: fade-in-up 0.5s both; }
+@keyframes fade-in {
+  from { opacity: 0;}
+  to   { opacity: 1;}
+}
+.animate-fade-in { animation: fade-in 0.5s both; }
+
+
