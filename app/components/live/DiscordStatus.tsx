@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Monitor, Smartphone, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from "react";
+import { Monitor, Smartphone, Globe, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-// Inline SVG for Discord logo
+// Discord Logo SVG
 const DiscordLogo = () => (
   <svg
-    className="w-4 h-4 text-[#5865F2]"
+    className="w-5 h-5 text-[#5865F2] mr-1"
     viewBox="0 0 24 24"
     fill="currentColor"
     aria-hidden="true"
@@ -15,31 +16,48 @@ const DiscordLogo = () => (
   </svg>
 );
 
+// Discord Status Component
 export function DiscordStatus() {
   const statusColor = (status: string) => {
     switch (status) {
-      case 'online':
-        return 'bg-green-500';
-      case 'idle':
-        return 'bg-yellow-500';
-      case 'dnd':
-        return 'bg-red-500';
+      case "online":
+        return "bg-green-500";
+      case "idle":
+        return "bg-yellow-500";
+      case "dnd":
+        return "bg-red-500";
       default:
-        return 'bg-gray-400';
+        return "bg-gray-400";
     }
   };
 
   // Show all active device icons (mobile, desktop, web)
   const deviceIcons = (web: boolean, desktop: boolean, mobile: boolean) => {
     const icons = [];
-    if (mobile) icons.push(<span key="mobile" title="Mobile"><Smartphone className="w-4 h-4"/></span>);
-    if (desktop) icons.push(<span key="desktop" title="Desktop"><Monitor className="w-4 h-4"/></span>);
-    if (web) icons.push(<span key="web" title="Web"><Globe className="w-4 h-4"/></span>);
-    if (icons.length === 0) icons.push(<span key="offline" title="Offline"></span>);
+    if (mobile)
+      icons.push(
+        <span key="mobile" title="Mobile">
+          <Smartphone className="w-4 h-4" />
+        </span>
+      );
+    if (desktop)
+      icons.push(
+        <span key="desktop" title="Desktop">
+          <Monitor className="w-4 h-4" />
+        </span>
+      );
+    if (web)
+      icons.push(
+        <span key="web" title="Web">
+          <Globe className="w-4 h-4" />
+        </span>
+      );
+    if (icons.length === 0)
+      icons.push(<span key="offline" title="Offline"></span>);
     return <span className="flex items-center space-x-1">{icons}</span>;
   };
 
-  const [status, setStatus] = useState('offline');
+  const [status, setStatus] = useState("offline");
   const [loading, setLoading] = useState(true);
   const [devices, setDevices] = useState({
     web: false,
@@ -50,7 +68,9 @@ export function DiscordStatus() {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch('https://api.lanyard.rest/v1/users/617332157613998091');
+      const res = await fetch(
+        "https://api.lanyard.rest/v1/users/617332157613998091"
+      );
       const data = await res.json();
       setStatus(data.data.discord_status);
       setDevices({
@@ -59,8 +79,8 @@ export function DiscordStatus() {
         mobile: data.data.active_on_discord_mobile,
       });
     } catch (e) {
-      setStatus('offline');
-      setDevices({web: false, desktop: false, mobile: false});
+      setStatus("offline");
+      setDevices({ web: false, desktop: false, mobile: false });
     } finally {
       setLoading(false);
     }
@@ -68,8 +88,7 @@ export function DiscordStatus() {
 
   // Handle popping animation for the button
   useEffect(() => {
-    if (status === 'online') {
-      // Delay to allow for pop-in animation
+    if (status === "online") {
       setTimeout(() => setShowButton(true), 100);
     } else {
       setShowButton(false);
@@ -83,33 +102,37 @@ export function DiscordStatus() {
   }, []);
 
   return (
-    <div className="flex items-center space-x-1 relative">
+    <div className="flex items-center space-x-1 relative min-w-[130px]">
       <DiscordLogo />
-      <span className={`w-3 h-3 rounded-full ${statusColor(status)} transition-colors`}/>
+      <span
+        className={`w-3 h-3 rounded-full ${statusColor(
+          status
+        )} transition-colors`}
+      />
       {loading ? (
-        <span className="text-sm">Loading...</span>
+        <span className="text-xs text-muted-foreground ">Loading...</span>
       ) : (
         <>
           {deviceIcons(devices.web, devices.desktop, devices.mobile)}
-          <span className="text-sm capitalize">{status}</span>
+          <span className="text-xs capitalize">{status}</span>
         </>
       )}
 
       {/* Animated pop-out button */}
       <div
         className={`
-          absolute left-full ml-4
+          absolute left-full ml-2
           transition-all duration-500
           ${showButton
-            ? 'opacity-100 scale-100 translate-x-0'
-            : 'opacity-0 scale-90 -translate-x-8 pointer-events-none'
+            ? "opacity-100 scale-100 -translate-x-4"
+            : "opacity-0 scale-90 -translate-x-8 pointer-events-none"
           }
         `}
         style={{ willChange: "transform, opacity" }}
       >
         <Button
           asChild
-          className="bg-[#5865F2] text-white px-4 py-2 rounded-lg shadow-lg font-semibold border-0"
+          className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition"
         >
           <a
             href="https://discord.com/users/617332157613998091"
@@ -123,3 +146,95 @@ export function DiscordStatus() {
     </div>
   );
 }
+
+// Navigation Component
+export const Navigation = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#experience", label: "Experience" },
+    { href: "#projects", label: "Projects" },
+    { href: "#skills", label: "Skills" },
+    { href: "#contact", label: "Contact" },
+  ];
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled || isMobileMenuOpen
+          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-3">
+          {/* Left: Logo/DiscordStatus */}
+          <div className="flex items-center space-x-3">
+            <DiscordStatus />
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-sm text-foreground hover:text-primary transition-colors duration-200 font-medium px-1"
+              >
+                {item.label}
+              </button>
+            ))}
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-border">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors duration-200"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
