@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { DiscordStatus } from "@/components/live/DiscordStatus";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,11 +42,14 @@ export const Navigation = () => {
           : "bg-transparent"
       }`}
     >
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-bold text-primary">
-            Rafid Rahman
-          </div>
+        
+           <DiscordStatus />
+     
+
+          
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

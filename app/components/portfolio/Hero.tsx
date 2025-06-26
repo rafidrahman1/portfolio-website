@@ -1,7 +1,7 @@
 import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { GitHubCalendar } from "@/components/github-calendar/GitHubCalendar";
+import { GitHubCalendar } from "@/components/live/github-calendar/GitHubCalendar";
 
 export const Hero = () => {
   const scrollToAbout = () => {
