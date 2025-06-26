@@ -8,14 +8,14 @@ interface Props {
 }
 
 export const CalendarLegend: React.FC<Props> = ({ isDark, animatedCells, legendThresholds }) => (
-    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-        <span>Less</span>
-        <div className="flex space-x-1">
+    <div className="flex items-center space-x-1 sm:space-x-2 text-xs text-muted-foreground">
+        <span className="text-xs">Less</span>
+        <div className="flex space-x-0.5 sm:space-x-1">
             {[0, 1, 2, 3, 4].map((level, i) => (
                 <div
                     key={level}
                     className={`
-            w-3 h-3 rounded-sm ${getContributionColor(level, isDark)}
+            w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm ${getContributionColor(level, isDark)}
             transition-all duration-700
             ${animatedCells >= legendThresholds[i] ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
@@ -23,6 +23,6 @@ export const CalendarLegend: React.FC<Props> = ({ isDark, animatedCells, legendT
                 />
             ))}
         </div>
-        <span>More</span>
+        <span className="text-xs">More</span>
     </div>
 );

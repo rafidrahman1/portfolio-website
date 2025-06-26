@@ -78,17 +78,17 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
 
     if (isLoading) {
         return (
-            <div className="w-full max-w-4xl mx-auto p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-56">
-            <div className="w-full max-w-4xl mx-auto p-4">
-                <h3 className="text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
-                <div className="grid grid-flow-col gap-1 min-w-fit mx-auto opacity-50"
+            <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-48 sm:min-h-56">
+            <div className="w-full max-w-4xl mx-auto p-2 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
+                <div className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto opacity-50"
                      style={{
                        gridTemplateRows: 'repeat(7, 1fr)',
-                       minWidth: '212px'
+                       minWidth: '180px'
                 }}>
                     {Array.from({ length: 53 }).map((_, weekIdx) =>
                         Array.from({ length: 7 }).map((_, dayIdx) => (
-                            <div key={`${weekIdx}-${dayIdx}`} className="w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 animate-pulse" />
+                            <div key={`${weekIdx}-${dayIdx}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-400 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 animate-pulse" />
                         ))
                     )}
                 </div>
@@ -99,20 +99,20 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
 
   if (error) {
     return (
-        <div className="w-full max-w-4xl mx-auto p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-56">
-        <div className="w-full max-w-4xl mx-auto p-4">
+        <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-48 sm:min-h-56">
+        <div className="w-full max-w-4xl mx-auto p-2 sm:p-4">
           <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4">
               Unable to load contribution data for @{username}
             </p>
-            <div className="grid grid-flow-col gap-1 min-w-fit mx-auto opacity-50" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '212px' }}>
+            <div className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto opacity-50" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '180px' }}>
               {Array.from({ length: 53 }).map((_, weekIdx) =>
                   Array.from({ length: 7 }).map((_, dayIdx) => {
                     const cellIndex = weekIdx * 7 + dayIdx;
                     if (cellIndex >= 365) return null;
                     return (
-                        <div key={`${weekIdx}-${dayIdx}`} className="w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500 opacity-50" />
+                        <div key={`${weekIdx}-${dayIdx}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-300 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500 opacity-50" />
                     );
                   })
               )}
@@ -128,22 +128,22 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
   const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
 
   return (
-      <div className="w-full max-w-4xl mx-auto p-4 bg-card/50 backdrop-blur-sm rounded-lg border">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="text-center min-h-[2.5em] flex items-center justify-center">
+      <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border">
+        <div className="flex flex-col items-center space-y-3 sm:space-y-4">
+          <div className="text-center min-h-[2rem] sm:min-h-[2.5em] flex items-center justify-center">
             {!showStats ? (
-                <p className="text-lg font-semibold mb-2 text-center animate-fade-in">GitHub Contributions</p>
+                <p className="text-base sm:text-lg font-semibold mb-2 text-center animate-fade-in">GitHub Contributions</p>
             ) : (
-                <p className="text-sm text-muted-foreground animate-fade-in-up">{totalContributions} contributions in the last year</p>
+                <p className="text-xs sm:text-sm text-muted-foreground animate-fade-in-up">{totalContributions} contributions in the last year</p>
             )}
           </div>
 
           <div className="overflow-x-auto w-full scrollbar-hide">
             <div
-                className="grid grid-flow-col gap-1 min-w-fit mx-auto"
+                className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto"
                 style={{
                   gridTemplateRows: 'repeat(7, 1fr)',
-                  minWidth: '212px'
+                  minWidth: '180px'
                 }}
             >
               {weeks.map((week, weekIndex) =>

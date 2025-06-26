@@ -36,7 +36,7 @@ export const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? "bg-background/80 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
