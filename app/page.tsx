@@ -1,13 +1,12 @@
 "use client";
 
-import { Hero } from "@/components/portfolio/Hero";
+import { Hero } from "@/components/hero/Hero";
 import { About } from "@/components/portfolio/About";
-import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Skills } from "@/components/portfolio/Skills";
 import { Contact } from "@/components/portfolio/Contact";
 import { Navigation } from "@/components/navigation/Navigation";
-import { ProjectShowcase } from "@/components/portfolio/ProjectShowcase";
+import { ProjectShowcase } from "@/components/showcase/ProjectShowcase";
 
 export default function Home() {
     return (
@@ -16,7 +15,6 @@ export default function Home() {
             <Hero />
             <About />
             <ProjectShowcase/>
-            {/* <Experience /> */}
             <Projects />
             <Skills />
             <Contact />

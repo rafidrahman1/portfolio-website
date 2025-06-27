@@ -5,21 +5,21 @@ import { ExternalLink, Github, Zap, Bot, Share2, Smartphone, ShoppingCart, Messa
 
 export const Projects = () => {
   const projects = [
-    {
-      title: "Evocart (Beta)",
-      description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts",
-      icon: <ShoppingCart className="h-6 w-6" />,
-      features: [
-        "Subdomain-specific layout logic with Next.js",
-        "Responsive UI with React components",
-        "AI agent functionality with OpenAI API integration",
-        "RESTful API endpoints for seamless data flow"
-      ],
-      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-      category: "E-commerce",
-      // codeUrl: "#",
-      demoUrl: "https://apple.nazarahnaturals.com/"
-    },
+    // {
+    //   title: "Evocart (Beta)",
+    //   description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts",
+    //   icon: <ShoppingCart className="h-6 w-6" />,
+    //   features: [
+    //     "Subdomain-specific layout logic with Next.js",
+    //     "Responsive UI with React components",
+    //     "AI agent functionality with OpenAI API integration",
+    //     "RESTful API endpoints for seamless data flow"
+    //   ],
+    //   technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
+    //   category: "E-commerce",
+    //   // codeUrl: "#",
+    //   demoUrl: "https://apple.nazarahnaturals.com/"
+    // },
     {
       title: "AI Agent",
       description: "Intelligent AI solution for automated product analysis and content generation",
@@ -65,51 +65,51 @@ export const Projects = () => {
       codeUrl: "https://github.com/rafidrahman1/whatsapp.git",
       // demoUrl: "#"
     },
-    {
-      title: "SewingTex React Conversion",
-      description: "Modern React SPA conversion with improved performance and mobile experience",
-      icon: <Zap className="h-6 w-6" />,
-      features: [
-        "Static HTML to React SPA conversion",
-        "Improved page load speed",
-        "API integrations for dynamic content",
-        "Enhanced mobile user experience"
-      ],
-      technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
-      category: "Web Development",
-      // codeUrl: "#",
-      demoUrl: "https://sewingtexapparels.com/"
-    },
-    {
-      title: "BetterThat Ecosystem",
-      description: "Multiple React applications with reusable component libraries",
-      icon: <Building className="h-6 w-6" />,
-      features: [
-        "Food for Change platform",
-        "Fishing in Godzone application",
-        "Ditybit Auctions system",
-        "Auckland Rescue website"
-      ],
-      technologies: ["React", "Component Libraries", "State Management"],
-      category: "Multi-Project",
-      // codeUrl: "#",
-      demoUrl: "https://betterthat.com/"
-    },
-    {
-      title: "Physics Department, BUET",
-      description: "Enhanced departmental website with dynamic components and CMS",
-      icon: <Atom className="h-6 w-6" />,
-      features: [
-        "Static to dynamic React components conversion",
-        "Content management system implementation",
-        "Improved update efficiency",
-        "Modern web standards compliance"
-      ],
-      technologies: ["React", "CMS", "Web Standards"],
-      category: "Education",
-      // codeUrl: "#",
-      demoUrl: "https://phy.buet.ac.bd/"
-    }
+    // {
+    //   title: "SewingTex React Conversion",
+    //   description: "Modern React SPA conversion with improved performance and mobile experience",
+    //   icon: <Zap className="h-6 w-6" />,
+    //   features: [
+    //     "Static HTML to React SPA conversion",
+    //     "Improved page load speed",
+    //     "API integrations for dynamic content",
+    //     "Enhanced mobile user experience"
+    //   ],
+    //   technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
+    //   category: "Web Development",
+    //   // codeUrl: "#",
+    //   demoUrl: "https://sewingtexapparels.com/"
+    // },
+    // {
+    //   title: "BetterThat Ecosystem",
+    //   description: "Multiple React applications with reusable component libraries",
+    //   icon: <Building className="h-6 w-6" />,
+    //   features: [
+    //     "Food for Change platform",
+    //     "Fishing in Godzone application",
+    //     "Ditybit Auctions system",
+    //     "Auckland Rescue website"
+    //   ],
+    //   technologies: ["React", "Component Libraries", "State Management"],
+    //   category: "Multi-Project",
+    //   // codeUrl: "#",
+    //   demoUrl: "https://betterthat.com/"
+    // },
+    // {
+    //   title: "Physics Department, BUET",
+    //   description: "Enhanced departmental website with dynamic components and CMS",
+    //   icon: <Atom className="h-6 w-6" />,
+    //   features: [
+    //     "Static to dynamic React components conversion",
+    //     "Content management system implementation",
+    //     "Improved update efficiency",
+    //     "Modern web standards compliance"
+    //   ],
+    //   technologies: ["React", "CMS", "Web Standards"],
+    //   category: "Education",
+    //   // codeUrl: "#",
+    //   demoUrl: "https://phy.buet.ac.bd/"
+    // }
   ];
 
   return (
