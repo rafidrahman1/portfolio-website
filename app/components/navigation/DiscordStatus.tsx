@@ -85,6 +85,11 @@ export function DiscordStatus() {
     return () => clearInterval(interval);
   }, []);
 
+  // Calculate number of active device icons
+  const activeDeviceCount = [devices.web, devices.desktop, devices.mobile].filter(Boolean).length;
+  // Each icon is about 20px wide + 4px margin, so 24px per icon
+  const iconOffset = -(activeDeviceCount * 24);
+
   return (
       <div className="flex items-center space-x-1 relative min-w-[130px]">
         <DiscordLogo />
@@ -97,34 +102,28 @@ export function DiscordStatus() {
             <span className="text-xs text-muted-foreground ">Loading...</span>
         ) : (
             <>
-              {deviceIcons(devices.web, devices.desktop, devices.mobile)}
               <span className="text-xs capitalize">{status}</span>
+              {/* Always show device icons inline with status text */}
+              {deviceIcons(devices.web, devices.desktop, devices.mobile)}
             </>
         )}
-        <div
-            className={`
-          absolute left-full ml-2
-          transition-all duration-500
-          ${showButton
-                ? "opacity-100 scale-100 -translate-x-4"
-                : "opacity-0 scale-90 -translate-x-8 pointer-events-none"
-            }
-        `}
-            style={{ willChange: "transform, opacity" }}
-        >
-          <Button
-              asChild
-              className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition"
-          >
-            <a
-                href="https://discord.com/users/617332157613998091"
-                target="_blank"
-                rel="noopener noreferrer"
+        {/* Show the button to the right of the icons when online */}
+        {showButton && (
+          <div className="ml-2">
+            <Button
+                asChild
+                className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition"
             >
-              Message Me
-            </a>
-          </Button>
-        </div>
+              <a
+                  href="https://discord.com/users/617332157613998091"
+                  target="_blank"
+                  rel="noopener noreferrer"
+              >
+                Message Me
+              </a>
+            </Button>
+          </div>
+        )}
       </div>
   );
 }
