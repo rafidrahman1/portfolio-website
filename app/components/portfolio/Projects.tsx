@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github Bot, Share2,MessageSquare} from "lucide-react";
+import { ExternalLink, Github, Bot, Share2,MessageSquare} from "lucide-react";
 
 export const Projects = () => {
   const projects = [
