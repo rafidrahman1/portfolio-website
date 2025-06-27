@@ -6,7 +6,7 @@ import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Skills } from "@/components/portfolio/Skills";
 import { Contact } from "@/components/portfolio/Contact";
-import { Navigation } from "@/components/portfolio/Navigation";
+import { Navigation } from "@/components/navigation/Navigation";
 import { ProjectShowcase } from "@/components/portfolio/ProjectShowcase";
 
 export default function Home() {

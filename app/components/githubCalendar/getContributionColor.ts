@@ -1,4 +1,4 @@
-// components/github-calendar/getContributionColor.ts
+// components/githubCalendar/getContributionColor.ts
 export const getContributionColor = (level: number, isDark: boolean) => {
     if (isDark) {
         switch (level) {

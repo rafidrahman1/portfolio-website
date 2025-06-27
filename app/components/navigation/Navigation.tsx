@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { DiscordStatus } from "@/components/live/DiscordStatus";
+import { DiscordStatus } from "@/components/navigation/DiscordStatus";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
