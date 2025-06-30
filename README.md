@@ -20,6 +20,35 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+To enable the AI chat functionality, you'll need to set up the following environment variables:
+
+Create a `.env.local` file in the root directory with:
+
+```bash
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_URL=https://api.openai.com/v1
+
+# Email Configuration (for contact form)
+RESEND_API_KEY=your_resend_api_key_here
+TO_EMAIL=your_email@example.com
+```
+
+### Getting API Keys
+
+1. **OpenAI API Key**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. **Resend API Key**: Get your API key from [Resend](https://resend.com) for email functionality
+
+## Features
+
+- **AI Chat**: Interactive chat interface powered by OpenAI GPT-3.5-turbo
+- **Responsive Design**: Mobile-first design with smooth animations
+- **Contact Form**: Email contact form with Resend integration
+- **Dark/Light Theme**: Theme toggle functionality
+- **GitHub Integration**: GitHub calendar and activity display
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

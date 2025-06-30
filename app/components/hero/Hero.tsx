@@ -1,4 +1,4 @@
-import { GitHubCalendar } from "@/components/githubCalendar/GitHubCalendar";
+import { GitHubCalendar } from "@/components/hero/githubCalendar/GitHubCalendar";
 import { HeroAvatar } from "./HeroAvatar";
 import { HeroHeading } from "./HeroHeading";
 import { HeroDescription } from "./HeroDescription";
@@ -8,22 +8,25 @@ import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
 
 export const Hero = () => {
   return (
+    <>
       <section
-          id="home"
-          className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-16 bg-gradient-to-br from-[#181c26] via-[#191b23] to-[#1c202a]"
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-16 bg-gradient-to-br from-[#181c26] via-[#191b23] to-[#1c202a]"
       >
         <HeroBackground />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 justify-center sm:justify-start">
             <HeroAvatar />
-            <AskMeAnythingBubble />
+            <div className="hidden sm:block">
+              <AskMeAnythingBubble />
+            </div>
           </div>
           <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center md:items-start">
             {/* LEFT COLUMN */}
-              <div className="text-center md:text-left">
-                <HeroHeading />
-                <HeroDescription />
-              </div>
+            <div className="text-center md:text-left">
+              <HeroHeading />
+              <HeroDescription />
+            </div>
             {/* RIGHT COLUMN */}
             <div className="flex-1 flex flex-col items-center md:items-end w-full space-y-8">
               <div className="w-full max-w-lg  rounded-xl shadow-lg p-4 md:p-6">
@@ -36,5 +39,12 @@ export const Hero = () => {
           </div>
         </div>
       </section>
+      {/* Mobile AskMeAnythingBubble fixed at bottom */}
+      <div className="block sm:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+        <div className="pointer-events-auto max-w-xs w-full flex justify-center">
+          <AskMeAnythingBubble />
+        </div>
+      </div>
+    </>
   );
 };

@@ -90,11 +90,6 @@ export const ProjectShowcase = () => {
                   </div>
                   {/* Project details */}
                   <div className="flex-1 space-y-6">
-                    {project.featured && (
-                        <div className="text-primary font-medium text-lg">
-                          FEATURED PROJECT #{index + 1}
-                        </div>
-                    )}
                     <h3 className="text-3xl md:text-4xl font-bold text-foreground">
                       {project.title}
                     </h3>
