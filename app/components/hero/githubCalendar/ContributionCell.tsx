@@ -15,7 +15,7 @@ export const ContributionCell: React.FC<Props> = ({ level, isDark, isAnimated, c
         `w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500
       ${isAnimated
             ? `${getContributionColor(level, isDark)} opacity-100 animate-tetris-drop`
-            : 'bg-transparent opacity-30'
+            : 'bg-transparent opacity-30 invisible'
         }
     `}
         style={{

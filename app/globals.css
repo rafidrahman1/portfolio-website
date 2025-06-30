@@ -394,4 +394,30 @@
   }
 }
 
+/* Show horizontal scrollbar only on hover of parent with .group */
+.group:hover .scrollbar-hover-show {
+  overflow-x: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: #a0aec0 transparent;
+}
+.group:hover .scrollbar-hover-show::-webkit-scrollbar {
+  display: block;
+  height: 8px;
+}
+.group:hover .scrollbar-hover-show::-webkit-scrollbar-thumb {
+  background: #a0aec0;
+  border-radius: 4px;
+}
+.group:hover .scrollbar-hover-show::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hover-show {
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.scrollbar-hover-show::-webkit-scrollbar {
+  display: none;
+}
+
 

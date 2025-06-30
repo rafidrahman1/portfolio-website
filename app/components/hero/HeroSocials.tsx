@@ -1,8 +1,14 @@
 import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export const HeroSocials = () => (
-    <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center sm:justify-center sm:gap-4 mb-4 sm:mb-8 animate-fade-in-up animation-delay-800">
+    <motion.div
+        className="flex flex-col gap-3 w-full sm:flex-row sm:items-center sm:justify-center sm:gap-4 mb-4 sm:mb-8 animation-delay-800"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.8 }}
+    >
         <Button
             variant="outline"
             size="lg"
@@ -33,5 +39,5 @@ export const HeroSocials = () => (
                 LinkedIn
             </a>
         </Button>
-    </div>
+    </motion.div>
 );
