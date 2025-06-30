@@ -1,6 +1,25 @@
 import { NextResponse } from 'next/server';
 import { openai } from '../../lib/openaiClient';
 import SYSTEM_PROMPT from '../../lib/prompt';
+import { cookies } from 'next/headers';
+
+const SESSION_COOKIE_NAME = 'chat_session';
+const SESSION_MAX_QUESTIONS = 10;
+const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24; // 1 day
+
+async function getSessionData() {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+    if (!sessionCookie) {
+        return { count: 0, id: Math.random().toString(36).slice(2) };
+    }
+    try {
+        const parsed = JSON.parse(atob(sessionCookie));
+        return parsed;
+    } catch {
+        return { count: 0, id: Math.random().toString(36).slice(2) };
+    }
+}
 
 export async function POST(request: Request) {
     try {
@@ -12,6 +31,16 @@ export async function POST(request: Request) {
                 { status: 400 }
             );
         }
+
+        // Session logic
+        let session = await getSessionData();
+        if (session.count >= SESSION_MAX_QUESTIONS) {
+            return NextResponse.json(
+                { error: 'You have reached the maximum number of questions for this session (10).' },
+                { status: 429 }
+            );
+        }
+        session.count += 1;
 
         // Check if OpenAI API key is configured
         if (!process.env.OPENAI_API_KEY) {
@@ -62,14 +91,28 @@ export async function POST(request: Request) {
 
         console.log('Successfully received AI response');
 
-        return NextResponse.json({
+        // Set updated session cookie
+        const response = NextResponse.json({
             response: aiResponse,
             conversationHistory: [
                 ...conversationHistory,
                 { role: 'user', content: message },
                 { role: 'assistant', content: aiResponse }
-            ]
+            ],
+            questionsLeft: SESSION_MAX_QUESTIONS - session.count
         });
+        // Set the cookie on the response
+        response.cookies.set(
+            SESSION_COOKIE_NAME,
+            btoa(JSON.stringify(session)),
+            {
+                path: '/',
+                maxAge: SESSION_COOKIE_MAX_AGE,
+                httpOnly: false,
+                sameSite: 'lax',
+            }
+        );
+        return response;
 
     } catch (error) {
         console.error('Chat API error:', error);

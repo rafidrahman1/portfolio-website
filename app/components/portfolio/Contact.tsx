@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -60,7 +61,14 @@ export const Contact = () => {
   };
 
   return (
-      <section id="contact" className="py-16 sm:py-20 bg-muted/30">
+      <motion.section
+        id="contact"
+        className="py-16 sm:py-20 bg-muted/30"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
@@ -234,6 +242,6 @@ export const Contact = () => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
   );
 };

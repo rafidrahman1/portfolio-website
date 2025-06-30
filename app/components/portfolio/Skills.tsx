@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Server, Database, Wrench } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Skills = () => {
   const skillCategories = [
@@ -31,7 +32,14 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-8">
+    <motion.section
+      id="skills"
+      className="py-8"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Technical Skills</h2>
@@ -89,6 +97,6 @@ export const Skills = () => {
           </div>
         </Card>
       </div>
-    </section>
+    </motion.section>
   );
 };

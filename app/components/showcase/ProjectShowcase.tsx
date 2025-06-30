@@ -4,6 +4,7 @@ import { ExternalLink } from "lucide-react";
 import { LaptopFrame } from "./LaptopFrame";
 import { MobileFrame } from "./MobileFrame";
 import { ShowcaseProject } from "./types";
+import { motion } from "framer-motion";
 
 export const ProjectShowcase = () => {
   const showcaseProjects: ShowcaseProject[] = [
@@ -48,7 +49,14 @@ export const ProjectShowcase = () => {
   ];
 
   return (
-      <section id="showcase" className="py-20 bg-gradient-to-br from-background via-background to-muted/30">
+      <motion.section
+        id="showcase"
+        className="py-20 bg-gradient-to-br from-background via-background to-muted/30"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
@@ -125,6 +133,6 @@ export const ProjectShowcase = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
   );
 };

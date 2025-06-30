@@ -1,10 +1,18 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Phone, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const About = () => {
   return (
-    <section id="about" className="py-16 sm:py-20 bg-muted/30">
+    <motion.section
+      id="about"
+      className="py-16 sm:py-20 bg-muted/30"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">About Me</h2>
@@ -71,6 +79,6 @@ export const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
