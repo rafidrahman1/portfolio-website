@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { openai } from '../../../lib/openaiClient';
-import SYSTEM_PROMPT from '../../../lib/prompt';
+import { openai } from '../../lib/openaiClient';
+import SYSTEM_PROMPT from '../../lib/prompt';
 
 export async function POST(request: Request) {
     try {
