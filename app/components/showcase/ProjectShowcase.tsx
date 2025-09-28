@@ -7,11 +7,12 @@ import { ShowcaseProject } from "./types";
 import { motion } from "framer-motion";
 
 export const ProjectShowcase = () => {
+  console.log("ProjectShowcase component is rendering");
   const showcaseProjects: ShowcaseProject[] = [
     {
       title: "SewingTex React Conversion",
       description: "Modern React SPA conversion with improved performance and mobile experience",
-      image: "screenshots/sewingtex.png",
+      image: "/screenshots/sewingtex.png",
       technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
       category: "E-commerce",
       demoUrl: "https://sewingtexapparels.com/",
@@ -21,7 +22,7 @@ export const ProjectShowcase = () => {
     {
       title: "BetterThat Ecosystem",
       description: "Multiple React applications with reusable component libraries",
-      image: "screenshots/betterthat.png",
+      image: "/screenshots/betterthat.png",
       technologies: ["React", "Component Libraries", "State Management"],
       category: "Multi-Project E-commerce",
       demoUrl: "https://betterthat.com/",
@@ -30,7 +31,7 @@ export const ProjectShowcase = () => {
     {
       title: "Evocart",
       description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-      image: "screenshots/evocart.jpg",
+      image: "/screenshots/evocart.jpg",
       technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
       category: "E-commerce",
       demoUrl: "https://apple.nazarahnaturals.com/",
@@ -40,7 +41,7 @@ export const ProjectShowcase = () => {
     {
       title: "Physics Department, BUET",
       description: "Enhanced departmental website with dynamic components and CMS",
-      image: "screenshots/buetphy.png",
+      image: "/screenshots/buetphy.png",
       technologies: ["React", "CMS", "Web Standards"],
       category: "Education",
       demoUrl: "https://phy.buet.ac.bd/",
@@ -49,13 +50,10 @@ export const ProjectShowcase = () => {
   ];
 
   return (
-      <motion.section
+      <section
         id="showcase"
-        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30 border-2 border-red-500"
+        style={{ minHeight: '400px' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -133,6 +131,6 @@ export const ProjectShowcase = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
   );
 };
