@@ -51,29 +51,29 @@ export const ProjectShowcase = () => {
   return (
       <motion.section
         id="showcase"
-        className="py-20 bg-gradient-to-br from-background via-background to-muted/30"
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               A showcase of modern web development projects built with cutting-edge technologies
             </p>
           </div>
-          <div className="space-y-32">
+          <div className="space-y-16 sm:space-y-24 lg:space-y-32">
             {showcaseProjects.map((project, index) => (
                 <div
                     key={index}
                     className={`flex flex-col ${
                         index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                    } items-center gap-16 lg:gap-24`}
+                    } items-center gap-8 sm:gap-12 lg:gap-24`}
                 >
                   {/* Project mockup */}
-                  <div className="flex-1 relative">
+                  <div className="flex-1 relative w-full max-w-lg lg:max-w-none">
                     {project.deviceType === 'laptop' ? (
                         <LaptopFrame>
                           <AspectRatio ratio={16 / 10}>
@@ -97,12 +97,12 @@ export const ProjectShowcase = () => {
                     )}
                   </div>
                   {/* Project details */}
-                  <div className="flex-1 space-y-6">
-                    <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                  <div className="flex-1 space-y-4 sm:space-y-6 w-full">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
                       {project.title}
                     </h3>
-                    <div className="bg-card/50 backdrop-blur-sm border rounded-lg p-6 shadow-lg">
-                      <p className="text-muted-foreground leading-relaxed">
+                    <div className="bg-card/50 backdrop-blur-sm border rounded-lg p-4 sm:p-6 shadow-lg">
+                      <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                         {project.description}
                       </p>
                     </div>
@@ -110,13 +110,13 @@ export const ProjectShowcase = () => {
                       {project.technologies.map((tech, i) => (
                           <span
                               key={i}
-                              className="text-sm text-primary bg-primary/10 px-3 py-1 rounded-md font-medium"
+                              className="text-xs sm:text-sm text-primary bg-primary/10 px-2 sm:px-3 py-1 rounded-md font-medium"
                           >
                       {tech}
                     </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-4 pt-4">
+                    <div className="flex items-center gap-4 pt-2 sm:pt-4">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.demoUrl} 
                         className="flex items-center gap-2"
