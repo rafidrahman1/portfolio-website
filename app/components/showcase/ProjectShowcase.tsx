@@ -7,7 +7,6 @@ import { ShowcaseProject } from "./types";
 import { motion } from "framer-motion";
 
 export const ProjectShowcase = () => {
-  console.log("ProjectShowcase component is rendering");
   const showcaseProjects: ShowcaseProject[] = [
     {
       title: "SewingTex React Conversion",
@@ -52,8 +51,7 @@ export const ProjectShowcase = () => {
   return (
       <section
         id="showcase"
-        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30 border-2 border-red-500"
-        style={{ minHeight: '400px' }}
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
