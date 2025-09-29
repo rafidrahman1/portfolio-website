@@ -1,11 +1,23 @@
-import { GitHubCalendar } from "@/components/hero/githubCalendar/GitHubCalendar";
 import { HeroAvatar } from "./HeroAvatar";
 import { HeroHeading } from "./HeroHeading";
 import { HeroDescription } from "./HeroDescription";
 import { HeroSocials } from "./HeroSocials";
 import { HeroBackground } from "./HeroBackground";
 import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
+import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Dynamic import for heavy GitHub Calendar component
+const GitHubCalendar = dynamic(() => import("@/components/hero/githubCalendar/GitHubCalendar").then(mod => ({ default: mod.GitHubCalendar })), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border min-h-[14rem] flex items-center justify-center">
+      <div className="animate-pulse text-muted-foreground">Loading GitHub contributions...</div>
+    </div>
+  )
+});
 
 export const Hero = () => {
   return (
@@ -13,9 +25,10 @@ export const Hero = () => {
       <motion.section
         id="home"
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-16 bg-gradient-to-br from-[#181c26] via-[#191b23] to-[#1c202a]"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{ willChange: "transform, opacity" }}
       >
         <HeroBackground />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
@@ -34,7 +47,9 @@ export const Hero = () => {
             {/* RIGHT COLUMN */}
             <div className="flex-1 flex flex-col items-center md:items-end w-full space-y-8">
               <div className="w-full max-w-lg  rounded-xl shadow-lg p-4 md:p-6">
-                <GitHubCalendar username="rafidrahman1" />
+                <GitHubCalendarLoadingWrapper>
+                  <GitHubCalendar username="rafidrahman1" />
+                </GitHubCalendarLoadingWrapper>
               </div>
               <div className="w-full flex justify-center md:justify-end">
                 <HeroSocials />

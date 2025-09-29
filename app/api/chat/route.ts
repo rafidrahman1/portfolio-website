@@ -3,6 +3,9 @@ import { openai } from '../../lib/openaiClient';
 import SYSTEM_PROMPT from '../../lib/prompt';
 import { cookies } from 'next/headers';
 
+// Edge Runtime for better performance
+export const runtime = 'edge';
+
 const SESSION_COOKIE_NAME = 'chat_session';
 const SESSION_MAX_QUESTIONS = 10;
 const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24; // 1 day

@@ -1,22 +1,27 @@
 "use client";
 
 import { Hero } from "@/components/hero/Hero";
-import { About } from "@/components/portfolio/About";
+import { AboutWithAnimation } from "@/components/portfolio/AboutWithAnimation";
 import { Projects } from "@/components/portfolio/Projects";
-import { Skills } from "@/components/portfolio/Skills";
+import { SkillsWithAnimation } from "@/components/portfolio/SkillsWithAnimation";
 import { Contact } from "@/components/portfolio/Contact";
 import { Navigation } from "@/components/navigation/Navigation";
-import { ProjectShowcase } from "@/components/showcase/ProjectShowcase";
+import { ProjectLoadingWrapper } from "@/components/ui/loading-wrapper";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Use hybrid approach with static data and client-side animations
+import { ProjectShowcaseHybrid } from "@/components/showcase/ProjectShowcaseHybrid";
 
 export default function Home() {
     return (
         <div className="min-h-screen bg-background">
             <Navigation />
             <Hero />
-            <About />
-            <ProjectShowcase/>
+            <AboutWithAnimation />
+            <ProjectShowcaseHybrid />
             <Projects />
-            <Skills />
+            <SkillsWithAnimation />
             <Contact />
         </div>
     )

@@ -1,58 +1,27 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ExternalLink } from "lucide-react";
 import { LaptopFrame } from "./LaptopFrame";
 import { MobileFrame } from "./MobileFrame";
-import { ShowcaseProject } from "./types";
+import { getStaticProjects } from "@/lib/github-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export const ProjectShowcase = () => {
-  const showcaseProjects: ShowcaseProject[] = [
-    {
-      title: "SewingTex React Conversion",
-      description: "Modern React SPA conversion with improved performance and mobile experience",
-      image: "/screenshots/sewingtex.png",
-      technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
-      category: "E-commerce",
-      demoUrl: "https://sewingtexapparels.com/",
-      deviceType: "laptop",
-      featured: true
-    },
-    {
-      title: "BetterThat Ecosystem",
-      description: "Multiple React applications with reusable component libraries",
-      image: "/screenshots/betterthat.png",
-      technologies: ["React", "Component Libraries", "State Management"],
-      category: "Multi-Project E-commerce",
-      demoUrl: "https://betterthat.com/",
-      deviceType: "laptop"
-    },
-    {
-      title: "Evocart",
-      description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-      image: "/screenshots/evocart.jpg",
-      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-      category: "E-commerce",
-      demoUrl: "https://apple.nazarahnaturals.com/",
-      deviceType: "mobile",
-      featured: true
-    },    
-    {
-      title: "Physics Department, BUET",
-      description: "Enhanced departmental website with dynamic components and CMS",
-      image: "/screenshots/buetphy.png",
-      technologies: ["React", "CMS", "Web Standards"],
-      category: "Education",
-      demoUrl: "https://phy.buet.ac.bd/",
-      deviceType: "laptop"
-    }
-  ];
+export const ProjectShowcaseHybrid = () => {
+  // Use static data but with client-side animations
+  const showcaseProjects = getStaticProjects();
 
   return (
-      <section
+      <motion.section
         id="showcase"
         className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ willChange: "transform, opacity" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -63,11 +32,16 @@ export const ProjectShowcase = () => {
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">
             {showcaseProjects.map((project, index) => (
-                <div
+                <motion.div
                     key={index}
                     className={`flex flex-col ${
                         index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                     } items-center gap-8 sm:gap-12 lg:gap-24`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+                    style={{ willChange: "transform, opacity" }}
                 >
                   {/* Project mockup */}
                   <div className="flex-1 relative w-full max-w-lg lg:max-w-none">
@@ -132,10 +106,10 @@ export const ProjectShowcase = () => {
                       </Button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
   );
 };

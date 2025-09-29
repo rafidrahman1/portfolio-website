@@ -3,51 +3,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ExternalLink } from "lucide-react";
 import { LaptopFrame } from "./LaptopFrame";
 import { MobileFrame } from "./MobileFrame";
-import { ShowcaseProject } from "./types";
-import { motion } from "framer-motion";
+import { getStaticProjects } from "@/lib/github-data";
 import Image from "next/image";
 
-export const ProjectShowcase = () => {
-  const showcaseProjects: ShowcaseProject[] = [
-    {
-      title: "SewingTex React Conversion",
-      description: "Modern React SPA conversion with improved performance and mobile experience",
-      image: "/screenshots/sewingtex.png",
-      technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
-      category: "E-commerce",
-      demoUrl: "https://sewingtexapparels.com/",
-      deviceType: "laptop",
-      featured: true
-    },
-    {
-      title: "BetterThat Ecosystem",
-      description: "Multiple React applications with reusable component libraries",
-      image: "/screenshots/betterthat.png",
-      technologies: ["React", "Component Libraries", "State Management"],
-      category: "Multi-Project E-commerce",
-      demoUrl: "https://betterthat.com/",
-      deviceType: "laptop"
-    },
-    {
-      title: "Evocart",
-      description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-      image: "/screenshots/evocart.jpg",
-      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-      category: "E-commerce",
-      demoUrl: "https://apple.nazarahnaturals.com/",
-      deviceType: "mobile",
-      featured: true
-    },    
-    {
-      title: "Physics Department, BUET",
-      description: "Enhanced departmental website with dynamic components and CMS",
-      image: "/screenshots/buetphy.png",
-      technologies: ["React", "CMS", "Web Standards"],
-      category: "Education",
-      demoUrl: "https://phy.buet.ac.bd/",
-      deviceType: "laptop"
-    }
-  ];
+export const ProjectShowcaseStatic = () => {
+  const showcaseProjects = getStaticProjects();
 
   return (
       <section

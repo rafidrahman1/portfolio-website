@@ -1,4 +1,5 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Image from "next/image";
 
 export const HeroAvatar = () => (
     <div className="flex justify-center mt-12 mb-2 sm:mb-4">
@@ -6,7 +7,7 @@ export const HeroAvatar = () => (
             <AvatarImage
                 src="https://lh3.googleusercontent.com/a/ACg8ocKD9J1t89kCMvX4aD1tzyVfXmilQnwaiwVHVJfP2aIjZOUN-44dDw=s288-c-no"
                 alt="Rafid Rahman"
-                className="object-cover"
+                className="object-cover"                
             />
             <AvatarFallback className="text-lg xs:text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
                 RR
