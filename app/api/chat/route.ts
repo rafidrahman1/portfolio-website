@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { openai } from '../../lib/openaiClient';
-import SYSTEM_PROMPT from '../../lib/prompt';
+import PROMPT_JSON from '../../lib/prompt';
 import { cookies } from 'next/headers';
 
 // Edge Runtime for better performance
@@ -8,19 +8,36 @@ export const runtime = 'edge';
 
 const SESSION_COOKIE_NAME = 'chat_session';
 const SESSION_MAX_QUESTIONS = 10;
-const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24; // 1 day
+const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24; // 1 day (in seconds)
+
+type ChatSession = {
+    id: string;
+    count: number;
+    createdAt: number; // epoch ms when this session started counting
+};
 
 async function getSessionData() {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value;
     if (!sessionCookie) {
-        return { count: 0, id: Math.random().toString(36).slice(2) };
+        return { count: 0, id: Math.random().toString(36).slice(2), createdAt: Date.now() } as ChatSession;
     }
     try {
-        const parsed = JSON.parse(atob(sessionCookie));
-        return parsed;
+        const parsed = JSON.parse(atob(sessionCookie)) as Partial<ChatSession>;
+        const createdAt = typeof parsed.createdAt === 'number' ? parsed.createdAt : Date.now();
+        const now = Date.now();
+        const windowMs = SESSION_COOKIE_MAX_AGE * 1000;
+        // If the session is older than our window, reset it
+        if (now - createdAt >= windowMs) {
+            return { count: 0, id: Math.random().toString(36).slice(2), createdAt: now } as ChatSession;
+        }
+        return {
+            id: parsed.id ?? Math.random().toString(36).slice(2),
+            count: typeof parsed.count === 'number' ? parsed.count : 0,
+            createdAt,
+        } as ChatSession;
     } catch {
-        return { count: 0, id: Math.random().toString(36).slice(2) };
+        return { count: 0, id: Math.random().toString(36).slice(2), createdAt: Date.now() } as ChatSession;
     }
 }
 
@@ -38,10 +55,41 @@ export async function POST(request: Request) {
         // Session logic
         let session = await getSessionData();
         if (session.count >= SESSION_MAX_QUESTIONS) {
-            return NextResponse.json(
-                { error: 'You have reached the maximum number of questions for this session (10).' },
-                { status: 429 }
+            const windowMs = SESSION_COOKIE_MAX_AGE * 1000;
+            const now = Date.now();
+            const resetAtMs = session.createdAt + windowMs;
+            const retryMs = Math.max(0, resetAtMs - now);
+            const retrySeconds = Math.ceil(retryMs / 1000);
+            const hours = Math.floor(retrySeconds / 3600);
+            const minutes = Math.floor((retrySeconds % 3600) / 60);
+            const seconds = retrySeconds % 60;
+            const human = hours > 0
+                ? `${hours}h ${minutes}m ${seconds}s`
+                : minutes > 0
+                ? `${minutes}m ${seconds}s`
+                : `${seconds}s`;
+
+            const errorResponse = NextResponse.json(
+                {
+                    error: `You have reached the maximum number of questions for this session (${SESSION_MAX_QUESTIONS}). Try again in ${human}.`,
+                    retryAfterSeconds: retrySeconds,
+                    retryAfterHuman: human,
+                    resetAt: new Date(resetAtMs).toISOString(),
+                },
+                { status: 429, headers: { 'Retry-After': String(retrySeconds) } }
             );
+            // Ensure session cookie persists while rate limited
+            errorResponse.cookies.set(
+                SESSION_COOKIE_NAME,
+                btoa(JSON.stringify(session)),
+                {
+                    path: '/',
+                    maxAge: SESSION_COOKIE_MAX_AGE,
+                    httpOnly: false,
+                    sameSite: 'lax',
+                }
+            );
+            return errorResponse;
         }
         session.count += 1;
 
@@ -67,7 +115,7 @@ export async function POST(request: Request) {
 
         // Prepare conversation messages
         const messages = [
-            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'system', content: JSON.stringify(PROMPT_JSON) },
             ...conversationHistory,
             { role: 'user', content: message }
         ];
@@ -118,8 +166,26 @@ export async function POST(request: Request) {
         return response;
 
     } catch (error) {
-        console.error('Chat API error:', error);
-        
+        // Normalize error shape because some runtimes log objects as {}
+        const err: any = error;
+        const statusFromErr = typeof err?.status === 'number' ? err.status : undefined;
+        const msgFromErr = (typeof err?.message === 'string' && err.message)
+            || (typeof err?.error?.message === 'string' && err.error.message)
+            || (typeof err === 'string' && err)
+            || 'Unknown error';
+        const details = {
+            name: err?.name,
+            status: statusFromErr,
+            code: err?.code,
+            type: err?.type,
+            response: err?.response?.data ?? err?.response?.body ?? err?.data ?? null,
+        };
+        try {
+            console.error('Chat API error:', { message: msgFromErr, ...details });
+        } catch {
+            console.error('Chat API error:', msgFromErr);
+        }
+
         // More specific error handling
         if (error instanceof Error) {
             if (error.message.includes('401')) {
@@ -139,10 +205,11 @@ export async function POST(request: Request) {
                 );
             }
         }
-        
+
+        // Fallback returning normalized error and best-effort status
         return NextResponse.json(
-            { error: 'Failed to process chat request: ' + (error instanceof Error ? error.message : 'Unknown error') },
-            { status: 500 }
+            { error: 'Failed to process chat request: ' + msgFromErr },
+            { status: statusFromErr ?? 500 }
         );
     }
 } 
