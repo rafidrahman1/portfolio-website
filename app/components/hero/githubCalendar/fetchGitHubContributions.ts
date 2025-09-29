@@ -66,11 +66,17 @@ export const fetchGitHubContributions = async (username: string): Promise<Contri
         const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
         if (!response.ok) throw new Error(`Failed to fetch contributions: ${response.status}`);
         const data = await response.json();
-        const contributions: ContributionDay[] = data.contributions.map((day: any) => ({
-            date: day.date,
-            count: day.count,
-            level: day.intensity as 0 | 1 | 2 | 3 | 4
-        }));
+        const contributions: ContributionDay[] = data.contributions.map((day: any) => {
+            const count = day.count;
+            const level = count === 0 ? 0 : count <= 2 ? 1 : count <= 4 ? 2 : count <= 6 ? 3 : 4;
+            return {
+                date: day.date,
+                count,
+                level: level as 0 | 1 | 2 | 3 | 4
+            };
+        });
+        console.log('GitHub contributions fetched:', contributions.length, 'days');
+        console.log('Sample contributions:', contributions.slice(0, 5));
         return contributions;
     } catch (error) {
         // Fallback to mock data

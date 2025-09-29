@@ -30,6 +30,20 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
     refetchOnWindowFocus: false,
   });
 
+  // Debug logging
+  useEffect(() => {
+    if (contributions) {
+      console.log('GitHub Calendar - Contributions loaded:', contributions.length);
+      console.log('Sample data:', contributions.slice(0, 3));
+    }
+    if (error) {
+      console.error('GitHub Calendar - Error:', error);
+    }
+    if (isLoading) {
+      console.log('GitHub Calendar - Loading...');
+    }
+  }, [contributions, error, isLoading]);
+
   // Arrange contributions into columns (weeks)
   const weeks: ContributionDay[][] = [];
   if (contributions) {
@@ -62,7 +76,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
     }
     animateColumn();
     return () => setAnimatedCells(totalCells);
-  }, [contributions]);
+  }, [contributions, weeks.length]);
 
   useEffect(() => {
     if (contributions && animatedCells >= contributions.length && prevAnimatedCells.current < contributions.length) {
