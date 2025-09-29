@@ -155,14 +155,24 @@ export const AskMeAnythingBubble = () => {
 
             if (!response.ok) {
                 let errorMessage = 'Unknown error';
-                let errorStatus = response.status;
+                const errorStatus = response.status;
                 const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-                if (errorStatus === 429 && errorData.error && errorData.error.includes('maximum number of questions')) {
-                    errorMessage = 'You have reached the maximum number of questions for this session (10).';
+
+                if (errorStatus === 429) {
+                    // Prefer server-provided, human-friendly message if available
+                    if (typeof errorData?.error === 'string' && errorData.error.length > 0) {
+                        errorMessage = errorData.error;
+                    } else if (typeof errorData?.retryAfterHuman === 'string') {
+                        errorMessage = `You have reached the maximum number of questions for this session (10). Try again in ${errorData.retryAfterHuman}.`;
+                    } else {
+                        errorMessage = 'Too many requests. Please wait and try again.';
+                    }
                 } else {
-                    errorMessage = errorData.error || `HTTP ${response.status}: ${response.statusText}`;
+                    errorMessage = (typeof errorData?.error === 'string' && errorData.error)
+                        || `HTTP ${response.status}: ${response.statusText}`;
                 }
-                console.error('Chat API error:', errorData);
+
+                console.error('Chat API error:', { status: errorStatus, errorData });
                 // Show the error as an assistant message
                 const errorMessageObj: Message = {
                     role: 'assistant',
