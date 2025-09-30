@@ -23,8 +23,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["./app/*"],
+      "@/src/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true
   },
