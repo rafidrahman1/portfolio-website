@@ -47,9 +47,7 @@ export const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3">
             <DiscordStatus />
-            <div className="hidden sm:block">
-              <NowPlaying />
-            </div>
+            <NowPlaying />
           </div>
 
           
