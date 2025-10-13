@@ -80,7 +80,7 @@ export function NowPlaying() {
   };
 
   // Don't show anything if no activity or still loading
-  if (gameData.app === "none" || loading) {
+  if (gameData.app === "none" || gameData.app === "None" || loading) {
     return null;
   }
 
