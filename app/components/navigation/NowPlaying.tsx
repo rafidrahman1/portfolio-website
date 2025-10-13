@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Play, Pause, Square } from "lucide-react";
+import { Play, Square } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 
 type GameData = {
   app: string;
@@ -85,19 +87,29 @@ export function NowPlaying() {
   }
 
   return (
-    <div className="flex items-center space-x-1 relative min-w-[120px]">
-      <div className={`w-3 h-3 rounded-full ${getStatusColor()} transition-colors`} />
-      <div className="flex items-center space-x-1">
-        {getStatusIcon()}
-        <div className="flex flex-col">
-          <span className="text-xs font-medium text-foreground truncate max-w-[80px]">
-            {getDisplayText()}
-          </span>
-          <span className="text-xs text-muted-foreground truncate max-w-[80px]">
-            {gameData.title}
-          </span>
-        </div>
-      </div>
-    </div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex items-center space-x-2 relative min-w-[140px]">
+            <span className={`w-2.5 h-2.5 rounded-full ${getStatusColor()} transition-colors`} />
+            {getStatusIcon()}
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" className="px-2 py-0.5">
+                {getDisplayText()}
+              </Badge>
+              <span className="text-xs text-muted-foreground truncate max-w-[100px]">
+                {gameData.title}
+              </span>
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <div className="text-xs">
+            <div className="font-medium">{gameData.app}</div>
+            <div className="text-muted-foreground">{gameData.title}</div>
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

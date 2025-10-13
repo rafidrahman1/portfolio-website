@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Button } from "@/components/ui/button";
 import { DiscordStatus } from "@/components/navigation/DiscordStatus";
 import { NowPlaying } from "@/components/navigation/NowPlaying";
 
@@ -55,13 +56,14 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <button
+              <Button
                 key={item.href}
+                variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                className="font-medium"
               >
                 {item.label}
-              </button>
+              </Button>
             ))}
             <ThemeToggle />
           </div>
@@ -69,12 +71,13 @@ export const Navigation = () => {
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </Button>
           </div>
         </div>
 
@@ -82,13 +85,14 @@ export const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             {navItems.map((item) => (
-              <button
+              <Button
                 key={item.href}
+                variant="ghost"
+                className="block w-full justify-start py-2"
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors duration-200"
               >
                 {item.label}
-              </button>
+              </Button>
             ))}
           </div>
         )}

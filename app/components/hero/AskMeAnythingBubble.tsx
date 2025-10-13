@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Loader2, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface Message {
     role: 'user' | 'assistant';
@@ -258,14 +260,15 @@ export const AskMeAnythingBubble = () => {
         <div className="relative flex items-center" ref={containerRef}>
             {/* Chat Bubble Button */}
             {!shouldRender && (
-                <button
+                <Button
                     aria-label="Ask Me Anything"
                     onClick={handleToggle}
-                    className="flex items-center gap-2 bg-background shadow-md rounded-full px-4 py-2 text-sm font-semibold text-foreground border border-border hover:bg-accent hover:text-accent-foreground transition-all duration-200 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    variant="outline"
+                    className="rounded-full px-4 py-2 text-sm font-semibold"
                 >
                     <span className={`text-lg transition-transform duration-200 ${open ? 'animate-pulse' : 'animate-bounce'}`}>💬</span>
                     <span>Ask Me</span>
-                </button>
+                </Button>
             )}
             
             {/* Popup Bubble */}
@@ -287,12 +290,14 @@ export const AskMeAnythingBubble = () => {
                             <span className="text-primary animate-pulse">🤔</span>
                             Ask Me Anything
                         </div>
-                        <button
+                        <Button
                             onClick={handleClose}
-                            className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-ring"
+                            variant="ghost"
+                            size="icon"
+                            className="text-muted-foreground hover:text-foreground"
                         >
-                            <X size={20} />
-                        </button>
+                            <X size={18} />
+                        </Button>
                     </div>
 
                     {/* Messages */}
@@ -338,27 +343,27 @@ export const AskMeAnythingBubble = () => {
 
                     {/* Input */}
                     <div className="flex gap-2 px-4 pb-4 sm:px-0 sm:pb-0">
-                        <input
+                        <Input
                             ref={inputRef}
                             type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Type your question..."
-                            className="flex-1 px-3 py-2 border border-input bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 hover:border-ring text-sm placeholder:text-muted-foreground"
+                            className="flex-1 text-sm"
                             disabled={isLoading}
                         />
-                        <button
+                        <Button
                             onClick={handleSendMessage}
                             disabled={!inputValue.trim() || isLoading}
-                            className="px-3 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="px-3"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
                             ) : (
                                 <Send className="w-4 h-4" />
                             )}
-                        </button>
+                        </Button>
                     </div>
                 </div>
             )}
