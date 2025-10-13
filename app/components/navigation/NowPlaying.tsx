@@ -53,7 +53,7 @@ export function NowPlaying() {
   };
 
   // Don't show anything if no activity or still loading
-  if (gameData.app === "None" || loading) {
+  if (gameData.app === "none" || loading) {
     return null;
   }
 
