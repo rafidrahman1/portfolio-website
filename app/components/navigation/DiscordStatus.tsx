@@ -50,6 +50,8 @@ export function DiscordStatus() {
     mobile: false,
   });
   const [showButton, setShowButton] = useState(false);
+  const [showStatus, setShowStatus] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const fetchStatus = async () => {
     try {
@@ -73,9 +75,16 @@ export function DiscordStatus() {
 
   useEffect(() => {
     if (status === "online") {
-      setTimeout(() => setShowButton(true), 100);
+      setShowButton(true);
+      // Toggle between status and button every 5 seconds
+      const toggleInterval = setInterval(() => {
+        setShowStatus(prev => !prev);
+      }, 5000);
+      
+      return () => clearInterval(toggleInterval);
     } else {
       setShowButton(false);
+      setShowStatus(true);
     }
   }, [status]);
 
@@ -91,38 +100,53 @@ export function DiscordStatus() {
   const iconOffset = -(activeDeviceCount * 24);
 
   return (
-      <div className="flex items-center space-x-1 relative min-w-[130px]">
+      <div 
+        className="flex items-center space-x-1 relative min-w-[130px]"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <DiscordLogo />
-        <span
-            className={`w-3 h-3 rounded-full ${statusColor(
-                status
-            )} transition-colors`}
-        />
         {loading ? (
             <span className="text-xs text-muted-foreground ">Loading...</span>
         ) : (
             <>
-              <span className="text-xs capitalize">{status}</span>
-              {/* Always show device icons inline with status text */}
-              {deviceIcons(devices.web, devices.desktop, devices.mobile)}
+              {status === "online" && showButton ? (
+                // When online, show button on hover, otherwise toggle between status and button
+                 (isHovered || !showStatus) ? (
+                  <div className="ml-2">
+                    <Button
+                        asChild
+                        className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition h-2 px-2"
+                    >
+                      <a
+                          href="https://discord.com/users/617332157613998091"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                      >
+                        Message Me
+                      </a>
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <span
+                      className={`w-2 h-2 rounded-full ${statusColor(status)} mr-1`}
+                    />
+                    <span className="text-xs capitalize">{status}</span>
+                    {deviceIcons(devices.web, devices.desktop, devices.mobile)}
+                  </>
+                )
+                ) : (
+                  // For non-online status, always show status
+                  <>
+                    <span
+                      className={`w-2 h-2 rounded-full ${statusColor(status)} mr-1`}
+                    />
+                    <span className="text-xs capitalize">{status}</span>
+                    {deviceIcons(devices.web, devices.desktop, devices.mobile)}
+                  </>
+                )}
             </>
-        )}
-        {/* Show the button to the right of the icons when online */}
-        {showButton && (
-          <div className="ml-2">
-            <Button
-                asChild
-                className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition"
-            >
-              <a
-                  href="https://discord.com/users/617332157613998091"
-                  target="_blank"
-                  rel="noopener noreferrer"
-              >
-                Message Me
-              </a>
-            </Button>
-          </div>
         )}
       </div>
   );

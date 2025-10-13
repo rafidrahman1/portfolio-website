@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { DiscordStatus } from "@/components/navigation/DiscordStatus";
+import { NowPlaying } from "@/components/navigation/NowPlaying";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,8 +45,11 @@ export const Navigation = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-bold text-primary">
-           <DiscordStatus />
+          <div className="flex items-center space-x-3">
+            <DiscordStatus />
+            <div className="hidden sm:block">
+              <NowPlaying />
+            </div>
           </div>
 
           
