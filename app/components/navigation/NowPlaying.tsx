@@ -24,10 +24,37 @@ export function NowPlaying() {
   };
 
   useEffect(() => {
+    // Initial fetch
     fetchNowPlaying();
-    // Poll every 5 seconds for updates
-    const interval = setInterval(fetchNowPlaying, 5000);
-    return () => clearInterval(interval);
+
+    // Set up Server-Sent Events for real-time updates
+    const eventSource = new EventSource("/api/now-playing/stream");
+    
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === 'connected') {
+          console.log('Connected to now playing stream');
+        } else {
+          // Update the game data immediately
+          setGameData(data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Failed to parse SSE data:", error);
+      }
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("SSE connection error:", error);
+      // Fallback to polling if SSE fails
+      const interval = setInterval(fetchNowPlaying, 5000);
+      return () => clearInterval(interval);
+    };
+
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   const getStatusIcon = () => {
