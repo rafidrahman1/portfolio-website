@@ -30,6 +30,8 @@ Create a `.env.local` file in the root directory with:
 # OpenAI Configuration
 OPENAI_API_KEY=your_openai_api_key_here
 OPENAI_URL=https://api.openai.com/v1
+# Optional: override default model (defaults to gpt-4o-mini if unset)
+OPENAI_MODEL=gpt-4o-mini
 
 # Email Configuration (for contact form)
 RESEND_API_KEY=your_resend_api_key_here
@@ -43,7 +45,7 @@ TO_EMAIL=your_email@example.com
 
 ## Features
 
-- **AI Chat**: Interactive chat interface powered by OpenAI GPT-3.5-turbo
+- **AI Chat**: Interactive chat interface powered by OpenAI (defaults to `gpt-4o-mini`)
 - **Responsive Design**: Mobile-first design with smooth animations
 - **Contact Form**: Email contact form with Resend integration
 - **Dark/Light Theme**: Theme toggle functionality

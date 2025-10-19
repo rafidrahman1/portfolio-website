@@ -35,15 +35,10 @@ export const AskMeAnythingBubble = () => {
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'test', conversationHistory: [] }),
+                    body: JSON.stringify({ healthCheck: true }),
                 });
-                
-                if (response.status === 500) {
-                    const errorData = await response.json();
-                    if (errorData.error?.includes('not configured')) {
-                        setIsAIAvailable(false);
-                    }
-                }
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || data?.ok !== true) setIsAIAvailable(false);
             } catch (error) {
                 console.log('AI service not available:', error);
                 setIsAIAvailable(false);

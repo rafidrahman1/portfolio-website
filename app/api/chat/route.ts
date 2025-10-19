@@ -229,7 +229,15 @@ function createSuccessResponse(aiResponse: string, message: string, conversation
 
 export async function POST(request: Request) {
     try {
-        const { message, conversationHistory = [] } = await request.json();
+        const body = await request.json();
+        const { message, conversationHistory = [], healthCheck } = body || {};
+
+        // Lightweight health check to validate environment without consuming quota or calling OpenAI
+        if (healthCheck === true) {
+            const envError = validateEnvironment();
+            if (envError) return envError;
+            return NextResponse.json({ ok: true });
+        }
 
         // Validate input
         const validationError = validateRequest(message, conversationHistory);
