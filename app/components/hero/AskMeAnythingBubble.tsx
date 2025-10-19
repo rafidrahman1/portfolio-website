@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 interface Message {
+    id: string;
     role: 'user' | 'assistant';
     content: string;
 }
@@ -19,8 +20,13 @@ export const AskMeAnythingBubble = () => {
     const [isAIAvailable, setIsAIAvailable] = useState(true);
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
+    const messageIdCounterRef = useRef(0);
+
+    const generateMessageId = () => {
+        messageIdCounterRef.current += 1;
+        return `${Date.now()}-${messageIdCounterRef.current}`;
+    };
 
     // Check AI availability on component mount
     useEffect(() => {
@@ -122,102 +128,110 @@ export const AskMeAnythingBubble = () => {
 
         const userMessage = inputValue.trim();
         setInputValue("");
-        
+
+        const addMessage = (message: Message) => {
+            setMessages(prev => [...prev, message]);
+        };
+
+        const addAssistantMessage = (content: string) => {
+            addMessage({ id: generateMessageId(), role: 'assistant', content });
+        };
+
+        const callChatApi = async (message: string) => {
+            return fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    // Only send role/content to API
+                    conversationHistory: conversationHistory.map(({ role, content }) => ({ role, content }))
+                })
+            });
+        };
+
+        const getErrorMessageFromBadResponse = async (response: Response): Promise<string> => {
+            const errorStatus = response.status;
+            const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+
+            if (errorStatus === 429) {
+                if (typeof (errorData as any)?.error === 'string' && (errorData as any).error.length > 0) {
+                    return (errorData as any).error;
+                }
+                if (typeof (errorData as any)?.retryAfterHuman === 'string') {
+                    return `You have reached the maximum number of questions for this session (10). Try again in ${(errorData as any).retryAfterHuman}.`;
+                }
+                return 'Too many requests. Please wait and try again.';
+            }
+
+            return (typeof (errorData as any)?.error === 'string' && (errorData as any).error)
+                || `HTTP ${response.status}: ${response.statusText}`;
+        };
+
+        const getErrorMessageFromException = (error: unknown): string => {
+            if (!(error instanceof Error)) {
+                return 'Sorry, I encountered an error. Please try again.';
+            }
+            const message = error.message;
+            if (message.includes('OpenAI API key is not configured')) {
+                return 'AI service is not configured. Please contact the administrator.';
+            }
+            if (message.includes('Invalid OpenAI API key')) {
+                return 'AI service authentication failed. Please contact the administrator.';
+            }
+            if (message.includes('Rate limit exceeded')) {
+                return 'Too many requests. Please wait a moment and try again.';
+            }
+            if (message.includes('Unable to connect')) {
+                return 'Network error. Please check your internet connection and try again.';
+            }
+            return `Error: ${message}`;
+        };
+
+        const respondWithFallback = (message: string) => {
+            setTimeout(() => {
+                const fallbackResponse = getFallbackResponse(message);
+                addAssistantMessage(fallbackResponse);
+                setIsLoading(false);
+            }, 1000);
+        };
+
         // Add user message to UI immediately
-        const newUserMessage: Message = { role: 'user', content: userMessage };
-        setMessages(prev => [...prev, newUserMessage]);
+        addMessage({ id: generateMessageId(), role: 'user', content: userMessage });
         setIsLoading(true);
 
         // If AI is not available, provide fallback responses
         if (!isAIAvailable) {
-            setTimeout(() => {
-                const fallbackResponse = getFallbackResponse(userMessage);
-                const fallbackMessage: Message = { role: 'assistant', content: fallbackResponse };
-                setMessages(prev => [...prev, fallbackMessage]);
-                setIsLoading(false);
-            }, 1000);
+            respondWithFallback(userMessage);
             return;
         }
 
         try {
             console.log('Sending chat request:', { message: userMessage, conversationHistoryLength: conversationHistory.length });
-            
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message: userMessage,
-                    conversationHistory: conversationHistory
-                }),
-            });
-
+            const response = await callChatApi(userMessage);
             console.log('Chat response status:', response.status);
 
             if (!response.ok) {
-                let errorMessage = 'Unknown error';
-                const errorStatus = response.status;
-                const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-
-                if (errorStatus === 429) {
-                    // Prefer server-provided, human-friendly message if available
-                    if (typeof errorData?.error === 'string' && errorData.error.length > 0) {
-                        errorMessage = errorData.error;
-                    } else if (typeof errorData?.retryAfterHuman === 'string') {
-                        errorMessage = `You have reached the maximum number of questions for this session (10). Try again in ${errorData.retryAfterHuman}.`;
-                    } else {
-                        errorMessage = 'Too many requests. Please wait and try again.';
-                    }
-                } else {
-                    errorMessage = (typeof errorData?.error === 'string' && errorData.error)
-                        || `HTTP ${response.status}: ${response.statusText}`;
-                }
-
-                console.error('Chat API error:', { status: errorStatus, errorData });
-                // Show the error as an assistant message
-                const errorMessageObj: Message = {
-                    role: 'assistant',
-                    content: errorMessage
-                };
-                setMessages(prev => [...prev, errorMessageObj]);
+                const errorMessage = await getErrorMessageFromBadResponse(response);
+                console.error('Chat API error:', { status: response.status });
+                addAssistantMessage(errorMessage);
                 setIsLoading(false);
                 return;
             }
 
             const data = await response.json();
             console.log('Chat response data:', data);
-            
-            // Add AI response to UI
-            const aiMessage: Message = { role: 'assistant', content: data.response };
-            setMessages(prev => [...prev, aiMessage]);
-            setConversationHistory(data.conversationHistory);
-
+            addAssistantMessage(data.response);
+            // Store conversation history with generated ids for stable keys
+            setConversationHistory(
+                (data.conversationHistory || []).map((m: { role: 'user' | 'assistant'; content: string }) => ({
+                    id: generateMessageId(),
+                    role: m.role,
+                    content: m.content
+                }))
+            );
         } catch (error) {
             console.error('Chat error:', error);
-            
-            let errorMessage = 'Sorry, I encountered an error. Please try again.';
-            
-            if (error instanceof Error) {
-                if (error.message.includes('OpenAI API key is not configured')) {
-                    errorMessage = 'AI service is not configured. Please contact the administrator.';
-                } else if (error.message.includes('Invalid OpenAI API key')) {
-                    errorMessage = 'AI service authentication failed. Please contact the administrator.';
-                } else if (error.message.includes('Rate limit exceeded')) {
-                    errorMessage = 'Too many requests. Please wait a moment and try again.';
-                } else if (error.message.includes('Unable to connect')) {
-                    errorMessage = 'Network error. Please check your internet connection and try again.';
-                } else {
-                    errorMessage = `Error: ${error.message}`;
-                }
-            }
-            
-            // Add error message
-            const errorMessageObj: Message = { 
-                role: 'assistant', 
-                content: errorMessage
-            };
-            setMessages(prev => [...prev, errorMessageObj]);
+            addAssistantMessage(getErrorMessageFromException(error));
         } finally {
             setIsLoading(false);
         }
@@ -264,7 +278,7 @@ export const AskMeAnythingBubble = () => {
                     aria-label="Ask Me Anything"
                     onClick={handleToggle}
                     variant="outline"
-                    className="rounded-full px-4 py-2 text-sm font-semibold"
+                    className="rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2"
                 >
                     <span className={`text-lg transition-transform duration-200 ${open ? 'animate-pulse' : 'animate-bounce'}`}>💬</span>
                     <span>Ask Me</span>
@@ -288,7 +302,7 @@ export const AskMeAnythingBubble = () => {
                     <div className="flex items-center justify-between mb-3 px-4 pt-4 sm:px-0 sm:pt-0">
                         <div className="font-semibold text-foreground flex items-center gap-2 text-base sm:text-lg">
                             <span className="text-primary animate-pulse">🤔</span>
-                            Ask Me Anything
+                            <span>Ask Me Anything</span>
                         </div>
                         <Button
                             onClick={handleClose}
@@ -313,9 +327,9 @@ export const AskMeAnythingBubble = () => {
                                 }
                             </div>
                         ) : (
-                            messages.map((message, index) => (
+                            messages.map((message) => (
                                 <div
-                                    key={index}
+                                    key={message.id}
                                     className={`flex message-slide-in ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
                                     <div

@@ -65,7 +65,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
         const cellIndex = col * 7 + row;
         if (cellIndex < totalCells) {
           setTimeout(() => {
-            setAnimatedCells(prev => Math.max(prev, cellIndex + 1));
+            setAnimatedCells(cellIndex + 1);
           }, row * 30);
         }
       }
@@ -132,7 +132,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                                         if (cellIndex >= placeholderDays.length) return null;
                                         return (
                                             <div
-                                                key={`${weekIndex}-${dayIndex}`}
+                                                key={`ph-${cellIndex}`}
                                                 className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-400 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 animate-pulse"
                                                 style={{
                                                     animationDelay: `${cellIndex * 0.025}s`,
@@ -148,8 +148,8 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                     {/* Optionally, show a placeholder legend for consistency */}
                     <div className="w-full flex justify-center mt-2">
                         <div className="flex space-x-2 opacity-60">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <div key={i} className="w-6 h-3 rounded-sm bg-gray-300 dark:bg-gray-700 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                            {['l1','l2','l3','l4','l5'].map((id, i) => (
+                                <div key={id} className="w-6 h-3 rounded-sm bg-gray-300 dark:bg-gray-700 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                             ))}
                         </div>
                     </div>
@@ -173,7 +173,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                     const cellIndex = weekIdx * 7 + dayIdx;
                     if (cellIndex >= 365) return null;
                     return (
-                        <div key={`${weekIdx}-${dayIdx}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-300 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500 opacity-50" />
+                        <div key={`err-${cellIndex}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-300 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500 opacity-50" />
                     );
                   })
               )}
@@ -192,10 +192,10 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
       <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border">
         <div className="flex flex-col items-center space-y-3 sm:space-y-4">
           <div className="text-center min-h-[2rem] sm:min-h-[2.5em] flex items-center justify-center">
-            {!showStats ? (
-                <p className="text-base sm:text-lg font-semibold mb-2 text-center animate-fade-in">GitHub Contributions</p>
-            ) : (
+            {showStats ? (
                 <p className="text-xs sm:text-sm text-muted-foreground animate-fade-in-up">{totalContributions} contributions in the last year</p>
+            ) : (
+                <p className="text-base sm:text-lg font-semibold mb-2 text-center animate-fade-in">GitHub Contributions</p>
             )}
           </div>
 
@@ -213,9 +213,10 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                       const cellIndex = weekIndex * 7 + dayIndex;
                       if (cellIndex >= contributions.length) return null;
                       const isAnimated = cellIndex < animatedCells;
+                      const key = day.date || `cell-${cellIndex}`;
                       return (
                           <ContributionCell
-                              key={`${weekIndex}-${dayIndex}`}
+                              key={key}
                               level={day.level}
                               isDark={isDark}
                               isAnimated={isAnimated}
