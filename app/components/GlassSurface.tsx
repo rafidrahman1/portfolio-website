@@ -47,9 +47,9 @@ const useDarkMode = () => {
 
   useEffect(() => {
     setIsClient(true);
-    if (typeof window === 'undefined') return;
+    if (typeof globalThis.window === 'undefined') return;
 
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = globalThis.window.matchMedia('(prefers-color-scheme: dark)');
     setIsDark(mediaQuery.matches);
 
     const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
@@ -82,7 +82,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   className = '',
   style = {}
 }) => {
-  const uniqueId = useId().replace(/:/g, '-');
+  const uniqueId = useId().replaceAll(/:/g, '-');
   const filterId = `glass-filter-${uniqueId}`;
   const redGradId = `red-grad-${uniqueId}`;
   const blueGradId = `blue-grad-${uniqueId}`;
@@ -130,17 +130,19 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   useEffect(() => {
     updateDisplacementMap();
-    [
+    const channels = [
       { ref: redChannelRef, offset: redOffset },
       { ref: greenChannelRef, offset: greenOffset },
       { ref: blueChannelRef, offset: blueOffset }
-    ].forEach(({ ref, offset }) => {
+    ];
+    
+    for (const { ref, offset } of channels) {
       if (ref.current) {
         ref.current.setAttribute('scale', (distortionScale + offset).toString());
         ref.current.setAttribute('xChannelSelector', xChannel);
         ref.current.setAttribute('yChannelSelector', yChannel);
       }
-    });
+    }
 
     gaussianBlurRef.current?.setAttribute('stdDeviation', displace.toString());
   }, [
@@ -195,98 +197,77 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   const supportsSVGFilters = () => {
     // Not supported during SSR
-    if (typeof window === 'undefined' || typeof document === 'undefined') return false;
+    if (typeof globalThis.window === 'undefined' || typeof document === 'undefined') return false;
 
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-    const isWebkit = /Safari/.test(ua) && !/Chrome/.test(ua);
+    const isSafari = /Safari/.test(ua);
+    const isChrome = /Chrome/.test(ua);
+    const isWebkit = isSafari && !isChrome;
     const isFirefox = /Firefox/.test(ua);
 
     if (isWebkit || isFirefox) {
       return false;
     }
 
-    try {
-      const div = document.createElement('div');
-      // Test whether the browser accepts a url() backdrop-filter pointing to an SVG filter
-      div.style.backdropFilter = `url(#${filterId})`;
-      return div.style.backdropFilter !== '';
-    } catch (e) {
-      return false;
-    }
+    const div = document.createElement('div');
+    // Test whether the browser accepts a url() backdrop-filter pointing to an SVG filter
+    div.style.backdropFilter = `url(#${filterId})`;
+    return div.style.backdropFilter !== '';
   };
 
   const supportsBackdropFilter = () => {
-    if (typeof window === 'undefined' || typeof CSS === 'undefined') return false;
-    try {
-      return CSS.supports('backdrop-filter', 'blur(10px)');
-    } catch (e) {
-      return false;
-    }
+    if (typeof globalThis.window === 'undefined' || typeof CSS === 'undefined') return false;
+    return CSS.supports('backdrop-filter', 'blur(10px)');
   };
 
-  const getContainerStyles = (): React.CSSProperties => {
-    const baseStyles: React.CSSProperties = {
-      ...style,
-      width: typeof width === 'number' ? `${width}px` : width,
-      height: typeof height === 'number' ? `${height}px` : height,
-      borderRadius: `${borderRadius}px`,
-      '--glass-frost': backgroundOpacity,
-      '--glass-saturation': saturation
-    } as React.CSSProperties;
+  const getBaseStyles = (): React.CSSProperties => ({
+    ...style,
+    width: typeof width === 'number' ? `${width}px` : width,
+    height: typeof height === 'number' ? `${height}px` : height,
+    borderRadius: `${borderRadius}px`,
+    '--glass-frost': backgroundOpacity,
+    '--glass-saturation': saturation
+  } as React.CSSProperties);
 
-    // During SSR, use safe fallback styles
-    if (!isClient) {
-      return {
-        ...baseStyles,
-        background: 'rgba(255, 255, 255, 0.25)',
-        backdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
-        WebkitBackdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
-        boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
-                    0 2px 16px 0 rgba(31, 38, 135, 0.1),
-                    inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
-                    inset 0 -1px 0 0 rgba(255, 255, 255, 0.2)`
-      };
-    }
+  const getSSRStyles = (baseStyles: React.CSSProperties): React.CSSProperties => ({
+    ...baseStyles,
+    background: 'rgba(255, 255, 255, 0.25)',
+    backdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
+    WebkitBackdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                0 2px 16px 0 rgba(31, 38, 135, 0.1),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 0 rgba(255, 255, 255, 0.2)`
+  });
 
-    const svgSupported = supportsSVGFilters();
-    const backdropFilterSupported = supportsBackdropFilter();
+  const getSVGFilterStyles = (baseStyles: React.CSSProperties): React.CSSProperties => ({
+    ...baseStyles,
+    background: isDarkMode ? `hsl(0 0% 0% / ${backgroundOpacity})` : `hsl(0 0% 100% / ${backgroundOpacity})`,
+    backdropFilter: `url(#${filterId}) saturate(${saturation})`,
+    boxShadow: isDarkMode
+      ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
+         0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
+         0px 4px 16px rgba(17, 17, 26, 0.05),
+         0px 8px 24px rgba(17, 17, 26, 0.05),
+         0px 16px 56px rgba(17, 17, 26, 0.05),
+         0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+         0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+         0px 16px 56px rgba(17, 17, 26, 0.05) inset`
+      : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
+         0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
+         0px 4px 16px rgba(17, 17, 26, 0.05),
+         0px 8px 24px rgba(17, 17, 26, 0.05),
+         0px 16px 56px rgba(17, 17, 26, 0.05),
+         0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+         0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+         0px 16px 56px rgba(17, 17, 26, 0.05) inset`
+  });
 
-    if (svgSupported) {
-      return {
-        ...baseStyles,
-        background: isDarkMode ? `hsl(0 0% 0% / ${backgroundOpacity})` : `hsl(0 0% 100% / ${backgroundOpacity})`,
-        backdropFilter: `url(#${filterId}) saturate(${saturation})`,
-        boxShadow: isDarkMode
-          ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
-             0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
-             0px 4px 16px rgba(17, 17, 26, 0.05),
-             0px 8px 24px rgba(17, 17, 26, 0.05),
-             0px 16px 56px rgba(17, 17, 26, 0.05),
-             0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-             0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-             0px 16px 56px rgba(17, 17, 26, 0.05) inset`
-          : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
-             0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
-             0px 4px 16px rgba(17, 17, 26, 0.05),
-             0px 8px 24px rgba(17, 17, 26, 0.05),
-             0px 16px 56px rgba(17, 17, 26, 0.05),
-             0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-             0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-             0px 16px 56px rgba(17, 17, 26, 0.05) inset`
-      };
-    } else {
-      if (isDarkMode) {
-        if (!backdropFilterSupported) {
-          return {
-            ...baseStyles,
-            background: 'rgba(0, 0, 0, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`
-          };
-        } else {
-          return {
+  const getFallbackStyles = (baseStyles: React.CSSProperties, hasBackdropFilter: boolean): React.CSSProperties => {
+    if (isDarkMode) {
+      return hasBackdropFilter
+        ? {
             ...baseStyles,
             background: 'rgba(255, 255, 255, 0.1)',
             backdropFilter: 'blur(12px) saturate(1.8) brightness(1.2)',
@@ -294,32 +275,51 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
             border: '1px solid rgba(255, 255, 255, 0.2)',
             boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
                         inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`
-          };
-        }
-      } else {
-        if (!backdropFilterSupported) {
-          return {
+          }
+        : {
             ...baseStyles,
-            background: 'rgba(255, 255, 255, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.3)`
+            background: 'rgba(0, 0, 0, 0.4)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`
           };
-        } else {
-          return {
-            ...baseStyles,
-            background: 'rgba(255, 255, 255, 0.25)',
-            backdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
-            WebkitBackdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
-                        0 2px 16px 0 rgba(31, 38, 135, 0.1),
-                        inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.2)`
-          };
-        }
-      }
     }
+
+    return hasBackdropFilter
+      ? {
+          ...baseStyles,
+          background: 'rgba(255, 255, 255, 0.25)',
+          backdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
+          WebkitBackdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                      0 2px 16px 0 rgba(31, 38, 135, 0.1),
+                      inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+                      inset 0 -1px 0 0 rgba(255, 255, 255, 0.2)`
+        }
+      : {
+          ...baseStyles,
+          background: 'rgba(255, 255, 255, 0.4)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+                      inset 0 -1px 0 0 rgba(255, 255, 255, 0.3)`
+        };
+  };
+
+  const getContainerStyles = (): React.CSSProperties => {
+    const baseStyles = getBaseStyles();
+
+    if (!isClient) {
+      return getSSRStyles(baseStyles);
+    }
+
+    const svgSupported = supportsSVGFilters();
+    if (svgSupported) {
+      return getSVGFilterStyles(baseStyles);
+    }
+
+    const backdropFilterSupported = supportsBackdropFilter();
+    return getFallbackStyles(baseStyles, backdropFilterSupported);
   };
 
   const glassSurfaceClasses =

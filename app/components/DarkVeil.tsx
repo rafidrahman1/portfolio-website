@@ -76,13 +76,13 @@ void main(){
 `;
 
 type Props = {
-  hueShift?: number;
-  noiseIntensity?: number;
-  scanlineIntensity?: number;
-  speed?: number;
-  scanlineFrequency?: number;
-  warpAmount?: number;
-  resolutionScale?: number;
+  readonly hueShift?: number;
+  readonly noiseIntensity?: number;
+  readonly scanlineIntensity?: number;
+  readonly speed?: number;
+  readonly scanlineFrequency?: number;
+  readonly warpAmount?: number;
+  readonly resolutionScale?: number;
 };
 
 export default function DarkVeil({

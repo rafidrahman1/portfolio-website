@@ -18,7 +18,7 @@ function hexToRgba(hex: string, alpha = 1): string {
       .map(c => c + c)
       .join('');
   }
-  const int = parseInt(h, 16);
+  const int = Number.parseInt(h, 16);
   const r = (int >> 16) & 255;
   const g = (int >> 8) & 255;
   const b = int & 255;
@@ -34,7 +34,7 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
   className,
   style
 }) => {
-  const rawId = useId().replace(/[:]/g, '');
+  const rawId = useId().replaceAll(/:/g, '');
   const filterId = `turbulent-displace-${rawId}`;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -66,7 +66,9 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
 
     const baseDur = 6;
     const dur = Math.max(0.001, baseDur / (speed || 1));
-    [...dyAnims, ...dxAnims].forEach(a => a.setAttribute('dur', `${dur}s`));
+    for (const a of [...dyAnims, ...dxAnims]) {
+      a.setAttribute('dur', `${dur}s`);
+    }
 
     const disp = svg.querySelector('feDisplacementMap');
     if (disp) disp.setAttribute('scale', String(30 * (chaos || 1)));
@@ -80,13 +82,13 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
     }
 
     requestAnimationFrame(() => {
-      [...dyAnims, ...dxAnims].forEach((a: any) => {
+      for (const a of [...dyAnims, ...dxAnims]) {
         if (typeof a.beginElement === 'function') {
           try {
             a.beginElement();
           } catch {}
         }
-      });
+      }
     });
   };
 
