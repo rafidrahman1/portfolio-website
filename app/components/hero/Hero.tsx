@@ -2,7 +2,6 @@ import { HeroAvatar } from "./HeroAvatar";
 import { HeroHeading } from "./HeroHeading";
 import { HeroDescription } from "./HeroDescription";
 import { HeroSocials } from "./HeroSocials";
-import { HeroBackground } from "./HeroBackground";
 import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
 import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
@@ -24,13 +23,12 @@ export const Hero = () => {
     <>
       <motion.section
         id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-16 bg-gradient-to-br from-[#181c26] via-[#191b23] to-[#1c202a]"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         style={{ willChange: "transform, opacity" }}
       >
-        <HeroBackground />
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <div className="flex items-center gap-4 justify-center sm:justify-start">
             <HeroAvatar />

@@ -63,7 +63,7 @@ export const Contact = () => {
   return (
       <motion.section
         id="contact"
-        className="py-16 sm:py-20 bg-muted/30"
+        className="py-16 sm:py-20"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

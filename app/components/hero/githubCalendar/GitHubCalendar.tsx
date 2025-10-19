@@ -6,21 +6,10 @@ import { ContributionCell } from "./ContributionCell";
 import { CalendarLegend } from "./CalendarLegend";
 
 export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: string }) => {
-  const [isDark, setIsDark] = useState(false);
   const [animatedCells, setAnimatedCells] = useState(0);
   const prevAnimatedCells = useRef(0);
   const [showStats, setShowStats] = useState(false);
   const gridContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const checkTheme = () => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    };
-    checkTheme();
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
 
   const { data: contributions, isLoading, error } = useQuery({
     queryKey: ['github-contributions', username],
@@ -112,7 +101,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
             weeks.push(placeholderDays.slice(i, i + 7));
         }
         return (
-            <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-[14rem]">
+            <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border min-h-[14rem]">
                 <div className="flex flex-col items-center space-y-3 sm:space-y-4">
                     <div className="text-center min-h-[2rem] sm:min-h-[2.5em] flex items-center justify-center">
                         <p className="text-base sm:text-lg font-semibold mb-2 text-center animate-fade-in">GitHub Contributions</p>
@@ -133,7 +122,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                                         return (
                                             <div
                                                 key={`ph-${cellIndex}`}
-                                                className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-400 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 animate-pulse"
+                                                className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-600 rounded-sm border border-gray-700 animate-pulse"
                                                 style={{
                                                     animationDelay: `${cellIndex * 0.025}s`,
                                                     animationDuration: '1.2s',
@@ -149,7 +138,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                     <div className="w-full flex justify-center mt-2">
                         <div className="flex space-x-2 opacity-60">
                             {['l1','l2','l3','l4','l5'].map((id, i) => (
-                                <div key={id} className="w-6 h-3 rounded-sm bg-gray-300 dark:bg-gray-700 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                                <div key={id} className="w-6 h-3 rounded-sm bg-gray-700 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                             ))}
                         </div>
                     </div>
@@ -160,7 +149,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
 
   if (error) {
     return (
-        <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border-gray-300 dark:border-gray-700 min-h-48 sm:min-h-56">
+        <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border min-h-48 sm:min-h-56">
         <div className="w-full max-w-4xl mx-auto p-2 sm:p-4">
           <div className="text-center">
             <h3 className="text-base sm:text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
@@ -173,7 +162,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                     const cellIndex = weekIdx * 7 + dayIdx;
                     if (cellIndex >= 365) return null;
                     return (
-                        <div key={`err-${cellIndex}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-300 dark:bg-gray-600 rounded-sm border border-gray-400 dark:border-gray-700 transition-all duration-500 opacity-50" />
+                        <div key={`err-${cellIndex}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-600 rounded-sm border border-gray-700 transition-all duration-500 opacity-50" />
                     );
                   })
               )}
@@ -218,7 +207,6 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                           <ContributionCell
                               key={key}
                               level={day.level}
-                              isDark={isDark}
                               isAnimated={isAnimated}
                               count={day.count}
                               date={day.date}
@@ -230,7 +218,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
             </div>
           </div>
 
-          <CalendarLegend isDark={isDark} animatedCells={animatedCells} legendThresholds={legendThresholds} />
+          <CalendarLegend animatedCells={animatedCells} legendThresholds={legendThresholds} />
         </div>
       </div>
   );

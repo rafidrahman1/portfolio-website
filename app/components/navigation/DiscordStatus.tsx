@@ -46,7 +46,7 @@ export function DiscordStatus() {
     <div className="ml-2">
       <Button
         asChild
-        className="bg-[#5865F2] text-white rounded-full shadow font-medium border-0 text-xs hover:bg-[#4752c4] transition h-2 px-2"
+        className="bg-transparent border border-white text-white rounded-full shadow font-medium text-xs hover:bg-[#4752c4] transition h-2 px-2"
       >
         <a
           href="https://discord.com/users/617332157613998091"

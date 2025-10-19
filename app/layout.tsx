@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
 import { ClientThemeProvider } from "@/components/theme/ClientThemeProvider";
 import { WebVitals } from "@/components/performance/WebVitals";
+import DarkVeil from "@/components/DarkVeil";
 import { Inter, JetBrains_Mono } from "next/font/google";
 
 // Optimize fonts with next/font
@@ -105,25 +106,23 @@ export default function RootLayout({
                 dangerouslySetInnerHTML={{
                     __html: `
                         try {
-                            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                                document.documentElement.classList.add('dark')
-                            } else {
-                                document.documentElement.classList.remove('dark')
-                            }
+                            document.documentElement.classList.add('dark')
                         } catch (_) {}
                     `,
                 }}
             />
         </head>
         <body suppressHydrationWarning={true} className="font-sans">
-        <ClientThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-        >
+        <ClientThemeProvider>
         <Providers>
-            {children}
+            {/* Fixed background */}
+            <div className="fixed inset-0 z-0">
+                <DarkVeil />
+            </div>
+            {/* Content with relative positioning to appear above background */}
+            <div className="relative z-10">
+                {children}
+            </div>
             <SpeedInsights />
             <Analytics />
             <WebVitals />

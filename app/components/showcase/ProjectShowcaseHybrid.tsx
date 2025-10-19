@@ -16,7 +16,7 @@ export const ProjectShowcaseHybrid = () => {
   return (
       <motion.section
         id="showcase"
-        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
+        className="py-12 sm:py-16 lg:py-20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}

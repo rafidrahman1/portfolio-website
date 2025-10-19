@@ -60,7 +60,7 @@ function validateEnvironment() {
     if (!process.env.OPENAI_API_KEY) {
         console.error('OpenAI API key is not configured');
         return NextResponse.json(
-            { error: 'OpenAI API key is not configured' },
+            { error: 'OpenAI API key is not configured. Please set OPENAI_API_KEY environment variable.' },
             { status: 500 }
         );
     }
@@ -68,7 +68,7 @@ function validateEnvironment() {
     if (!process.env.OPENAI_URL) {
         console.error('OpenAI URL is not configured');
         return NextResponse.json(
-            { error: 'OpenAI URL is not configured' },
+            { error: 'OpenAI URL is not configured. Please set OPENAI_URL environment variable.' },
             { status: 500 }
         );
     }
@@ -135,24 +135,30 @@ async function callOpenAI(message: string, conversationHistory: any[]) {
 
     console.log('Calling OpenAI API with messages:', messages.length);
 
-    const completion = await client.chat.completions.create({
-        model: OPENAI_MODEL,
-        messages,
-        max_tokens: 500,
-        temperature: 0.7,
-    });
+    try {
+        const completion = await client.chat.completions.create({
+            model: OPENAI_MODEL,
+            messages,
+            max_tokens: 500,
+            temperature: 0.7,
+        });
 
-    const aiResponse = completion.choices[0]?.message?.content;
+        const aiResponse = completion.choices[0]?.message?.content;
 
-    if (!aiResponse) {
-        console.error('No response from OpenAI API');
-        return NextResponse.json(
-            { error: 'No response from AI' },
-            { status: 500 }
-        );
+        if (!aiResponse) {
+            console.error('No response from OpenAI API');
+            return NextResponse.json(
+                { error: 'No response from AI' },
+                { status: 500 }
+            );
+        }
+
+        return aiResponse;
+    } catch (error) {
+        console.error('OpenAI API call failed:', error);
+        // Re-throw to be handled by the main error handler
+        throw error;
     }
-
-    return aiResponse;
 }
 
 // Error handling function
@@ -163,18 +169,26 @@ function handleError(error: any) {
         || (typeof err?.error?.message === 'string' && err.error.message)
         || (typeof err === 'string' && err)
         || 'Unknown error';
+    
+    // Enhanced error details with more comprehensive logging
     const details = {
         name: err?.name,
         status: statusFromErr,
         code: err?.code,
         type: err?.type,
+        stack: err?.stack,
         response: err?.response?.data ?? err?.response?.body ?? err?.data ?? null,
+        // Add raw error for debugging
+        rawError: error,
+        // Check environment variables
+        hasApiKey: !!process.env.OPENAI_API_KEY,
+        hasApiUrl: !!process.env.OPENAI_URL,
     };
     
     try {
         console.error('Chat API error:', { message: msgFromErr, ...details });
-    } catch {
-        console.error('Chat API error:', msgFromErr);
+    } catch (logError) {
+        console.error('Chat API error (logging failed):', msgFromErr, 'Log error:', logError);
     }
 
     if (error instanceof Error) {

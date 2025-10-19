@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { DiscordStatus } from "@/components/navigation/DiscordStatus";
 import { NowPlaying } from "@/components/navigation/NowPlaying";
+import GlassSurface from "@/components/GlassSurface";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,67 +36,73 @@ export const Navigation = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || isMobileMenuOpen
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center space-x-3">
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-7xl px-1 sm:px-2 lg:px-3">
+      <GlassSurface
+        width="100%"
+        height={isMobileMenuOpen ? "auto" : "64px"}
+        borderRadius={32}
+        backgroundOpacity={0.1}
+        blur={12}
+        brightness={isScrolled ? 50 : 30}
+        opacity={0.9}
+        className="transition-all duration-300"
+      >
+  <div className="flex items-center justify-between py-3 px-0">
+          {/* Left side - Discord Status as Logo */}
+          <div className={`flex items-center absolute left-8 ${isMobileMenuOpen ? 'hidden md:block' : ''}`}>
             <DiscordStatus />
-            <NowPlaying />
           </div>
 
-          
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Center - Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Button
                 key={item.href}
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="font-medium"
+                className="font-medium hover:bg-background/20 transition-colors duration-200"
               >
                 {item.label}
               </Button>
             ))}
-            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button and Theme Toggle */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </Button>
+          {/* Right side - Now Playing and Mobile Menu */}
+          <div className="flex items-center space-x-3">
+            <div className="hidden md:block">
+              <NowPlaying />
+            </div>
+            <div className="md:hidden absolute right-8">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="hover:bg-background/20 transition-colors duration-200"
+              >
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            {navItems.map((item) => (
-              <Button
-                key={item.href}
-                variant="ghost"
-                className="block w-full justify-start py-2"
-                onClick={() => scrollToSection(item.href)}
-              >
-                {item.label}
-              </Button>
-            ))}
+          <div className="md:hidden py-4 px-0 border-t border-border/20">
+            <div className="flex flex-col space-y-3">
+              {navItems.map((item) => (
+                <Button
+                  key={item.href}
+                  variant="ghost"
+                  className="justify-start py-2 hover:bg-background/20 transition-colors duration-200"
+                  onClick={() => scrollToSection(item.href)}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </div>
           </div>
         )}
-      </div>
+      </GlassSurface>
     </nav>
   );
 };
