@@ -1,5 +1,4 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import Image from "next/image";
 
 export const HeroAvatar = () => (
     <div className="flex justify-center mt-12 mb-2 sm:mb-4">

@@ -7,7 +7,6 @@ import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
 import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 // Dynamic import for heavy GitHub Calendar component
 const GitHubCalendar = dynamic(() => import("@/components/hero/githubCalendar/GitHubCalendar").then(mod => ({ default: mod.GitHubCalendar })), {

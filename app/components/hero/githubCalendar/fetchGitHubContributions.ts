@@ -16,16 +16,16 @@ function calculateContributionLevel(count: number): ContributionLevel {
 
 function mapCalendarToContributions(calendar: any): ContributionDay[] {
     const contributions: ContributionDay[] = [];
-    calendar.weeks.forEach((week: any) => {
-        week.contributionDays.forEach((day: any) => {
+    for (const week of calendar.weeks) {
+        for (const day of week.contributionDays) {
             const count = day.contributionCount;
             contributions.push({
                 date: day.date,
                 count,
                 level: calculateContributionLevel(count)
             });
-        });
-    });
+        }
+    }
     return contributions;
 }
 
@@ -105,17 +105,12 @@ function generateMockContributions(): ContributionDay[] {
 }
 
 export const fetchGitHubContributions = async (username: string): Promise<ContributionDay[]> => {
-    try {
-        const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-        if (githubToken) {
-            const graphQlResult = await fetchGraphQLContributions(username, githubToken);
-            if (graphQlResult) return graphQlResult;
-        }
-
-        // Fallback to public contributions API
-        return await fetchPublicContributions(username);
-    } catch (error) {
-        // Fallback to mock data
-        return generateMockContributions();
+    const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+    if (githubToken) {
+        const graphQlResult = await fetchGraphQLContributions(username, githubToken);
+        if (graphQlResult) return graphQlResult;
     }
+
+    // Fallback to public contributions API
+    return await fetchPublicContributions(username);
 };

@@ -149,16 +149,16 @@ export const AskMeAnythingBubble = () => {
             const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
 
             if (errorStatus === 429) {
-                if (typeof (errorData as any)?.error === 'string' && (errorData as any).error.length > 0) {
-                    return (errorData as any).error;
+                if (typeof errorData?.error === 'string' && errorData.error.length > 0) {
+                    return errorData.error;
                 }
-                if (typeof (errorData as any)?.retryAfterHuman === 'string') {
-                    return `You have reached the maximum number of questions for this session (10). Try again in ${(errorData as any).retryAfterHuman}.`;
+                if (typeof errorData?.retryAfterHuman === 'string') {
+                    return `You have reached the maximum number of questions for this session (10). Try again in ${errorData.retryAfterHuman}.`;
                 }
                 return 'Too many requests. Please wait and try again.';
             }
 
-            return (typeof (errorData as any)?.error === 'string' && (errorData as any).error)
+            return (typeof errorData?.error === 'string' && errorData.error)
                 || `HTTP ${response.status}: ${response.statusText}`;
         };
 
