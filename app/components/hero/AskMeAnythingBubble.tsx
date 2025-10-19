@@ -276,7 +276,7 @@ export const AskMeAnythingBubble = () => {
                     variant="outline"
                     className="rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2"
                 >
-                    <span className={`text-lg transition-transform duration-200 ${open ? 'animate-pulse' : 'animate-bounce'}`}>💬</span>
+                    <span className={`text-lg transition-transform duration-200`}>💬</span>
                     <span>Ask Me</span>
                 </Button>
                 </ElectricBorder>
@@ -286,10 +286,10 @@ export const AskMeAnythingBubble = () => {
             {shouldRender && (
                 <div
                     className={`left-full ml-4 top-0 z-20
-                        bg-background rounded-none sm:rounded-2xl shadow-2xl border border-border p-0 sm:p-4 max-w-xs mx-auto sm:w-80 max-h-[100dvh] sm:max-h-96
+                        bg-background rounded-2xl shadow-2xl border border-border p-0 sm:p-4 w-80 mx-auto sm:w-80 max-h-[100dvh] sm:max-h-96
                         ${isClosing ? 'animate-pop-out' : 'animate-pop-in'}
                         transform origin-left flex flex-col
-                        sm:rounded-2xl sm:p-4 sm:w-80 sm:max-h-96
+                        sm:rounded-2xl sm:p-4 sm:w-full sm:max-h-96
                         transition-all duration-200
                     `}
                     style={{ minWidth: "0", maxWidth: "100vw" }}
