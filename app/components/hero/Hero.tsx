@@ -7,6 +7,7 @@ import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
 import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import ElectricBorder from "../ElectricBorder";
 
 // Dynamic import for heavy GitHub Calendar component
 const GitHubCalendar = dynamic(() => import("@/components/hero/githubCalendar/GitHubCalendar").then(mod => ({ default: mod.GitHubCalendar })), {
@@ -33,7 +34,7 @@ export const Hero = () => {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <div className="flex items-center gap-4 justify-center sm:justify-start">
             <HeroAvatar />
-            <div className="hidden sm:block">
+            <div className="hidden sm:block">              
               <AskMeAnythingBubble />
             </div>
           </div>

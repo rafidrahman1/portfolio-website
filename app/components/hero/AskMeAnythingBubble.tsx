@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Send, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ElectricBorder from "../ElectricBorder";
 
 interface Message {
     id: string;
@@ -267,8 +268,8 @@ export const AskMeAnythingBubble = () => {
 
     return (
         <div className="relative flex items-center" ref={containerRef}>
-            {/* Chat Bubble Button */}
             {!shouldRender && (
+                <ElectricBorder color="#7df9ff" speed={1} chaos={0.5} thickness={2} style={{ borderRadius: 16 }}>
                 <Button
                     aria-label="Ask Me Anything"
                     onClick={handleToggle}
@@ -278,6 +279,7 @@ export const AskMeAnythingBubble = () => {
                     <span className={`text-lg transition-transform duration-200 ${open ? 'animate-pulse' : 'animate-bounce'}`}>💬</span>
                     <span>Ask Me</span>
                 </Button>
+                </ElectricBorder>
             )}
             
             {/* Popup Bubble */}

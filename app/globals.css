@@ -208,40 +208,7 @@
   }
 }
 
-/* AskMeAnythingBubble Animations */
-@keyframes pop-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(-10px);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(1.05) translateY(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes pop-out {
-  0% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.8) translateY(-10px);
-  }
-}
-
-.animate-pop-in {
-  animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.animate-pop-out {
-  animation: pop-out 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* AskMeAnythingBubble Animations - Now defined in Tailwind config */
 
 .bubble-tail {
   position: absolute;
