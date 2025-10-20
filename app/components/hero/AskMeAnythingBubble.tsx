@@ -269,7 +269,7 @@ export const AskMeAnythingBubble = () => {
     return (
         <div className="relative flex items-center" ref={containerRef}>
             {!shouldRender && (
-                <ElectricBorder color="#7df9ff" speed={1} chaos={0.5} thickness={2} style={{ borderRadius: 16 }}>
+                <ElectricBorder color="#7df9ff" speed={1} chaos={0.5} thickness={2} style={{ borderRadius: 20, padding: 4, paddingTop: 6} }>
                 <Button
                     aria-label="Ask Me Anything"
                     onClick={handleToggle}
