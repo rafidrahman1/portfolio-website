@@ -195,30 +195,40 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     setTimeout(updateDisplacementMap, 0);
   }, [width, height]);
 
+  
+
   const supportsSVGFilters = () => {
-    // Not supported during SSR
-    if (globalThis.window === undefined || document === undefined) return false;
-
-    const ua = typeof navigator === "undefined" ? "" : navigator.userAgent;    
-    const isSafari = /Safari/.test(ua);
-    const isChrome = /Chrome/.test(ua);
-    const isWebkit = isSafari && !isChrome;
-    const isFirefox = /Firefox/.test(ua);
-
-    if (isWebkit || isFirefox) {
-      return false;
-    }
-
-    const div = document.createElement('div');
-    // Test whether the browser accepts a url() backdrop-filter pointing to an SVG filter
-    div.style.backdropFilter = `url(#${filterId})`;
-    return div.style.backdropFilter !== '';
+    if (typeof window === "undefined" || typeof document === "undefined") return false;
+  
+    const el = document.createElement("div");
+    el.style.backdropFilter = "url(#test)";
+    (el.style as any).webkitBackdropFilter = "url(#test)"; // Safari-friendly typecast
+  
+    // Safari <15 had partial support that breaks SVG filters
+    const ua = navigator.userAgent;
+    const safariMatch = ua.match(/Version\/(\d+)\..*Safari/);
+    const safariVersion = safariMatch ? parseInt(safariMatch[1]) : null;
+  
+    const isOldSafari = safariVersion !== null && safariVersion < 15;
+  
+    const hasSupport =
+      (el.style.backdropFilter !== "" || (el.style as any).webkitBackdropFilter !== "") &&
+      !isOldSafari;
+  
+    return hasSupport;
   };
+
 
   const supportsBackdropFilter = () => {
-    if (globalThis.window === undefined || CSS === undefined) return false;
-    return CSS.supports('backdrop-filter', 'blur(10px)');
+    if (typeof CSS === "undefined") return false;
+  
+    // Check both standard and Safari-prefixed versions
+    return (
+      CSS.supports("backdrop-filter", "blur(10px)") ||
+      CSS.supports("-webkit-backdrop-filter", "blur(10px)")
+    );
   };
+  
 
   const getBaseStyles = (): React.CSSProperties => ({
     ...style,
