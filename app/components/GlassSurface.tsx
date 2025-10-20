@@ -254,24 +254,25 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   const getSVGFilterStyles = (baseStyles: React.CSSProperties): React.CSSProperties => ({
     ...baseStyles,
     background: isDarkMode ? `hsl(0 0% 0% / ${backgroundOpacity})` : `hsl(0 0% 100% / ${backgroundOpacity})`,
-    backdropFilter: `url(#${filterId}) saturate(${saturation})`,
+    backdropFilter: `blur(${blur}px) saturate(${saturation}) brightness(1.1)`,
+    WebkitBackdropFilter: `blur(${blur}px) saturate(${saturation}) brightness(1.1)`,
     boxShadow: isDarkMode
-      ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
-         0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
-         0px 4px 16px rgba(17, 17, 26, 0.05),
-         0px 8px 24px rgba(17, 17, 26, 0.05),
-         0px 16px 56px rgba(17, 17, 26, 0.05),
-         0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-         0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-         0px 16px 56px rgba(17, 17, 26, 0.05) inset`
-      : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
-         0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
-         0px 4px 16px rgba(17, 17, 26, 0.05),
-         0px 8px 24px rgba(17, 17, 26, 0.05),
-         0px 16px 56px rgba(17, 17, 26, 0.05),
-         0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-         0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-         0px 16px 56px rgba(17, 17, 26, 0.05) inset`
+    ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
+       0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
+       0px 4px 16px rgba(17, 17, 26, 0.05),
+       0px 8px 24px rgba(17, 17, 26, 0.05),
+       0px 16px 56px rgba(17, 17, 26, 0.05),
+       0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+       0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+       0px 16px 56px rgba(17, 17, 26, 0.05) inset`
+    : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
+       0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
+       0px 4px 16px rgba(17, 17, 26, 0.05),
+       0px 8px 24px rgba(17, 17, 26, 0.05),
+       0px 16px 56px rgba(17, 17, 26, 0.05),
+       0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+       0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+       0px 16px 56px rgba(17, 17, 26, 0.05) inset`
   });
 
   const getFallbackStyles = (baseStyles: React.CSSProperties, hasBackdropFilter: boolean): React.CSSProperties => {
