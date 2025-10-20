@@ -199,7 +199,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     // Not supported during SSR
     if (globalThis.window === undefined || document === undefined) return false;
 
-    const ua = navigator !== undefined ? navigator.userAgent : "";
+    const ua = typeof navigator === "undefined" ? "" : navigator.userAgent;    
     const isSafari = /Safari/.test(ua);
     const isChrome = /Chrome/.test(ua);
     const isWebkit = isSafari && !isChrome;
