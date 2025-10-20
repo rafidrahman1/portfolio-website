@@ -47,12 +47,12 @@ export function GitHubCalendarSkeleton() {
         <Skeleton className="h-6 w-48" />
         <div className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '180px' }}>
           {Array.from({ length: 365 }).map((_, i) => (
-            <Skeleton key={i} className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm" />
+            <Skeleton key={`skeleton-${i}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm" />
           ))}
         </div>
         <div className="flex space-x-2">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={i} className="w-6 h-3 rounded-sm" />
+            <Skeleton key={`legend-skeleton-${i}`} className="w-6 h-3 rounded-sm" />
           ))}
         </div>
       </div>

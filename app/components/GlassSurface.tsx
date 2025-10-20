@@ -47,7 +47,7 @@ const useDarkMode = () => {
 
   useEffect(() => {
     setIsClient(true);
-    if (typeof globalThis.window === 'undefined') return;
+    if (globalThis.window === undefined) return;
 
     const mediaQuery = globalThis.window.matchMedia('(prefers-color-scheme: dark)');
     setIsDark(mediaQuery.matches);
@@ -82,7 +82,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   className = '',
   style = {}
 }) => {
-  const uniqueId = useId().replaceAll(/:/g, '-');
+  const uniqueId = useId().replaceAll(':', '-');
   const filterId = `glass-filter-${uniqueId}`;
   const redGradId = `red-grad-${uniqueId}`;
   const blueGradId = `blue-grad-${uniqueId}`;
@@ -197,9 +197,9 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   const supportsSVGFilters = () => {
     // Not supported during SSR
-    if (typeof globalThis.window === 'undefined' || typeof document === 'undefined') return false;
+    if (globalThis.window === undefined || document === undefined) return false;
 
-    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+    const ua = navigator !== undefined ? navigator.userAgent : '';
     const isSafari = /Safari/.test(ua);
     const isChrome = /Chrome/.test(ua);
     const isWebkit = isSafari && !isChrome;
@@ -216,7 +216,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   };
 
   const supportsBackdropFilter = () => {
-    if (typeof globalThis.window === 'undefined' || typeof CSS === 'undefined') return false;
+    if (globalThis.window === undefined || CSS === undefined) return false;
     return CSS.supports('backdrop-filter', 'blur(10px)');
   };
 

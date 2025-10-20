@@ -44,8 +44,8 @@ export const SkillsServer = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="p-3 hover:shadow-md transition-all duration-300 hover:border-primary/20">
+          {skillCategories.map((category) => (
+            <Card key={category.title} className="p-3 hover:shadow-md transition-all duration-300 hover:border-primary/20">
               <div className="flex items-center mb-2">
                 <div className={`rounded-md p-1.5 mr-2 ${category.color}`}> 
                   {category.icon}
@@ -54,9 +54,9 @@ export const SkillsServer = () => {
               </div>
 
               <div className="flex flex-wrap gap-1">
-                {category.skills.map((skill, i) => (
+                {category.skills.map((skill) => (
                   <Badge 
-                    key={i} 
+                    key={skill} 
                     variant="outline" 
                     className="text-xs px-2 py-0.5 hover:bg-primary/5 transition-colors duration-200"
                   >

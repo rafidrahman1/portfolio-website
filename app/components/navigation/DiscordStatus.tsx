@@ -162,10 +162,8 @@ export function DiscordStatus() {
   };
 
   return (
-      <div 
-        className="flex items-center space-x-1 relative min-w-[130px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-md"
-        role="button"
-        tabIndex={0}
+      <button 
+        className="flex items-center space-x-1 relative min-w-[130px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-md bg-transparent border-none p-0"
         aria-label={`Discord status: ${status}. ${isHovered ? 'Click to show status' : 'Click to show message button'}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -174,6 +172,6 @@ export function DiscordStatus() {
       >
         <DiscordLogo />
         {renderContent()}
-      </div>
+      </button>
   );
 }

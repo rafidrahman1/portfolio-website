@@ -45,8 +45,8 @@ export function ProjectLoadingWrapper({ children }: { children: ReactNode }) {
             <Skeleton className="h-6 w-96 mx-auto" />
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-24">
+            {[1, 2, 3].map((item) => (
+              <div key={`project-skeleton-${item}`} className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-24">
                 <div className="flex-1 w-full max-w-lg lg:max-w-none">
                   <Skeleton className="h-64 w-full rounded-lg" />
                 </div>

@@ -31,16 +31,16 @@ export const ProjectShowcaseHybrid = () => {
             </p>
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">
-            {showcaseProjects.map((project, index) => (
+            {showcaseProjects.map((project) => (
                 <motion.div
-                    key={index}
+                    key={project.title}
                     className={`flex flex-col ${
-                        index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                        showcaseProjects.indexOf(project) % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                     } items-center gap-8 sm:gap-12 lg:gap-24`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: showcaseProjects.indexOf(project) * 0.1 }}
                     style={{ willChange: "transform, opacity" }}
                 >
                   {/* Project mockup */}
@@ -84,9 +84,9 @@ export const ProjectShowcaseHybrid = () => {
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
+                      {project.technologies.map((tech) => (
                           <span
-                              key={i}
+                              key={tech}
                               className="text-xs sm:text-sm text-primary bg-primary/10 px-2 sm:px-3 py-1 rounded-md font-medium"
                           >
                       {tech}

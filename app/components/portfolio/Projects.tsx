@@ -75,8 +75,8 @@ export const Projects = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {projects.map((project, index) => (
-                <Card key={index} className="flex flex-col p-4 sm:p-6 hover:shadow-xl transition-all duration-300 hover:border-primary/20 group">
+            {projects.map((project) => (
+                <Card key={project.title} className="flex flex-col p-4 sm:p-6 hover:shadow-xl transition-all duration-300 hover:border-primary/20 group">
                   <div className="flex items-start sm:items-center mb-4">
                     <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
                       {project.icon}
@@ -96,8 +96,8 @@ export const Projects = () => {
                   <div className="mb-4 sm:mb-6">
                     <h4 className="font-semibold mb-2 text-foreground text-sm sm:text-base">Key Features:</h4>
                     <ul className="space-y-1">
-                      {project.features.map((feature, i) => (
-                          <li key={i} className="flex items-start text-xs sm:text-sm">
+                      {project.features.map((feature) => (
+                          <li key={feature} className="flex items-start text-xs sm:text-sm">
                             <span className="text-primary mr-2 mt-1 flex-shrink-0">•</span>
                             <span className="text-muted-foreground">{feature}</span>
                           </li>
@@ -107,8 +107,8 @@ export const Projects = () => {
 
                   <div className="mb-4 sm:mb-6">
                     <div className="flex flex-wrap gap-1">
-                      {project.technologies.map((tech, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs px-2 py-1">
+                      {project.technologies.map((tech) => (
+                          <Badge key={tech} variant="secondary" className="text-xs px-2 py-1">
                             {tech}
                           </Badge>
                       ))}

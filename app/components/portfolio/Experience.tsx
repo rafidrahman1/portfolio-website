@@ -52,8 +52,8 @@ export const Experience = () => {
         </div>
 
         <div className="space-y-6 sm:space-y-8">
-          {experiences.map((exp, index) => (
-            <Card key={index} className="p-6 sm:p-8 hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+          {experiences.map((exp) => (
+            <Card key={`${exp.title}-${exp.company}-${exp.period}`} className="p-6 sm:p-8 hover:shadow-lg transition-all duration-300 hover:border-primary/20">
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
                 <div className="flex items-start mb-4 lg:mb-0">
                   <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
@@ -74,8 +74,8 @@ export const Experience = () => {
               <div className="mb-6">
                 <h5 className="font-semibold mb-3 text-foreground text-sm sm:text-base">Key Achievements:</h5>
                 <ul className="space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start">
+                  {exp.achievements.map((achievement) => (
+                    <li key={achievement} className="flex items-start">
                       <span className="text-primary mr-2 mt-1.5 flex-shrink-0">•</span>
                       <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{achievement}</span>
                     </li>
@@ -86,8 +86,8 @@ export const Experience = () => {
               <div>
                 <h5 className="font-semibold mb-3 text-foreground text-sm sm:text-base">Technologies Used:</h5>
                 <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, i) => (
-                    <Badge key={i} variant="outline" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
+                  {exp.technologies.map((tech) => (
+                    <Badge key={tech} variant="outline" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                       {tech}
                     </Badge>
                   ))}

@@ -22,11 +22,11 @@ export const ProjectShowcaseStatic = () => {
             </p>
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">
-            {showcaseProjects.map((project, index) => (
+            {showcaseProjects.map((project) => (
                 <div
-                    key={index}
+                    key={project.title}
                     className={`flex flex-col ${
-                        index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                        showcaseProjects.indexOf(project) % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                     } items-center gap-8 sm:gap-12 lg:gap-24`}
                 >
                   {/* Project mockup */}
@@ -70,9 +70,9 @@ export const ProjectShowcaseStatic = () => {
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
+                      {project.technologies.map((tech) => (
                           <span
-                              key={i}
+                              key={tech}
                               className="text-xs sm:text-sm text-primary bg-primary/10 px-2 sm:px-3 py-1 rounded-md font-medium"
                           >
                       {tech}

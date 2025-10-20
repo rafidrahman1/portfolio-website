@@ -137,8 +137,8 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
                     {/* Optionally, show a placeholder legend for consistency */}
                     <div className="w-full flex justify-center mt-2">
                         <div className="flex space-x-2 opacity-60">
-                            {['l1','l2','l3','l4','l5'].map((id, i) => (
-                                <div key={id} className="w-6 h-3 rounded-sm bg-gray-700 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                            {['l1','l2','l3','l4','l5'].map((id) => (
+                                <div key={id} className="w-6 h-3 rounded-sm bg-gray-700 animate-pulse" style={{ animationDelay: `${['l1','l2','l3','l4','l5'].indexOf(id) * 0.1}s` }} />
                             ))}
                         </div>
                     </div>

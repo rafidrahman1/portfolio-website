@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
@@ -33,7 +33,22 @@ export const Contact = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message.');
+        let message = 'Failed to send message.';
+        try {
+          const data = await response.json();
+          const apiError = (data as { error?: unknown })?.error;
+          if (typeof apiError === 'string') {
+            message = apiError;
+          } else if (apiError && typeof apiError === 'object' && 'message' in (apiError as Record<string, unknown>)) {
+            const detailed = (apiError as { message?: unknown }).message;
+            if (typeof detailed === 'string' && detailed.trim().length > 0) {
+              message = detailed;
+            }
+          }
+        } catch {
+          // If parsing fails, keep the default message
+        }
+        throw new Error(message);
       }
 
       toast({
@@ -43,9 +58,15 @@ export const Contact = () => {
 
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
+      const description = error instanceof Error && error.message
+        ? error.message
+        : "There was a problem with your request. Please try again.";
+      // Intentionally log to help diagnose unexpected failures from the client
+      // (e.g., network errors, CORS). This will not be visible to end users.
+      console.error('Contact form submission failed:', error);
       toast({
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please try again.",
+        description,
         variant: "destructive",
       });
     } finally {

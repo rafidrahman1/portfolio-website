@@ -34,7 +34,7 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
   className,
   style
 }) => {
-  const rawId = useId().replaceAll(/:/g, '');
+  const rawId = useId().replaceAll(':', '');
   const filterId = `turbulent-displace-${rawId}`;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);

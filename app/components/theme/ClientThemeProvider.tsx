@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-export function ClientThemeProvider({ children }: { children: React.ReactNode }) {
+export function ClientThemeProvider({ children }: { readonly children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
