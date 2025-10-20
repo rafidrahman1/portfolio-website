@@ -4,14 +4,14 @@ const connections = new Set<ReadableStreamDefaultController>();
 // Function to broadcast updates to all connected clients
 export function broadcastUpdate(data: any) {
   const message = `data: ${JSON.stringify(data)}\n\n`;
-  connections.forEach(controller => {
+  for (const controller of Array.from(connections)) {
     try {
       controller.enqueue(new TextEncoder().encode(message));
     } catch (error) {
-      // Remove dead connections
+      console.warn("Removing dead SSE connection:", error);
       connections.delete(controller);
     }
-  });
+  }
 }
 
 // Function to add a new connection

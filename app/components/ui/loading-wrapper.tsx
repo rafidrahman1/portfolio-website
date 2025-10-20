@@ -3,11 +3,11 @@
 import { Suspense, ReactNode } from "react";
 import { Skeleton, ProjectSkeleton, CardSkeleton, GitHubCalendarSkeleton } from "./loading-skeleton";
 
-interface LoadingWrapperProps {
+type LoadingWrapperProps = Readonly<{
   children: ReactNode;
   fallback?: ReactNode;
   type?: "default" | "project" | "card" | "github-calendar";
-}
+}>;
 
 export function LoadingWrapper({ children, fallback, type = "default" }: LoadingWrapperProps) {
   const getDefaultFallback = () => {
@@ -35,7 +35,7 @@ export function LoadingWrapper({ children, fallback, type = "default" }: Loading
 }
 
 // Specialized loading wrappers
-export function ProjectLoadingWrapper({ children }: { children: ReactNode }) {
+export function ProjectLoadingWrapper({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <LoadingWrapper type="project" fallback={
       <section className="py-12 sm:py-16 lg:py-20">
@@ -70,7 +70,7 @@ export function ProjectLoadingWrapper({ children }: { children: ReactNode }) {
   );
 }
 
-export function GitHubCalendarLoadingWrapper({ children }: { children: ReactNode }) {
+export function GitHubCalendarLoadingWrapper({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <LoadingWrapper type="github-calendar">
       {children}

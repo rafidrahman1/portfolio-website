@@ -12,7 +12,7 @@ export function WebVitals() {
       onCLS((metric) => {
         console.log('CLS:', metric);
         // Send to analytics service
-        if (typeof globalThis.window !== 'undefined' && (globalThis.window as any).gtag) {
+        if (globalThis.window !== undefined && (globalThis.window as any).gtag) {
           (globalThis.window as any).gtag('event', 'web_vitals', {
             name: 'CLS',
             value: Math.round(metric.value * 1000),
