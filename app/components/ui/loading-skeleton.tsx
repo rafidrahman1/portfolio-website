@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+// Basic skeleton
 interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function Skeleton({ className, ...props }: SkeletonProps) {
@@ -40,19 +41,25 @@ export function CardSkeleton() {
   );
 }
 
+const calendarSkeletonKeys = Array.from({ length: 365 }, () => crypto.randomUUID());
+const legendSkeletonKeys = Array.from({ length: 5 }, () => crypto.randomUUID());
+
 export function GitHubCalendarSkeleton() {
   return (
     <div className="w-full max-w-4xl mx-auto p-2 sm:p-4 bg-card/50 backdrop-blur-sm rounded-lg border min-h-[14rem]">
       <div className="flex flex-col items-center space-y-3 sm:space-y-4">
         <Skeleton className="h-6 w-48" />
-        <div className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '180px' }}>
-          {Array.from({ length: 365 }).map((_, i) => (
-            <Skeleton key={`skeleton-${i}`} className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm" />
+        <div
+          className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto"
+          style={{ gridTemplateRows: "repeat(7, 1fr)", minWidth: "180px" }}
+        >
+          {calendarSkeletonKeys.map((key) => (
+            <Skeleton key={key} className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm" />
           ))}
         </div>
         <div className="flex space-x-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={`legend-skeleton-${i}`} className="w-6 h-3 rounded-sm" />
+          {legendSkeletonKeys.map((key) => (
+            <Skeleton key={key} className="w-6 h-3 rounded-sm" />
           ))}
         </div>
       </div>
