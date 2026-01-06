@@ -5,7 +5,16 @@ import { ExternalLink, Github, Bot, Share2,MessageSquare} from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Projects = () => {
-  const projects = [
+  const projects: {
+    title: string;
+    description: string;
+    icon: JSX.Element;
+    features: string[];
+    technologies: string[];
+    category: string;
+    codeUrl?: string;
+    demoUrl?: string;
+  }[] = [
     {
       title: "AI Agent",
       description: "Intelligent AI solution for automated product analysis and content generation",
@@ -19,7 +28,6 @@ export const Projects = () => {
       technologies: ["OpenAI API", "Image Processing", "AI/ML", "Automation"],
       category: "AI/ML",
       codeUrl: "https://github.com/rafidrahman1/ai_agent",
-      demoUrl: "#"
     },
     {
       title: "Meta Post",
@@ -33,8 +41,7 @@ export const Projects = () => {
       ],
       technologies: ["React", "Meta Graph API", "Social Media APIs"],
       category: "Social Media",
-      codeUrl: "https://github.com/rafidrahman1/meta_post.git",
-      demoUrl: "#"
+      codeUrl: "https://github.com/rafidrahman1/meta_post.git", 
 
     },
     {
@@ -49,8 +56,7 @@ export const Projects = () => {
       ],
       technologies: ["React", "Node.js", "WhatsApp API", "Analytics"],
       category: "Business Tools",
-      codeUrl: "https://github.com/rafidrahman1/whatsapp.git",
-      demoUrl: "#"
+      codeUrl: "https://github.com/rafidrahman1/whatsapp.git",    
 
 
     },

@@ -94,6 +94,7 @@ export const ProjectShowcaseHybrid = () => {
                       ))}
                     </div>
                     <div className="flex items-center gap-4 pt-2 sm:pt-4">
+                      {project.demoButton && (
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.demoUrl} 
                         className="flex items-center gap-2"
@@ -104,6 +105,19 @@ export const ProjectShowcaseHybrid = () => {
                           <span>Live Demo</span>
                         </a>
                       </Button>
+                      )}
+                      {project.codeButton && (
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.codeUrl} 
+                          className="flex items-center gap-2"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                          >
+                          <ExternalLink className="h-4 w-4" />
+                          <span>Code</span>
+                        </a>
+                      </Button>
+                    )}
                     </div>
                   </div>
                 </motion.div>

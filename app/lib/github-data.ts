@@ -34,51 +34,65 @@ export interface ProjectData {
   demoUrl: string;
   deviceType: 'laptop' | 'mobile';
   featured: boolean;
+  codeUrl: string;
+  codeButton: boolean;
+  demoButton: boolean;
 }
 
 export const getStaticProjects = (): ProjectData[] => [
   {
-    title: "SewingTex React Conversion",
-    description: "Modern React SPA conversion with improved performance and mobile experience",
-    image: "/screenshots/sewingtex.png",
-    technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
-    category: "E-commerce",
-    demoUrl: "https://sewingtexapparels.com/",
-    deviceType: "laptop",
-    featured: true
-  },
-  {
-    title: "BetterThat Ecosystem",
-    description: "Multiple React applications with reusable component libraries",
-    image: "/screenshots/betterthat.png",
-    technologies: ["React", "Component Libraries", "State Management"],
-    category: "Multi-Project E-commerce",
-    demoUrl: "https://betterthat.com/",
-    deviceType: "laptop",
-    featured: false
-
-  },
-  {
-    title: "Evocart",
-    description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-    image: "/screenshots/evocart.jpg",
-    technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-    category: "E-commerce",
-    demoUrl: "https://apple.nazarahnaturals.com/",
-    deviceType: "mobile",
-    featured: true
-  },    
-  {
-    title: "Physics Department, BUET",
-    description: "Enhanced departmental website with dynamic components and CMS",
-    image: "/screenshots/buetphy.png",
-    technologies: ["React", "CMS", "Web Standards"],
-    category: "Education",
-    demoUrl: "https://phy.buet.ac.bd/",
-    deviceType: "laptop",
-    featured: false
-
-  }
+      title: "WakeUp BD",
+      description: "Nextjs-based activism platform with responsive design and API integration",
+      image: "/screenshots/wakeupbd.png",
+      technologies: ["Next.js", "API Integration", "Responsive Design"],
+      category: "Activism Platform",
+      demoUrl: "https://wakeupbd.cloud/",
+      codeUrl: "https://github.com/rafidrahman1/wake-up-frontend",
+      deviceType: "laptop",
+      codeButton: true,
+      demoButton: true,
+      featured: true
+    },
+    {
+      title: "BetterThat Ecosystem",
+      description: "Multiple React applications with reusable component libraries",
+      image: "/screenshots/betterthat.png",
+      technologies: ["React", "Component Libraries", "State Management"],
+      category: "Multi-Project E-commerce",
+      demoUrl: "https://betterthat.com/",
+      codeUrl: "",
+      deviceType: "laptop",
+      codeButton: false,
+      demoButton: true,
+      featured: true
+    },
+    {
+      title: "Dhee",
+      description: "Next.js-based e-commerce platform with AI integration for personalized shopping",
+      image: "/screenshots/dhee.png",
+      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
+      category: "E-commerce",
+      demoUrl: "https://dheeacademy.vercel.app/",
+      codeUrl: "https://github.com/rafidrahman1/qec-academy-clone",
+      deviceType: "laptop",
+      codeButton: true,
+      demoButton: true,
+      featured: true
+    },    
+    {
+      title: "Evocart",
+      description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
+      image: "/screenshots/evocart.jpg",
+      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
+      category: "E-commerce",
+      demoUrl: "",
+      codeUrl: "https://github.com/rafidrahman1/evocart-react",
+      deviceType: "mobile",
+      codeButton: true,
+      demoButton: false,
+      featured: true
+    }
+    
 ];
 
 // Static skills data
