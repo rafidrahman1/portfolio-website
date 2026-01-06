@@ -19,7 +19,6 @@ export const Projects = () => {
       technologies: ["OpenAI API", "Image Processing", "AI/ML", "Automation"],
       category: "AI/ML",
       codeUrl: "https://github.com/rafidrahman1/ai_agent",
-      demoUrl: "#"
     },
     {
       title: "Meta Post",
@@ -33,8 +32,7 @@ export const Projects = () => {
       ],
       technologies: ["React", "Meta Graph API", "Social Media APIs"],
       category: "Social Media",
-      codeUrl: "https://github.com/rafidrahman1/meta_post.git",
-      demoUrl: "#"
+      codeUrl: "https://github.com/rafidrahman1/meta_post.git", 
 
     },
     {
@@ -49,8 +47,7 @@ export const Projects = () => {
       ],
       technologies: ["React", "Node.js", "WhatsApp API", "Analytics"],
       category: "Business Tools",
-      codeUrl: "https://github.com/rafidrahman1/whatsapp.git",
-      demoUrl: "#"
+      codeUrl: "https://github.com/rafidrahman1/whatsapp.git",    
 
 
     },
