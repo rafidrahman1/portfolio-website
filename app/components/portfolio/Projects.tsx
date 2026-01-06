@@ -5,7 +5,16 @@ import { ExternalLink, Github, Bot, Share2,MessageSquare} from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Projects = () => {
-  const projects = [
+  const projects: {
+    title: string;
+    description: string;
+    icon: JSX.Element;
+    features: string[];
+    technologies: string[];
+    category: string;
+    codeUrl?: string;
+    demoUrl?: string;
+  }[] = [
     {
       title: "AI Agent",
       description: "Intelligent AI solution for automated product analysis and content generation",
