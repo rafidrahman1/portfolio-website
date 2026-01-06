@@ -9,13 +9,15 @@ import Image from "next/image";
 export const ProjectShowcase = () => {
   const showcaseProjects: ShowcaseProject[] = [
     {
-      title: "SewingTex React Conversion",
-      description: "Modern React SPA conversion with improved performance and mobile experience",
-      image: "/screenshots/sewingtex.png",
-      technologies: ["React", "SPA", "API Integration", "Performance Optimization"],
-      category: "E-commerce",
-      demoUrl: "https://sewingtexapparels.com/",
+      title: "WakeUp BD",
+      description: "Nextjs-based activism platform with responsive design and API integration",
+      image: "/screenshots/wakeupbd.png",
+      technologies: ["Next.js", "API Integration", "Responsive Design"],
+      category: "Activism Platform",
+      demoUrl: "https://wakeupbd.cloud/",
+      codeUrl: "https://github.com/rafidrahman1/wake-up-frontend",
       deviceType: "laptop",
+      codeButton: true,
       featured: true
     },
     {
@@ -25,7 +27,10 @@ export const ProjectShowcase = () => {
       technologies: ["React", "Component Libraries", "State Management"],
       category: "Multi-Project E-commerce",
       demoUrl: "https://betterthat.com/",
-      deviceType: "laptop"
+      codeUrl: "https://github.com/rafidrahman1/wakeupbd",
+      deviceType: "laptop",
+      codeButton: false,
+      featured: true
     },
     {
       title: "Evocart",
@@ -34,7 +39,9 @@ export const ProjectShowcase = () => {
       technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
       category: "E-commerce",
       demoUrl: "https://apple.nazarahnaturals.com/",
+      codeUrl: "https://github.com/rafidrahman1/wakeupbd",
       deviceType: "mobile",
+      codeButton: true,
       featured: true
     },    
     {
@@ -44,7 +51,9 @@ export const ProjectShowcase = () => {
       technologies: ["React", "CMS", "Web Standards"],
       category: "Education",
       demoUrl: "https://phy.buet.ac.bd/",
-      deviceType: "laptop"
+      codeUrl: "https://github.com/rafidrahman1/wakeupbd",
+      deviceType: "laptop",
+      codeButton: true,
     }
   ];
 
@@ -129,6 +138,17 @@ export const ProjectShowcase = () => {
                           <span>Live Demo</span>
                         </a>
                       </Button>
+                      {project.codeButton && (
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.codeUrl} 
+                          className="flex items-center gap-2"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                          >
+                          <ExternalLink className="h-4 w-4" />
+                          <span>Live Demo</span>
+                        </a>
+                      </Button>)}
                     </div>
                   </div>
                 </div>
