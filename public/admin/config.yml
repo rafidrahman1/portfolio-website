@@ -4,7 +4,7 @@ backend:
   name: github
   repo: rafidrahman1/portfolio-website
   branch: main
-  base_url: https://rafid.me
+  base_url: https://rafidrahman.vercel.app
   auth_endpoint: api/cms/auth
 
 media_folder: public/uploads
