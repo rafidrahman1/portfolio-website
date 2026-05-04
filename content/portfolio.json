@@ -99,7 +99,7 @@
     "author": "Rafid Rahman",
     "name": "Rafid Rahman",
     "footerNote": "Built with Coffee.",
-    "url": "https://rafid.me",
+    "url": "https://rafidrahman.vercel.app",
     "metadataBaseUrl": "https://rafid.me",
     "footerYear": 2026,
     "title": "Flutter App Developer",
@@ -110,7 +110,7 @@
   },
   "experience": [
     {
-      "title": "Software Engineer L1 (Flutter)",
+      "title": "Software Engineer ",
       "company": "Catch Bangladesh LTD",
       "period": "April 2026 – Present",
       "description": "Specializing in Flutter development for cross-platform mobile solutions.",
