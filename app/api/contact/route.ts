@@ -4,15 +4,22 @@ import { Resend } from 'resend';
 // Edge Runtime for better performance
 export const runtime = 'edge';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const toEmail = process.env.TO_EMAIL;
 
 export async function POST(request: Request) {
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+        return NextResponse.json({ error: 'Resend API key is not configured.' }, { status: 500 });
+    }
+
     const { name, email, subject, message } = await request.json();
 
     if (!toEmail) {
         return NextResponse.json({ error: 'Recipient email is not configured.' }, { status: 500 });
     }
+
+    const resend = new Resend(apiKey);
 
     try {
         const data = await resend.emails.send({
