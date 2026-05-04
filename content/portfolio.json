@@ -22,7 +22,7 @@
       "featured": true,
       "deviceType": "laptop",
       "demoButton": true,
-      "title": "WakeUp BD",
+      "title": "Hikma",
       "image": "/screenshots/wakeupbd.png",
       "description": "Nextjs-based activism platform with responsive design and API integration",
       "category": "Activism Platform",
