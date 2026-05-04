@@ -113,7 +113,13 @@
       "title": "Software Engineer",
       "company": "Catch Bangladesh LTD",
       "period": "April 2026 – Present",
-      "description": "A software development company specializing in web and mobile solutions"
+      "description": "A software development company specializing in web and mobile solutions",
+      "achievements": [
+        "Works with frens"
+      ],
+      "technologies": [
+        "notun technology"
+      ]
     },
     {
       "title": "Software Engineer",
