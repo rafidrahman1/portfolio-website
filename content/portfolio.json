@@ -100,7 +100,7 @@
     "name": "Rafid Rahman",
     "footerNote": "Built with Coffee.",
     "url": "https://rafidrahman.vercel.app",
-    "metadataBaseUrl": "https://rafid.me",
+    "metadataBaseUrl": "https://rafidrahman.vercel.app",
     "footerYear": 2026,
     "title": "Flutter App Developer",
     "twitterHandle": "@rafidrahman1",
@@ -254,7 +254,7 @@
       "subtitle": "Dedicated to crafting exceptional mobile experiences through Clean Architecture",
       "summaryHeading": "Professional Summary",
       "summaryParagraphs": [
-        "Flutter App Developer (Software Engineer L1) with a strong focus on building scalable, performant mobile applications using Dart and Riverpod. Experienced in implementing Clean Architecture to ensure code maintainability and efficiency.",
+        "Flutter App Developer (Software Engineer) with a strong focus on building scalable, performant mobile applications using Dart and Riverpod. Experienced in implementing Clean Architecture to ensure code maintainability and efficiency.",
         "I hold a Bachelor's in Computer Science from BRAC University and am passionate about developing user-centric software. Currently focused on mastering the Flutter ecosystem while contributing to impactful projects at Catch Bangladesh LTD."
       ],
       "highlightBadges": [
