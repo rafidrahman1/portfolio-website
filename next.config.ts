@@ -17,12 +17,13 @@ const nextConfig: NextConfig = {
       '@radix-ui/react-tooltip',
       '@tanstack/react-query'
     ],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  },
+
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
