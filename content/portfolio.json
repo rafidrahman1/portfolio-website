@@ -12,6 +12,24 @@
   },
   "showcaseProjects": [
     {
+      "codeUrl": "https://github.com/rafidrahman1/evocart-react",
+      "technologies": [
+        "Flutter",
+        "Riverpod",
+        "Clean Architecture",
+        "RESTful APIs"
+      ],
+      "demoUrl": "",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": false,
+      "title": "Evocart Mobile",
+      "image": "/screenshots/evocart.jpg",
+      "description": "Mobile e-commerce application focusing on clean architecture and robust state management.",
+      "category": "E-commerce",
+      "codeButton": true
+    },
+    {
       "codeUrl": "https://github.com/rafidrahman1/wake-up-frontend",
       "technologies": [
         "Next.js",
@@ -27,23 +45,6 @@
       "description": "Nextjs-based activism platform with responsive design and API integration",
       "category": "Activism Platform",
       "codeButton": true
-    },
-    {
-      "codeUrl": "",
-      "technologies": [
-        "React",
-        "Component Libraries",
-        "State Management"
-      ],
-      "demoUrl": "https://betterthat.com/",
-      "featured": true,
-      "deviceType": "laptop",
-      "demoButton": true,
-      "title": "BetterThat Ecosystem",
-      "image": "/screenshots/betterthat.png",
-      "description": "Multiple React applications with reusable component libraries",
-      "category": "Multi-Project E-commerce",
-      "codeButton": false
     },
     {
       "codeUrl": "https://github.com/rafidrahman1/qec-academy-clone",
@@ -64,21 +65,21 @@
       "codeButton": true
     },
     {
-      "codeUrl": "https://github.com/rafidrahman1/evocart-react",
+      "codeUrl": "https://github.com/rafidrahman1/ai_agent",
       "technologies": [
-        "Next.js",
-        "React",
+        "Flutter",
+        "Dart",
         "OpenAI API",
-        "RESTful APIs"
+        "Image Processing"
       ],
       "demoUrl": "",
       "featured": true,
       "deviceType": "mobile",
       "demoButton": false,
-      "title": "Evocart",
-      "image": "/screenshots/evocart.jpg",
-      "description": "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-      "category": "E-commerce",
+      "title": "AI Product Agent",
+      "image": "/screenshots/ai_agent.jpg",
+      "description": "Flutter-based intelligent solution for automated product analysis and content generation.",
+      "category": "AI/ML",
       "codeButton": true
     }
   ],
@@ -86,15 +87,14 @@
     "ogImagePath": "/images/profile.jpg",
     "keywords": [
       "Rafid Rahman",
-      "Fullstack Developer",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Web Development",
-      "AI Integration",
-      "Portfolio",
-      "Frontend Developer",
-      "Backend Developer"
+      "Flutter Developer",
+      "Flutter App Developer",
+      "Dart",
+      "Riverpod",
+      "Clean Architecture",
+      "Software Engineer Bangladesh",
+      "Mobile App Development",
+      "AI Integration"
     ],
     "author": "Rafid Rahman",
     "name": "Rafid Rahman",
@@ -102,23 +102,30 @@
     "url": "https://rafid.me",
     "metadataBaseUrl": "https://rafid.me",
     "footerYear": 2026,
-    "title": "Fullstack Developer",
+    "title": "Flutter App Developer",
     "twitterHandle": "@rafidrahman1",
     "googleSiteVerification": "your-google-verification-code",
-    "shortTitle": "Full-Stack Developer",
-    "description": "Fullstack developer passionate about building user-focused web applications using Next.js, React, and AI integrations. Specializing in modern web technologies and performance optimization."
+    "shortTitle": "Flutter Developer",
+    "description": "Flutter App Developer focused on building high-performance mobile applications using Clean Architecture and Riverpod. Professional experience in building scalable, user-centric solutions."
   },
   "experience": [
     {
-      "title": "Software Engineer",
+      "title": "Software Engineer L1 (Flutter)",
       "company": "Catch Bangladesh LTD",
       "period": "April 2026 – Present",
-      "description": "A software development company specializing in web and mobile solutions",
+      "description": "Specializing in Flutter development for cross-platform mobile solutions.",
       "achievements": [
-        "Works with frens"
+        "Developing maintainable mobile applications using Flutter and Dart",
+        "Implementing state management with Riverpod and adhering to Clean Architecture principles",
+        "Designing reusable API service layers for efficient frontend-backend communication",
+        "Collaborating on performance optimization and UI consistency for mobile platforms"
       ],
       "technologies": [
-        "notun technology"
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "Clean Architecture",
+        "Firebase"
       ]
     },
     {
@@ -162,27 +169,27 @@
   ],
   "skillCategories": [
     {
-      "title": "Frontend",
-      "icon": "Code",
+      "title": "Mobile Development",
+      "icon": "Smartphone",
       "skills": [
-        "React.js",
-        "Next.js",
-        "HTML5",
-        "CSS3",
-        "JavaScript (ES6+)",
-        "Responsive Design"
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "Clean Architecture",
+        "Mobile UI/UX",
+        "State Management"
       ],
       "color": "bg-blue-500/10 text-blue-600 border-blue-200"
     },
     {
-      "title": "Backend",
+      "title": "Backend & Services",
       "icon": "Server",
       "skills": [
         "Node.js",
         "Express.js",
-        "Spring Boot",
-        "ASP.NET",
-        "RESTful APIs"
+        "RESTful APIs",
+        "API Service Layers",
+        "Firebase"
       ],
       "color": "bg-green-500/10 text-green-600 border-green-200"
     },
@@ -192,21 +199,20 @@
       "skills": [
         "MongoDB",
         "MySQL",
-        "Firebase"
+        "PostgreSQL"
       ],
       "color": "bg-purple-500/10 text-purple-600 border-purple-200"
     },
     {
-      "title": "Tools & Others",
+      "title": "Tools & Workflow",
       "icon": "Wrench",
       "skills": [
         "Git",
         "WebStorm",
-        "Vercel",
         "CI/CD",
-        "API Integration",
+        "Tech Interview Prep",
         "AI-Agent",
-        "Meta Graph API"
+        "API Integration"
       ],
       "color": "bg-orange-500/10 text-orange-600 border-orange-200"
     }
@@ -214,49 +220,49 @@
   "sections": {
     "showcase": {
       "title": "Featured Projects",
-      "subtitle": "A showcase of modern web development projects built with cutting-edge technologies"
+      "subtitle": "Showcasing high-performance mobile and web applications built with modern frameworks"
     },
     "projectsList": {
       "title": "Key Projects",
-      "subtitle": "Showcasing innovative solutions across e-commerce, AI, social media, and web development"
+      "subtitle": "Innovative solutions across mobile commerce, AI agents, and business tools"
     },
     "skills": {
       "title": "Technical Skills",
-      "subtitle": "Comprehensive expertise across modern web development technologies",
+      "subtitle": "Focused expertise in Flutter development and scalable software architecture",
       "expertiseTitle": "Specialized Expertise",
       "expertise": [
+        {
+          "title": "Flutter Architecture",
+          "description": "Clean Architecture, Riverpod, and reusable API service layers"
+        },
         {
           "title": "AI Integration",
           "description": "OpenAI API, automated content generation, intelligent data processing"
         },
         {
-          "title": "API Development",
-          "description": "RESTful services, third-party integrations, scalable architectures"
-        },
-        {
           "title": "Performance Optimization",
-          "description": "Code quality, database optimization, responsive design"
+          "description": "Code quality, mobile responsiveness, and efficient state management"
         }
       ]
     },
     "experience": {
       "title": "Professional Experience",
-      "subtitle": "Building impactful solutions and growing expertise across diverse technology stacks"
+      "subtitle": "Building impactful mobile and web solutions with a focus on Flutter"
     },
     "about": {
       "title": "About Me",
-      "subtitle": "Dedicated to crafting exceptional digital experiences through innovative technology solutions",
+      "subtitle": "Dedicated to crafting exceptional mobile experiences through Clean Architecture",
       "summaryHeading": "Professional Summary",
       "summaryParagraphs": [
-        "Full-Stack Developer with 1+ years of experience in building scalable and responsive web applications using React, Next.js, and Node.js. Skilled in crafting clean user interfaces, integrating RESTful APIs, and implementing AI-powered features.",
-        "I hold a Bachelor's in Computer Science with strong problem-solving abilities and a passion for developing impactful, user-centric software that makes a difference in people's lives."
+        "Flutter App Developer (Software Engineer L1) with a strong focus on building scalable, performant mobile applications using Dart and Riverpod. Experienced in implementing Clean Architecture to ensure code maintainability and efficiency.",
+        "I hold a Bachelor's in Computer Science from BRAC University and am passionate about developing user-centric software. Currently focused on mastering the Flutter ecosystem while contributing to impactful projects at Catch Bangladesh LTD."
       ],
       "highlightBadges": [
-        "Problem Solving",
+        "Flutter & Dart",
+        "Clean Architecture",
+        "Riverpod",
         "API Integration",
-        "AI Implementation",
-        "Responsive Design",
-        "Team Collaboration"
+        "Problem Solving"
       ],
       "education": {
         "heading": "Education",
@@ -273,9 +279,9 @@
     },
     "contact": {
       "title": "Get In Touch",
-      "subtitle": "Ready to collaborate on your next project? Let's discuss how we can work together to bring your ideas to life.",
+      "subtitle": "Ready to collaborate on your next mobile or web project? Let's discuss how we can work together.",
       "connectHeading": "Let's Connect",
-      "connectBody": "I'm always excited to discuss new opportunities, innovative projects, and potential collaborations. Whether you have a project in mind or just want to connect, feel free to reach out!",
+      "connectBody": "I'm always excited to discuss Flutter development, innovative AI projects, and professional collaborations. Feel free to reach out!",
       "formTitle": "Send a Message"
     }
   },
@@ -364,7 +370,7 @@
     }
   ],
   "hero": {
-    "description": "Passionate about building scalable web applications with React, Next.js, and Node.js. Specializing in AI integration and creating user-centric digital experiences.",
+    "description": "Flutter App Developer at Catch Bangladesh LTD. Focused on building scalable mobile applications with Clean Architecture, Riverpod, and Dart.",
     "socialGithubUrl": "https://github.com/rafidrahman1",
     "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
   }
