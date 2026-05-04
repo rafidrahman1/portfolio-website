@@ -1,5 +1,4 @@
-# Decap CMS — edit after clone if your domain or repo differs.
-# backend.base_url MUST match the site where /api/cms/auth lives (same origin as this admin UI).
+
 backend:
   name: github
   repo: rafidrahman1/portfolio-website
@@ -36,7 +35,7 @@ collections:
               - label: SEO keywords
                 name: keywords
                 widget: list
-                field: { label: Keyword, widget: string }
+                field: { label: Keyword, name: keyword, widget: string }
               - { label: Metadata base URL, name: metadataBaseUrl, widget: string }
               - { label: OpenGraph image path, name: ogImagePath, widget: string }
               - { label: Google site verification token, name: googleSiteVerification, widget: string }
@@ -120,11 +119,11 @@ collections:
                   - label: Summary paragraphs
                     name: summaryParagraphs
                     widget: list
-                    field: { label: Paragraph, widget: text }
+                    field: { label: Paragraph, name: paragraph, widget: text }
                   - label: Highlight badges
                     name: highlightBadges
                     widget: list
-                    field: { label: Badge, widget: string }
+                    field: { label: Badge, name: badge, widget: string }
                   - label: Education
                     name: education
                     widget: object
@@ -163,7 +162,7 @@ collections:
               - label: Technologies
                 name: technologies
                 widget: list
-                field: { label: Tech, widget: string }
+                field: { label: Tech, name: tech, widget: string }
               - { label: Category, name: category, widget: string }
               - { label: Demo URL, name: demoUrl, widget: string, required: false }
               - { label: Code URL, name: codeUrl, widget: string, required: false }
@@ -186,11 +185,11 @@ collections:
               - label: Features
                 name: features
                 widget: list
-                field: { label: Feature, widget: string }
+                field: { label: Feature, name: feature, widget: string }
               - label: Technologies
                 name: technologies
                 widget: list
-                field: { label: Tech, widget: string }
+                field: { label: Tech, name: tech, widget: string }
               - { label: Category, name: category, widget: string }
               - { label: Code URL, name: codeUrl, widget: string, required: false }
               - { label: Demo URL, name: demoUrl, widget: string, required: false }
@@ -208,7 +207,7 @@ collections:
               - label: Skills
                 name: skills
                 widget: list
-                field: { label: Skill, widget: string }
+                field: { label: Skill, name: skill, widget: string }
               - { label: Tailwind color classes, name: color, widget: string, hint: "e.g. bg-blue-500/10 text-blue-600 border-blue-200" }
 
           - label: Work experience
@@ -223,11 +222,11 @@ collections:
               - label: Achievements
                 name: achievements
                 widget: list
-                field: { label: Achievement, widget: string }
+                field: { label: Achievement, name: achievement, widget: string }
               - label: Technologies
                 name: technologies
                 widget: list
-                field: { label: Tech, widget: string }
+                field: { label: Tech, name: tech, widget: string }
 
           - label: Contact details (cards + social)
             name: contact
