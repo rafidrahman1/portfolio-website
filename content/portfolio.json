@@ -1,0 +1,273 @@
+{
+  "site": {
+    "name": "Rafid Rahman",
+    "title": "Fullstack Developer",
+    "shortTitle": "Full-Stack Developer",
+    "description": "Fullstack developer passionate about building user-focused web applications using Next.js, React, and AI integrations. Specializing in modern web technologies and performance optimization.",
+    "url": "https://rafid.me",
+    "author": "Rafid Rahman",
+    "twitterHandle": "@rafidrahman1",
+    "keywords": [
+      "Rafid Rahman",
+      "Fullstack Developer",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Web Development",
+      "AI Integration",
+      "Portfolio",
+      "Frontend Developer",
+      "Backend Developer"
+    ],
+    "metadataBaseUrl": "https://rafid.me",
+    "ogImagePath": "/images/profile.jpg",
+    "googleSiteVerification": "your-google-verification-code",
+    "footerYear": 2026,
+    "footerNote": "Built with Coffee."
+  },
+  "github": {
+    "username": "rafidrahman1",
+    "calendarUsername": "rafidrahman1"
+  },
+  "navigation": [
+    { "label": "Home", "href": "#home" },
+    { "label": "About", "href": "#about" },
+    { "label": "Experience", "href": "#experience" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "hero": {
+    "description": "Passionate about building scalable web applications with React, Next.js, and Node.js. Specializing in AI integration and creating user-centric digital experiences.",
+    "socialGithubUrl": "https://github.com/rafidrahman1",
+    "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
+  },
+  "sections": {
+    "showcase": {
+      "title": "Featured Projects",
+      "subtitle": "A showcase of modern web development projects built with cutting-edge technologies"
+    },
+    "projectsList": {
+      "title": "Key Projects",
+      "subtitle": "Showcasing innovative solutions across e-commerce, AI, social media, and web development"
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "subtitle": "Comprehensive expertise across modern web development technologies",
+      "expertiseTitle": "Specialized Expertise",
+      "expertise": [
+        {
+          "title": "AI Integration",
+          "description": "OpenAI API, automated content generation, intelligent data processing"
+        },
+        {
+          "title": "API Development",
+          "description": "RESTful services, third-party integrations, scalable architectures"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Code quality, database optimization, responsive design"
+        }
+      ]
+    },
+    "experience": {
+      "title": "Professional Experience",
+      "subtitle": "Building impactful solutions and growing expertise across diverse technology stacks"
+    },
+    "about": {
+      "title": "About Me",
+      "subtitle": "Dedicated to crafting exceptional digital experiences through innovative technology solutions",
+      "summaryHeading": "Professional Summary",
+      "summaryParagraphs": [
+        "Full-Stack Developer with 1+ years of experience in building scalable and responsive web applications using React, Next.js, and Node.js. Skilled in crafting clean user interfaces, integrating RESTful APIs, and implementing AI-powered features.",
+        "I hold a Bachelor's in Computer Science with strong problem-solving abilities and a passion for developing impactful, user-centric software that makes a difference in people's lives."
+      ],
+      "highlightBadges": [
+        "Problem Solving",
+        "API Integration",
+        "AI Implementation",
+        "Responsive Design",
+        "Team Collaboration"
+      ],
+      "education": {
+        "heading": "Education",
+        "degree": "Bachelor of Science in Computer Science",
+        "schoolLine": "BRAC University • 2018-2023",
+        "coursework": "Relevant Coursework: Data Structures & Algorithms, Database Systems, Web Development, Software Engineering"
+      },
+      "aboutContactCard": {
+        "heading": "Contact Information",
+        "phone": "+88 01303310566",
+        "email": "rafid0001@gmail.com",
+        "location": "Dhaka, Bangladesh"
+      }
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "subtitle": "Ready to collaborate on your next project? Let's discuss how we can work together to bring your ideas to life.",
+      "connectHeading": "Let's Connect",
+      "connectBody": "I'm always excited to discuss new opportunities, innovative projects, and potential collaborations. Whether you have a project in mind or just want to connect, feel free to reach out!",
+      "formTitle": "Send a Message"
+    }
+  },
+  "showcaseProjects": [
+    {
+      "title": "WakeUp BD",
+      "description": "Nextjs-based activism platform with responsive design and API integration",
+      "image": "/screenshots/wakeupbd.png",
+      "technologies": ["Next.js", "API Integration", "Responsive Design"],
+      "category": "Activism Platform",
+      "demoUrl": "https://wakeupbd.cloud/",
+      "codeUrl": "https://github.com/rafidrahman1/wake-up-frontend",
+      "deviceType": "laptop",
+      "codeButton": true,
+      "demoButton": true,
+      "featured": true
+    },
+    {
+      "title": "BetterThat Ecosystem",
+      "description": "Multiple React applications with reusable component libraries",
+      "image": "/screenshots/betterthat.png",
+      "technologies": ["React", "Component Libraries", "State Management"],
+      "category": "Multi-Project E-commerce",
+      "demoUrl": "https://betterthat.com/",
+      "codeUrl": "",
+      "deviceType": "laptop",
+      "codeButton": false,
+      "demoButton": true,
+      "featured": true
+    },
+    {
+      "title": "Dhee",
+      "description": "Next.js-based e-commerce platform with AI integration for personalized shopping",
+      "image": "/screenshots/dhee.png",
+      "technologies": ["Next.js", "React", "OpenAI API", "RESTful APIs"],
+      "category": "E-commerce",
+      "demoUrl": "https://dheeacademy.vercel.app/",
+      "codeUrl": "https://github.com/rafidrahman1/qec-academy-clone",
+      "deviceType": "laptop",
+      "codeButton": true,
+      "demoButton": true,
+      "featured": true
+    },
+    {
+      "title": "Evocart",
+      "description": "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
+      "image": "/screenshots/evocart.jpg",
+      "technologies": ["Next.js", "React", "OpenAI API", "RESTful APIs"],
+      "category": "E-commerce",
+      "demoUrl": "",
+      "codeUrl": "https://github.com/rafidrahman1/evocart-react",
+      "deviceType": "mobile",
+      "codeButton": true,
+      "demoButton": false,
+      "featured": true
+    }
+  ],
+  "keyProjects": [
+    {
+      "title": "AI Agent",
+      "description": "Intelligent AI solution for automated product analysis and content generation",
+      "icon": "Bot",
+      "features": [
+        "Product image analysis from URLs using OpenAI API",
+        "Automated product name extraction",
+        "Concise description generation",
+        "Operational efficiency optimization"
+      ],
+      "technologies": ["OpenAI API", "Image Processing", "AI/ML", "Automation"],
+      "category": "AI/ML",
+      "codeUrl": "https://github.com/rafidrahman1/ai_agent"
+    },
+    {
+      "title": "Meta Post",
+      "description": "Cross-platform social media management tool with Meta Graph API integration",
+      "icon": "Share2",
+      "features": [
+        "Meta Graph API integration",
+        "Content scheduling and publishing",
+        "Intuitive UI for social media management",
+        "Cross-platform compatibility"
+      ],
+      "technologies": ["React", "Meta Graph API", "Social Media APIs"],
+      "category": "Social Media",
+      "codeUrl": "https://github.com/rafidrahman1/meta_post.git"
+    },
+    {
+      "title": "WhatsApp Bulk Messenger",
+      "description": "Comprehensive messaging solution for businesses with analytics and tracking",
+      "icon": "MessageSquare",
+      "features": [
+        "Bulk messaging capabilities",
+        "Secure authentication system",
+        "Message history tracking",
+        "Analytics dashboard with insights"
+      ],
+      "technologies": ["React", "Node.js", "WhatsApp API", "Analytics"],
+      "category": "Business Tools",
+      "codeUrl": "https://github.com/rafidrahman1/whatsapp.git"
+    }
+  ],
+  "skillCategories": [
+    {
+      "title": "Frontend",
+      "icon": "Code",
+      "skills": ["React.js", "Next.js", "HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design"],
+      "color": "bg-blue-500/10 text-blue-600 border-blue-200"
+    },
+    {
+      "title": "Backend",
+      "icon": "Server",
+      "skills": ["Node.js", "Express.js", "Spring Boot", "ASP.NET", "RESTful APIs"],
+      "color": "bg-green-500/10 text-green-600 border-green-200"
+    },
+    {
+      "title": "Databases",
+      "icon": "Database",
+      "skills": ["MongoDB", "MySQL", "Firebase"],
+      "color": "bg-purple-500/10 text-purple-600 border-purple-200"
+    },
+    {
+      "title": "Tools & Others",
+      "icon": "Wrench",
+      "skills": ["Git", "WebStorm", "Vercel", "CI/CD", "API Integration", "AI-Agent", "Meta Graph API"],
+      "color": "bg-orange-500/10 text-orange-600 border-orange-200"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Fullstack Developer",
+      "company": "Vista Systech",
+      "period": "August 2024 – Present",
+      "description": "A software development company specializing in web and mobile solutions",
+      "achievements": [
+        "Developed and maintained 4+ production-ready applications across diverse industries",
+        "Built dynamic frontend interfaces with React.js that enhanced user experience and responsiveness",
+        "Integrated third-party APIs and services to extend application functionality",
+        "Implemented AI agent functionality using OpenAI API for automating content generation",
+        "Contributed to backend services using Node.js and Express, creating RESTful endpoints"
+      ],
+      "technologies": ["React.js", "Node.js", "Express.js", "OpenAI API", "RESTful APIs"]
+    },
+    {
+      "title": "Developer",
+      "company": "ANA-Soft",
+      "period": "May 2024 - August 2024",
+      "description": "Web development and software solutions",
+      "achievements": [
+        "Developed and maintained dynamic websites using ASP.NET",
+        "Contributed to the UGC Equivalence portal, implementing responsive UI components and backend functionality",
+        "Collaborated with senior developers to optimize database queries",
+        "Participated in code reviews and implemented best practices, improving overall code quality"
+      ],
+      "technologies": ["ASP.NET", "Database Optimization", "Responsive Design", "Code Reviews"]
+    }
+  ],
+  "contact": {
+    "email": "rafid0001@gmail.com",
+    "phone": "+88 01303310566",
+    "location": "Uttara, Dhaka, Bangladesh",
+    "socialGithubUrl": "https://github.com/rafidrahman1",
+    "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
+  }
+}

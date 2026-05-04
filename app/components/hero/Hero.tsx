@@ -6,6 +6,7 @@ import { AskMeAnythingBubble } from "./AskMeAnythingBubble";
 import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { portfolio } from "@/lib/portfolio";
 
 // Dynamic import for heavy GitHub Calendar component
 const GitHubCalendar = dynamic(() => import("@/components/hero/githubCalendar/GitHubCalendar").then(mod => ({ default: mod.GitHubCalendar })), {
@@ -38,18 +39,21 @@ export const Hero = () => {
           <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center md:items-start">
             {/* LEFT COLUMN */}
             <div className="text-center md:text-left">
-              <HeroHeading />
-              <HeroDescription />
+              <HeroHeading name={portfolio.site.name} subtitle={portfolio.site.shortTitle} />
+              <HeroDescription text={portfolio.hero.description} />
             </div>
             {/* RIGHT COLUMN */}
             <div className="flex-1 flex flex-col items-center md:items-end w-full space-y-8">
               <div className="w-full max-w-lg  rounded-xl shadow-lg p-4 md:p-6">
                 <GitHubCalendarLoadingWrapper>
-                  <GitHubCalendar username="rafidrahman1" />
+                  <GitHubCalendar username={portfolio.github.calendarUsername} />
                 </GitHubCalendarLoadingWrapper>
               </div>
               <div className="w-full flex justify-center md:justify-end">
-                <HeroSocials />
+                <HeroSocials
+                  githubUrl={portfolio.hero.socialGithubUrl}
+                  linkedinUrl={portfolio.hero.socialLinkedinUrl}
+                />
               </div>
             </div>
           </div>

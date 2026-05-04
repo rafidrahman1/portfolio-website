@@ -1,4 +1,6 @@
-// Static data fetching for GitHub contributions
+// GitHub API helpers and showcase project data (content from content/portfolio.json)
+import { portfolio } from "@/lib/portfolio";
+
 export interface GitHubContribution {
   level: number;
   count: number;
@@ -8,23 +10,21 @@ export interface GitHubContribution {
 export async function getGitHubContributions(username: string): Promise<GitHubContribution[]> {
   try {
     const response = await fetch(`https://github-contributions-api.vercel.app/api/v1/${username}`, {
-      next: { revalidate: 3600 } // Revalidate every hour (ISR)
+      next: { revalidate: 3600 },
     });
-    
+
     if (!response.ok) {
-      throw new Error('Failed to fetch GitHub contributions');
+      throw new Error("Failed to fetch GitHub contributions");
     }
-    
+
     const data = await response.json();
     return data.contributions || [];
   } catch (error) {
-    console.error('Error fetching GitHub contributions:', error);
-    // Return empty array as fallback
+    console.error("Error fetching GitHub contributions:", error);
     return [];
   }
 }
 
-// Static project data
 export interface ProjectData {
   title: string;
   description: string;
@@ -32,100 +32,11 @@ export interface ProjectData {
   technologies: string[];
   category: string;
   demoUrl: string;
-  deviceType: 'laptop' | 'mobile';
+  deviceType: "laptop" | "mobile";
   featured: boolean;
   codeUrl: string;
   codeButton: boolean;
   demoButton: boolean;
 }
 
-export const getStaticProjects = (): ProjectData[] => [
-  {
-      title: "WakeUp BD",
-      description: "Nextjs-based activism platform with responsive design and API integration",
-      image: "/screenshots/wakeupbd.png",
-      technologies: ["Next.js", "API Integration", "Responsive Design"],
-      category: "Activism Platform",
-      demoUrl: "https://wakeupbd.cloud/",
-      codeUrl: "https://github.com/rafidrahman1/wake-up-frontend",
-      deviceType: "laptop",
-      codeButton: true,
-      demoButton: true,
-      featured: true
-    },
-    {
-      title: "BetterThat Ecosystem",
-      description: "Multiple React applications with reusable component libraries",
-      image: "/screenshots/betterthat.png",
-      technologies: ["React", "Component Libraries", "State Management"],
-      category: "Multi-Project E-commerce",
-      demoUrl: "https://betterthat.com/",
-      codeUrl: "",
-      deviceType: "laptop",
-      codeButton: false,
-      demoButton: true,
-      featured: true
-    },
-    {
-      title: "Dhee",
-      description: "Next.js-based e-commerce platform with AI integration for personalized shopping",
-      image: "/screenshots/dhee.png",
-      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-      category: "E-commerce",
-      demoUrl: "https://dheeacademy.vercel.app/",
-      codeUrl: "https://github.com/rafidrahman1/qec-academy-clone",
-      deviceType: "laptop",
-      codeButton: true,
-      demoButton: true,
-      featured: true
-    },    
-    {
-      title: "Evocart",
-      description: "Advanced e-commerce platform with AI-powered product generation and subdomain-specific layouts.",
-      image: "/screenshots/evocart.jpg",
-      technologies: ["Next.js", "React", "OpenAI API", "RESTful APIs"],
-      category: "E-commerce",
-      demoUrl: "",
-      codeUrl: "https://github.com/rafidrahman1/evocart-react",
-      deviceType: "mobile",
-      codeButton: true,
-      demoButton: false,
-      featured: true
-    }
-    
-];
-
-// Static skills data
-export interface SkillCategory {
-  title: string;
-  icon: string;
-  skills: string[];
-  color: string;
-}
-
-export const getStaticSkills = (): SkillCategory[] => [
-  {
-    title: "Frontend",
-    icon: "Code",
-    skills: ["React.js", "Next.js", "HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design"],
-    color: "bg-blue-500/10 text-blue-600 border-blue-200"
-  },
-  {
-    title: "Backend",
-    icon: "Server",
-    skills: ["Node.js", "Express.js", "Spring Boot", "ASP.NET", "RESTful APIs"],
-    color: "bg-green-500/10 text-green-600 border-green-200"
-  },
-  {
-    title: "Databases",
-    icon: "Database",
-    skills: ["MongoDB", "MySQL", "Firebase"],
-    color: "bg-purple-500/10 text-purple-600 border-purple-200"
-  },
-  {
-    title: "Tools & Others",
-    icon: "Wrench",
-    skills: ["Git", "WebStorm", "Vercel", "CI/CD", "API Integration", "AI-Agent", "Meta Graph API"],
-    color: "bg-orange-500/10 text-orange-600 border-orange-200"
-  }
-];
+export const getStaticProjects = (): ProjectData[] => portfolio.showcaseProjects;

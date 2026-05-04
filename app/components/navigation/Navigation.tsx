@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DiscordStatus } from "@/components/navigation/DiscordStatus";
 import { NowPlaying } from "@/components/navigation/NowPlaying";
 import GlassSurface from "@/components/GlassSurface";
+import { portfolio } from "@/lib/portfolio";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,13 +19,7 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-    { href: "#contact", label: "Contact" },
-  ];
+  const navItems = portfolio.navigation;
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -47,13 +41,11 @@ export const Navigation = () => {
         opacity={0.9}
         className="transition-all duration-300"
       >
-  <div className="flex items-center justify-between py-3 px-0">
-          {/* Left side - Discord Status as Logo */}
-          <div className={`flex items-center absolute left-8 ${isMobileMenuOpen ? 'hidden md:block' : ''}`}>
+        <div className="flex items-center justify-between py-3 px-0">
+          <div className={`flex items-center absolute left-8 ${isMobileMenuOpen ? "hidden md:block" : ""}`}>
             <DiscordStatus />
           </div>
 
-          {/* Center - Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Button
@@ -67,7 +59,6 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* Right side - Now Playing and Mobile Menu */}
           <div className="flex items-center space-x-3">
             <div className="hidden md:block">
               <NowPlaying />
@@ -85,7 +76,6 @@ export const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 px-0 border-t border-border/20">
             <div className="flex flex-col space-y-3">

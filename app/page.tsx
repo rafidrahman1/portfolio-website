@@ -6,7 +6,7 @@ import { Projects } from "@/components/portfolio/Projects";
 import { SkillsWithAnimation } from "@/components/portfolio/SkillsWithAnimation";
 import { Contact } from "@/components/portfolio/Contact";
 import { Navigation } from "@/components/navigation/Navigation";
-
+import { Experience } from "@/components/portfolio/Experience";
 
 import { ProjectShowcaseHybrid } from "@/components/showcase/ProjectShowcaseHybrid";
 
@@ -16,6 +16,7 @@ export default function Home() {
             <Navigation />
             <Hero />
             <AboutWithAnimation />
+            <Experience />
             <ProjectShowcaseHybrid />
             <Projects />
             <SkillsWithAnimation />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { portfolio } from "@/lib/portfolio";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
@@ -25,74 +26,70 @@ const jetbrainsMono = JetBrains_Mono({
   fallback: ['monospace'],
 });
 
-export const metadata: Metadata = {
-    title: {
-        default: "Rafid Rahman | Fullstack Developer",
-        template: "%s | Rafid Rahman"
-    },
-    description: "Fullstack developer passionate about building user-focused web applications using Next.js, React, and AI integrations. Specializing in modern web technologies and performance optimization.",
-    keywords: [
-        "Rafid Rahman",
-        "Fullstack Developer",
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Web Development",
-        "AI Integration",
-        "Portfolio",
-        "Frontend Developer",
-        "Backend Developer"
-    ],
-    authors: [{ name: "Rafid Rahman" }],
-    creator: "Rafid Rahman",
-    publisher: "Rafid Rahman",
-    formatDetection: {
-        email: false,
-        address: false,
-        telephone: false,
-    },
-    metadataBase: new URL('https://rafid.me'),
-    alternates: {
-        canonical: '/',
-    },
-    openGraph: {
-        type: 'website',
-        locale: 'en_US',
-        url: 'https://rafid.me',
-        title: 'Rafid Rahman | Fullstack Developer',
-        description: 'Fullstack developer passionate about building user-focused web applications using Next.js, React, and AI integrations.',
-        siteName: 'Rafid Rahman Portfolio',
-        images: [
-            {
-                url: '/images/profile.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'Rafid Rahman - Fullstack Developer',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Rafid Rahman | Fullstack Developer',
-        description: 'Fullstack developer passionate about building user-focused web applications using Next.js, React, and AI integrations.',
-        images: ['/images/profile.jpg'],
-        creator: '@rafidrahman1',
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
+const { site } = portfolio;
+
+export async function generateMetadata(): Promise<Metadata> {
+    const defaultTitle = `${site.name} | ${site.title}`;
+    const ogImage = site.ogImagePath;
+
+    return {
+        title: {
+            default: defaultTitle,
+            template: `%s | ${site.name}`,
+        },
+        description: site.description,
+        keywords: site.keywords,
+        authors: [{ name: site.author }],
+        creator: site.author,
+        publisher: site.author,
+        formatDetection: {
+            email: false,
+            address: false,
+            telephone: false,
+        },
+        metadataBase: new URL(site.metadataBaseUrl),
+        alternates: {
+            canonical: "/",
+        },
+        openGraph: {
+            type: "website",
+            locale: "en_US",
+            url: site.url,
+            title: defaultTitle,
+            description: site.description,
+            siteName: `${site.name} Portfolio`,
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: `${site.name} - ${site.title}`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: defaultTitle,
+            description: site.description,
+            images: [ogImage],
+            creator: site.twitterHandle,
+        },
+        robots: {
             index: true,
             follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            googleBot: {
+                index: true,
+                follow: true,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
         },
-    },
-    verification: {
-        google: 'your-google-verification-code', // Replace with actual verification code
-    },
-};
+        verification: {
+            google: site.googleSiteVerification,
+        },
+    };
+}
 
 export default function RootLayout({
                                        children,

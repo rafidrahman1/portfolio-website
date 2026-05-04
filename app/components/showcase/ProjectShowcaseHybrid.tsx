@@ -6,12 +6,13 @@ import { ExternalLink } from "lucide-react";
 import { LaptopFrame } from "./LaptopFrame";
 import { MobileFrame } from "./MobileFrame";
 import { getStaticProjects } from "@/lib/github-data";
+import { portfolio } from "@/lib/portfolio";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export const ProjectShowcaseHybrid = () => {
-  // Use static data but with client-side animations
   const showcaseProjects = getStaticProjects();
+  const { title, subtitle } = portfolio.sections.showcase;
 
   return (
       <motion.section
@@ -25,9 +26,9 @@ export const ProjectShowcaseHybrid = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{title}</h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-              A showcase of modern web development projects built with cutting-edge technologies
+              {subtitle}
             </p>
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">

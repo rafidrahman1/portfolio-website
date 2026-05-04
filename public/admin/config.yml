@@ -1,0 +1,241 @@
+# Decap CMS — edit after clone if your domain or repo differs.
+# backend.base_url MUST match the site where /api/cms/auth lives (same origin as this admin UI).
+backend:
+  name: github
+  repo: rafidrahman1/portfolio-website
+  branch: main
+  base_url: https://rafid.me
+  auth_endpoint: api/cms/auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+publish_mode: simple
+
+collections:
+  - name: portfolio
+    label: Portfolio
+    files:
+      - label: All site content
+        name: portfolio
+        file: content/portfolio.json
+        format: json
+        fields:
+          - label: Site (SEO, metadata, footer)
+            name: site
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Display name, name: name, widget: string }
+              - { label: Page title suffix (role), name: title, widget: string }
+              - { label: Hero subtitle, name: shortTitle, widget: string }
+              - { label: Meta description, name: description, widget: text }
+              - { label: Canonical site URL, name: url, widget: string }
+              - { label: Author name, name: author, widget: string }
+              - { label: Twitter handle, name: twitterHandle, widget: string }
+              - label: SEO keywords
+                name: keywords
+                widget: list
+                field: { label: Keyword, widget: string }
+              - { label: Metadata base URL, name: metadataBaseUrl, widget: string }
+              - { label: OpenGraph image path, name: ogImagePath, widget: string }
+              - { label: Google site verification token, name: googleSiteVerification, widget: string }
+              - { label: Footer year, name: footerYear, widget: number }
+              - { label: Footer tagline, name: footerNote, widget: string }
+
+          - label: GitHub
+            name: github
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Username (profile links), name: username, widget: string }
+              - { label: Contributions calendar username, name: calendarUsername, widget: string }
+
+          - label: Navigation
+            name: navigation
+            widget: list
+            summary: "{{fields.label}} → {{fields.href}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Href, name: href, widget: string }
+
+          - label: Hero
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Intro paragraph, name: description, widget: text }
+              - { label: GitHub profile URL, name: socialGithubUrl, widget: string }
+              - { label: LinkedIn profile URL, name: socialLinkedinUrl, widget: string }
+
+          - label: Section headings
+            name: sections
+            widget: object
+            collapsed: false
+            fields:
+              - label: Featured showcase
+                name: showcase
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+              - label: Key projects grid
+                name: projectsList
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+              - label: Skills
+                name: skills
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - { label: Expertise card title, name: expertiseTitle, widget: string }
+                  - label: Expertise columns
+                    name: expertise
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Description, name: description, widget: text }
+              - label: Experience
+                name: experience
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+              - label: About
+                name: about
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Section title, name: title, widget: string }
+                  - { label: Section subtitle, name: subtitle, widget: text }
+                  - { label: Summary heading, name: summaryHeading, widget: string }
+                  - label: Summary paragraphs
+                    name: summaryParagraphs
+                    widget: list
+                    field: { label: Paragraph, widget: text }
+                  - label: Highlight badges
+                    name: highlightBadges
+                    widget: list
+                    field: { label: Badge, widget: string }
+                  - label: Education
+                    name: education
+                    widget: object
+                    fields:
+                      - { label: Card heading, name: heading, widget: string }
+                      - { label: Degree, name: degree, widget: string }
+                      - { label: School & dates line, name: schoolLine, widget: string }
+                      - { label: Coursework line, name: coursework, widget: text }
+                  - label: About contact card
+                    name: aboutContactCard
+                    widget: object
+                    fields:
+                      - { label: Card heading, name: heading, widget: string }
+                      - { label: Phone, name: phone, widget: string }
+                      - { label: Email, name: email, widget: string }
+                      - { label: Location, name: location, widget: string }
+              - label: Contact section
+                name: contact
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - { label: Connect heading, name: connectHeading, widget: string }
+                  - { label: Connect body, name: connectBody, widget: text }
+                  - { label: Form title, name: formTitle, widget: string }
+
+          - label: Featured showcase projects
+            name: showcaseProjects
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Image path (e.g. /screenshots/x.png), name: image, widget: string }
+              - label: Technologies
+                name: technologies
+                widget: list
+                field: { label: Tech, widget: string }
+              - { label: Category, name: category, widget: string }
+              - { label: Demo URL, name: demoUrl, widget: string, required: false }
+              - { label: Code URL, name: codeUrl, widget: string, required: false }
+              - { label: Device, name: deviceType, widget: select, options: ["laptop", "mobile"] }
+              - { label: Show code button, name: codeButton, widget: boolean }
+              - { label: Show demo button, name: demoButton, widget: boolean }
+              - { label: Featured (priority image), name: featured, widget: boolean }
+
+          - label: Key projects (cards)
+            name: keyProjects
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - label: Icon (Lucide name)
+                name: icon
+                widget: select
+                options: ["Bot", "Share2", "MessageSquare", "Github"]
+              - label: Features
+                name: features
+                widget: list
+                field: { label: Feature, widget: string }
+              - label: Technologies
+                name: technologies
+                widget: list
+                field: { label: Tech, widget: string }
+              - { label: Category, name: category, widget: string }
+              - { label: Code URL, name: codeUrl, widget: string, required: false }
+              - { label: Demo URL, name: demoUrl, widget: string, required: false }
+
+          - label: Skill categories
+            name: skillCategories
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: Icon (Lucide name)
+                name: icon
+                widget: select
+                options: ["Code", "Server", "Database", "Wrench"]
+              - label: Skills
+                name: skills
+                widget: list
+                field: { label: Skill, widget: string }
+              - { label: Tailwind color classes, name: color, widget: string, hint: "e.g. bg-blue-500/10 text-blue-600 border-blue-200" }
+
+          - label: Work experience
+            name: experience
+            widget: list
+            summary: "{{fields.company}} — {{fields.title}}"
+            fields:
+              - { label: Job title, name: title, widget: string }
+              - { label: Company, name: company, widget: string }
+              - { label: Period, name: period, widget: string }
+              - { label: Company blurb, name: description, widget: text }
+              - label: Achievements
+                name: achievements
+                widget: list
+                field: { label: Achievement, widget: string }
+              - label: Technologies
+                name: technologies
+                widget: list
+                field: { label: Tech, widget: string }
+
+          - label: Contact details (cards + social)
+            name: contact
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Email, name: email, widget: string }
+              - { label: Phone, name: phone, widget: string }
+              - { label: Location, name: location, widget: string }
+              - { label: GitHub URL, name: socialGithubUrl, widget: string }
+              - { label: LinkedIn URL, name: socialLinkedinUrl, widget: string }

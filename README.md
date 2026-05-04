@@ -36,6 +36,10 @@ OPENAI_MODEL=gpt-4o-mini
 # Email Configuration (for contact form)
 RESEND_API_KEY=your_resend_api_key_here
 TO_EMAIL=your_email@example.com
+
+# Decap CMS (optional — see "Content admin (Decap CMS)" below)
+GITHUB_OAUTH_CLIENT_ID=
+GITHUB_OAUTH_CLIENT_SECRET=
 ```
 
 ### Getting API Keys
@@ -43,8 +47,18 @@ TO_EMAIL=your_email@example.com
 1. **OpenAI API Key**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 2. **Resend API Key**: Get your API key from [Resend](https://resend.com) for email functionality
 
+## Content admin (Decap CMS)
+
+Site copy, projects, skills, navigation, SEO fields, and contact details live in **`content/portfolio.json`**. You can edit that file in Git, or use the free **[Decap CMS](https://decapcms.org/)** UI at **`/admin/`** on your deployed site (for example `https://your-domain.com/admin/`).
+
+1. Copy [`.env.example`](./.env.example) variables into `.env.local` (and add the same secrets in your host’s environment for production).
+2. Create a [GitHub OAuth App](https://github.com/settings/developers): set **Authorization callback URL** to `https://YOUR_DOMAIN/api/cms/callback` (add `http://localhost:3000/api/cms/callback` if you use the CMS locally).
+3. In [`public/admin/config.yml`](./public/admin/config.yml), set **`backend.repo`** to `your-username/your-repo` and **`backend.base_url`** to the exact origin where the site is served (must match the domain used in the OAuth callback, without a trailing slash).
+4. Deploy, open `/admin/`, sign in with GitHub (the account needs push access to the repo). Saving in the CMS creates a commit on your default branch; your host rebuilds the site so changes go live after the deploy finishes.
+
 ## Features
 
+- **Decap CMS**: Git-backed admin at `/admin/` for `content/portfolio.json`
 - **AI Chat**: Interactive chat interface powered by OpenAI (defaults to `gpt-4o-mini`)
 - **Responsive Design**: Mobile-first design with smooth animations
 - **Contact Form**: Email contact form with Resend integration

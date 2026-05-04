@@ -8,8 +8,12 @@ import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2 } from "lucide-rea
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
+import { portfolio } from "@/lib/portfolio";
 
 export const Contact = () => {
+  const section = portfolio.sections.contact;
+  const details = portfolio.contact;
+  const site = portfolio.site;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -92,9 +96,9 @@ export const Contact = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{section.title}</h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">
-              Ready to collaborate on your next project? Let's discuss how we can work together to bring your ideas to life.
+              {section.subtitle}
             </p>
           </div>
 
@@ -102,10 +106,9 @@ export const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Let's Connect</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{section.connectHeading}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-8">
-                  I'm always excited to discuss new opportunities, innovative projects, and potential collaborations.
-                  Whether you have a project in mind or just want to connect, feel free to reach out!
+                  {section.connectBody}
                 </p>
               </div>
 
@@ -117,7 +120,7 @@ export const Contact = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="font-semibold text-sm sm:text-base">Email</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base break-all">rafid0001@gmail.com</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">{details.email}</p>
                     </div>
                   </div>
                 </Card>
@@ -129,7 +132,7 @@ export const Contact = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="font-semibold text-sm sm:text-base">Phone</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">+88 01303310566</p>
+                      <p className="text-muted-foreground text-sm sm:text-base">{details.phone}</p>
                     </div>
                   </div>
                 </Card>
@@ -141,7 +144,7 @@ export const Contact = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="font-semibold text-sm sm:text-base">Location</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">Uttara, Dhaka, Bangladesh</p>
+                      <p className="text-muted-foreground text-sm sm:text-base">{details.location}</p>
                     </div>
                   </div>
                 </Card>
@@ -151,12 +154,12 @@ export const Contact = () => {
                 <h4 className="font-semibold mb-4 text-sm sm:text-base">Connect on Social Media</h4>
                 <div className="flex gap-3 sm:gap-4">
                   <Button variant="outline" size="lg" asChild className="flex-1 sm:flex-none">
-                    <a href="https://github.com/rafidrahman1" target="_blank" rel="noopener noreferrer">
+                    <a href={details.socialGithubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 sm:h-5 sm:w-5" />
                     </a>
                   </Button>
                   <Button variant="outline" size="lg" asChild className="flex-1 sm:flex-none">
-                    <a href="https://linkedin.com/in/rafidrahman1" target="_blank" rel="noopener noreferrer">
+                    <a href={details.socialLinkedinUrl} target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
                     </a>
                   </Button>
@@ -166,7 +169,7 @@ export const Contact = () => {
 
             {/* Contact Form */}
             <Card className="p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-6">Send a Message</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-6">{section.formTitle}</h3>
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -259,7 +262,7 @@ export const Contact = () => {
           {/* Footer */}
           <div className="mt-20 pt-8 border-t border-border text-center">
             <p className="text-muted-foreground">
-              © 2025 Rafid Rahman. Built with Coffee.
+              © {site.footerYear} {site.name}. {site.footerNote}
             </p>
           </div>
         </div>
