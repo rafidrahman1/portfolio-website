@@ -77,6 +77,7 @@ export interface ShowcaseProject {
   title: string;
   description: string;
   image: string;
+  images?: string[];
   technologies: string[];
   category: string;
   demoUrl: string;

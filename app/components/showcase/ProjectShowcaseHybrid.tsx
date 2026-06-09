@@ -5,6 +5,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ExternalLink } from "lucide-react";
 import { LaptopFrame } from "./LaptopFrame";
 import { MobileFrame } from "./MobileFrame";
+import { MobileScreenshotCarousel } from "./MobileScreenshotCarousel";
 import { getStaticProjects } from "@/lib/github-data";
 import { portfolio } from "@/lib/portfolio";
 import { motion } from "framer-motion";
@@ -61,16 +62,11 @@ export const ProjectShowcaseHybrid = () => {
                         </LaptopFrame>
                     ) : (
                         <MobileFrame>
-                          <AspectRatio ratio={9 / 16}>
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                priority={project.featured}
-                            />
-                          </AspectRatio>
+                          <MobileScreenshotCarousel
+                            title={project.title}
+                            images={project.images ?? [project.image]}
+                            priority={project.featured}
+                          />
                         </MobileFrame>
                     )}
                   </div>

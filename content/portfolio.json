@@ -25,6 +25,12 @@
       "demoButton": true,
       "title": "Gram Adalat",
       "image": "/screenshots/gram-adalat/2.jpg",
+      "images": [
+        "/screenshots/gram-adalat/1.jpg",
+        "/screenshots/gram-adalat/2.jpg",
+        "/screenshots/gram-adalat/3.jpg",
+        "/screenshots/gram-adalat/4.jpg"
+      ],
       "description": "Educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural and marginalized communities.",
       "category": "Education",
       "codeButton": false
@@ -44,6 +50,12 @@
       "demoButton": true,
       "title": "Hikma",
       "image": "/screenshots/hikma/2.jpg",
+      "images": [
+        "/screenshots/hikma/1.jpg",
+        "/screenshots/hikma/2.jpg",
+        "/screenshots/hikma/3.jpg",
+        "/screenshots/hikma/4.jpg"
+      ],
       "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
       "category": "Mobile App",
       "codeButton": false
@@ -63,6 +75,23 @@
       "demoButton": false,
       "title": "Personal Life Analytics",
       "image": "/screenshots/personal-life-analytics/01-home.png",
+      "images": [
+        "/screenshots/personal-life-analytics/01-home.png",
+        "/screenshots/personal-life-analytics/02-health.png",
+        "/screenshots/personal-life-analytics/03-expenses.png",
+        "/screenshots/personal-life-analytics/04-location.png",
+        "/screenshots/personal-life-analytics/05-game-activity.png",
+        "/screenshots/personal-life-analytics/06-calendar.png",
+        "/screenshots/personal-life-analytics/07-analysis-confirm.png",
+        "/screenshots/personal-life-analytics/08-results.png",
+        "/screenshots/personal-life-analytics/09-checklists.png",
+        "/screenshots/personal-life-analytics/10-prompts.png",
+        "/screenshots/personal-life-analytics/11-drawer.png",
+        "/screenshots/personal-life-analytics/12-results-details.png",
+        "/screenshots/personal-life-analytics/13-analyze-options.png",
+        "/screenshots/personal-life-analytics/14-progress-review.png",
+        "/screenshots/personal-life-analytics/15-general-settings.png"
+      ],
       "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar into unified monthly summaries.",
       "category": "Personal Analytics",
       "codeButton": true
@@ -82,6 +111,17 @@
       "demoButton": false,
       "title": "Asset Management System",
       "image": "/screenshots/asset-management-system/Screenshot_20260512_111541.jpg",
+      "images": [
+        "/screenshots/asset-management-system/Screenshot_20260512_110700.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_111541.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_111602.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_111718.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_111836.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_112058.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_112109.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_112119.jpg",
+        "/screenshots/asset-management-system/Screenshot_20260512_112129.jpg"
+      ],
       "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning, offline-first caching, and queued sync workflows.",
       "category": "Enterprise Mobile",
       "codeButton": true
