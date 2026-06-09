@@ -102,8 +102,8 @@ export const MobileScreenshotCarousel = ({
                 src={images[index]}
                 alt={`${title} screenshot ${index + 1} of ${images.length}`}
                 fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-contain object-center"
+                sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 28rem"
                 priority={priority && index === 0}
               />
             </motion.div>
@@ -137,22 +137,8 @@ export const MobileScreenshotCarousel = ({
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
-          <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
-            {images.map((image, dotIndex) => (
-              <button
-                key={image}
-                type="button"
-                aria-label={`Go to screenshot ${dotIndex + 1}`}
-                aria-current={dotIndex === index ? "true" : undefined}
-                onClick={() => {
-                  setIndex(dotIndex);
-                  resetAutoPlay();
-                }}
-                className={`h-1.5 rounded-full transition-all ${
-                  dotIndex === index ? "w-4 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"
-                }`}
-              />
-            ))}
+          <div className="absolute bottom-2 right-2 z-10 rounded-md bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white/90 tabular-nums">
+            {index + 1} / {images.length}
           </div>
         </>
       )}
