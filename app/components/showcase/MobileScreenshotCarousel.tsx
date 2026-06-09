@@ -87,8 +87,8 @@ export const MobileScreenshotCarousel = ({
       }}
       onMouseLeave={resetAutoPlay}
     >
-      <AspectRatio ratio={9 / 16}>
-        <div className="relative h-full w-full overflow-hidden bg-black">
+      <AspectRatio ratio={9 / 19.5}>
+        <div className="relative h-full w-full overflow-hidden">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={images[index]}
@@ -102,8 +102,8 @@ export const MobileScreenshotCarousel = ({
                 src={images[index]}
                 alt={`${title} screenshot ${index + 1} of ${images.length}`}
                 fill
-                className="object-contain object-center"
-                sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 28rem"
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 75vw, (max-width: 1200px) 40vw, 18rem"
                 priority={priority && index === 0}
               />
             </motion.div>

@@ -46,7 +46,7 @@ export const ProjectShowcaseHybrid = () => {
                     style={{ willChange: "transform, opacity" }}
                 >
                   {/* Project mockup */}
-                  <div className="flex-1 relative w-full max-w-xl lg:max-w-none flex justify-center">
+                  <div className="flex-1 relative w-full max-w-lg lg:max-w-none flex justify-center">
                     {project.deviceType === 'laptop' ? (
                         <LaptopFrame>
                           <AspectRatio ratio={16 / 10}>
