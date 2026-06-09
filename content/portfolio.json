@@ -1,7 +1,7 @@
 {
   "contact": {
     "email": "rafid0001@gmail.com",
-    "phone": "+88 01303310566",
+    "phone": "+88 01568202975",
     "location": "Uttara, Dhaka, Bangladesh",
     "socialGithubUrl": "https://github.com/rafidrahman1",
     "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
@@ -12,74 +12,78 @@
   },
   "showcaseProjects": [
     {
-      "codeUrl": "https://github.com/rafidrahman1/evocart-react",
+      "codeUrl": "https://github.com/rafidrahman1/ams",
       "technologies": [
         "Flutter",
         "Riverpod",
-        "Clean Architecture",
-        "RESTful APIs"
+        "sqflite",
+        "QR/UHF RFID",
+        "REST APIs"
       ],
       "demoUrl": "",
       "featured": true,
       "deviceType": "mobile",
       "demoButton": false,
-      "title": "Evocart Mobile",
-      "image": "/screenshots/evocart.jpg",
-      "description": "Mobile e-commerce application focusing on clean architecture and robust state management.",
-      "category": "E-commerce",
+      "title": "Asset Management System",
+      "image": "/images/profile.jpg",
+      "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning, offline-first caching, and queued sync workflows.",
+      "category": "Enterprise Mobile",
       "codeButton": true
+    },
+    {
+      "codeUrl": "",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "REST APIs",
+        "Text-to-Speech",
+        "Accessibility"
+      ],
+      "demoUrl": "",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": false,
+      "title": "Hikma",
+      "image": "/images/profile.jpg",
+      "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
+      "category": "Mobile App",
+      "codeButton": false
     },
     {
       "codeUrl": "https://github.com/rafidrahman1/wake-up-frontend",
       "technologies": [
         "Next.js",
-        "API Integration",
-        "Responsive Design"
+        "App Router",
+        "Google OAuth",
+        "API Integration"
       ],
       "demoUrl": "https://wakeupbd.cloud/",
       "featured": true,
       "deviceType": "laptop",
       "demoButton": true,
-      "title": "Hikma",
+      "title": "Wakeup BD",
       "image": "/screenshots/wakeupbd.png",
-      "description": "Nextjs-based activism platform with responsive design and API integration",
-      "category": "Activism Platform",
+      "description": "High-performance community platform built with Next.js App Router, Google OAuth, and OTP-based admin verification.",
+      "category": "Community Platform",
       "codeButton": true
     },
     {
-      "codeUrl": "https://github.com/rafidrahman1/qec-academy-clone",
-      "technologies": [
-        "Next.js",
-        "React",
-        "OpenAI API",
-        "RESTful APIs"
-      ],
-      "demoUrl": "https://dheeacademy.vercel.app/",
-      "featured": true,
-      "deviceType": "laptop",
-      "demoButton": true,
-      "title": "Dhee",
-      "image": "/screenshots/dhee.png",
-      "description": "Next.js-based e-commerce platform with AI integration for personalized shopping",
-      "category": "E-commerce",
-      "codeButton": true
-    },
-    {
-      "codeUrl": "https://github.com/rafidrahman1/ai_agent",
+      "codeUrl": "https://github.com/rafidrahman1/rinzin_flutter",
       "technologies": [
         "Flutter",
-        "Dart",
-        "OpenAI API",
-        "Image Processing"
+        "MobX",
+        "REST APIs",
+        "Push Notifications",
+        "Payments"
       ],
       "demoUrl": "",
       "featured": true,
       "deviceType": "mobile",
       "demoButton": false,
-      "title": "AI Product Agent",
-      "image": "/screenshots/ai_agent.jpg",
-      "description": "Flutter-based intelligent solution for automated product analysis and content generation.",
-      "category": "AI/ML",
+      "title": "Rinzin Beauty",
+      "image": "/images/profile.jpg",
+      "description": "Production salon and retail platform refactored from a legacy booking template with multi-gateway payments and live backend integration.",
+      "category": "E-commerce",
       "codeButton": true
     }
   ],
@@ -88,13 +92,13 @@
     "keywords": [
       "Rafid Rahman",
       "Flutter Developer",
-      "Flutter App Developer",
       "Dart",
       "Riverpod",
-      "Clean Architecture",
-      "Software Engineer Bangladesh",
+      "Offline-first",
       "Mobile App Development",
-      "AI Integration"
+      "Software Engineer Bangladesh",
+      "REST APIs",
+      "Firebase"
     ],
     "author": "Rafid Rahman",
     "name": "Rafid Rahman",
@@ -102,68 +106,63 @@
     "url": "https://rafidrahman.vercel.app",
     "metadataBaseUrl": "https://rafidrahman.vercel.app",
     "footerYear": 2026,
-    "title": "Flutter App Developer",
+    "title": "Flutter Developer",
     "twitterHandle": "@rafidrahman1",
     "googleSiteVerification": "your-google-verification-code",
     "shortTitle": "Flutter Developer",
-    "description": "Flutter App Developer focused on building high-performance mobile applications using Clean Architecture and Riverpod. Professional experience in building scalable, user-centric solutions."
+    "description": "Performance-driven Flutter Developer with 1+ years of experience building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations."
   },
   "experience": [
     {
-      "title": "Software Engineer ",
-      "company": "Catch Bangladesh LTD",
+      "title": "Software Engineer",
+      "company": "Catch Bangladesh Ltd",
       "period": "April 2026 – Present",
-      "description": "Specializing in Flutter development for cross-platform mobile solutions.",
+      "description": "Cross-platform mobile development with production-ready, offline-first architectures.",
       "achievements": [
-        "Developing maintainable mobile applications using Flutter and Dart",
-        "Implementing state management with Riverpod and adhering to Clean Architecture principles",
-        "Designing reusable API service layers for efficient frontend-backend communication",
-        "Collaborating on performance optimization and UI consistency for mobile platforms"
+        "Architected a scalable offline-first codebase using Riverpod and sqflite local caching with a reusable REST API service layer featuring automated token management and secure session tracking",
+        "Engineered an enterprise Asset Management System integrating QR and UHF RFID scanning with queued synchronization workflows for seamless offline inspection tracking",
+        "Standardized company-wide mobile UX design systems with a unified library of responsive widgets, TTS pipelines, and high-contrast UI layouts for legacy and localized applications"
       ],
       "technologies": [
         "Flutter",
         "Dart",
         "Riverpod",
-        "Clean Architecture",
-        "Firebase"
+        "sqflite",
+        "REST APIs",
+        "QR/UHF RFID"
       ]
     },
     {
       "title": "Software Engineer",
       "company": "Vista Systech",
-      "period": "August 2024 – June 2025",
-      "description": "A software development company specializing in web and mobile solutions",
+      "period": "September 2024 – August 2025",
+      "description": "Web and mobile solutions across Flutter and React applications.",
       "achievements": [
-        "Developed and maintained 4+ production-ready applications across diverse industries",
-        "Built dynamic frontend interfaces with React.js that enhanced user experience and responsiveness",
-        "Integrated third-party APIs and services to extend application functionality",
-        "Implemented AI agent functionality using OpenAI API for automating content generation",
-        "Contributed to backend services using Node.js and Express, creating RESTful endpoints"
+        "Refactored and shipped the production-grade Rinzin Beauty Flutter application, migrating a legacy booking template into a live salon and retail platform with multi-gateway payments and push notifications",
+        "Engineered custom business logic using MobX stores for dynamic computed pricing, state persistence, and secure REST API authentication pipelines",
+        "Developed reusable UI component libraries and a modular service layer for the Beauty Line Bangladesh React application with custom hooks for optimized data fetching and pagination"
       ],
       "technologies": [
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "OpenAI API",
-        "RESTful APIs"
+        "Flutter",
+        "MobX",
+        "React",
+        "REST APIs",
+        "Push Notifications"
       ]
     },
     {
-      "title": "Developer",
+      "title": "Junior Developer",
       "company": "ANA-Soft",
-      "period": "May 2024 - August 2024",
-      "description": "Web development and software solutions",
+      "period": "June 2024 – August 2024",
+      "description": "Web development and software solutions.",
       "achievements": [
-        "Developed and maintained dynamic websites using ASP.NET",
-        "Contributed to the UGC Equivalence portal, implementing responsive UI components and backend functionality",
-        "Collaborated with senior developers to optimize database queries",
-        "Participated in code reviews and implemented best practices, improving overall code quality"
+        "Collaborated on database query optimization to reduce latency and ensured system stability during peak traffic periods",
+        "Refined backend logic and UI components for the UGC Equivalence portal to improve user retention and accessibility"
       ],
       "technologies": [
         "ASP.NET",
         "Database Optimization",
-        "Responsive Design",
-        "Code Reviews"
+        "Responsive Design"
       ]
     }
   ],
@@ -175,43 +174,28 @@
         "Flutter",
         "Dart",
         "Riverpod",
-        "Clean Architecture",
-        "Mobile UI/UX",
-        "State Management"
+        "Offline-first (sqflite)",
+        "QR/UHF RFID Integration"
       ],
       "color": "bg-blue-500/10 text-blue-600 border-blue-200"
     },
     {
-      "title": "Backend & Services",
+      "title": "Backend & Database",
       "icon": "Server",
       "skills": [
-        "Node.js",
-        "Express.js",
-        "RESTful APIs",
-        "API Service Layers",
-        "Firebase"
+        "REST APIs",
+        "Firebase (Firestore, Auth)",
+        "SQL"
       ],
       "color": "bg-green-500/10 text-green-600 border-green-200"
     },
     {
-      "title": "Databases",
-      "icon": "Database",
-      "skills": [
-        "MongoDB",
-        "MySQL",
-        "PostgreSQL"
-      ],
-      "color": "bg-purple-500/10 text-purple-600 border-purple-200"
-    },
-    {
-      "title": "Tools & Workflow",
+      "title": "Web & Tools",
       "icon": "Wrench",
       "skills": [
+        "Next.js",
         "Git",
-        "WebStorm",
-        "CI/CD",
-        "Tech Interview Prep",
-        "AI-Agent",
+        "Figma UI Translation",
         "API Integration"
       ],
       "color": "bg-orange-500/10 text-orange-600 border-orange-200"
@@ -220,68 +204,68 @@
   "sections": {
     "showcase": {
       "title": "Featured Projects",
-      "subtitle": "Showcasing high-performance mobile and web applications built with modern frameworks"
+      "subtitle": "Production-ready mobile and web applications built with Flutter, Riverpod, and modern web frameworks"
     },
     "projectsList": {
       "title": "Key Projects",
-      "subtitle": "Innovative solutions across mobile commerce, AI agents, and business tools"
+      "subtitle": "Enterprise asset tracking, accessibility-focused apps, AI-powered analytics, and community platforms"
     },
     "skills": {
       "title": "Technical Skills",
-      "subtitle": "Focused expertise in Flutter development and scalable software architecture",
+      "subtitle": "Cross-platform mobile development, offline-first architecture, and full-stack integration",
       "expertiseTitle": "Specialized Expertise",
       "expertise": [
         {
-          "title": "Flutter Architecture",
-          "description": "Clean Architecture, Riverpod, and reusable API service layers"
+          "title": "Offline-First Architecture",
+          "description": "Riverpod, sqflite caching, queued sync workflows, and secure session handling"
         },
         {
-          "title": "AI Integration",
-          "description": "OpenAI API, automated content generation, intelligent data processing"
+          "title": "Hardware Integration",
+          "description": "QR and UHF RFID scanning, field-ready inspection workflows, and photo capture"
         },
         {
-          "title": "Performance Optimization",
-          "description": "Code quality, mobile responsiveness, and efficient state management"
+          "title": "Accessibility & UX",
+          "description": "Text-to-Speech pipelines, high-contrast layouts, and Figma-to-code design systems"
         }
       ]
     },
     "experience": {
       "title": "Professional Experience",
-      "subtitle": "Building impactful mobile and web solutions with a focus on Flutter"
+      "subtitle": "Building scalable mobile and web solutions across enterprise, retail, and community platforms"
     },
     "about": {
       "title": "About Me",
-      "subtitle": "Dedicated to crafting exceptional mobile experiences through Clean Architecture",
+      "subtitle": "Translating complex designs into high-performance, production-ready mobile applications",
       "summaryHeading": "Professional Summary",
       "summaryParagraphs": [
-        "Flutter App Developer (Software Engineer) with a strong focus on building scalable, performant mobile applications using Dart and Riverpod. Experienced in implementing Clean Architecture to ensure code maintainability and efficiency.",
-        "I hold a Bachelor's in Computer Science from BRAC University and am passionate about developing user-centric software. Currently focused on mastering the Flutter ecosystem while contributing to impactful projects at Catch Bangladesh LTD."
+        "Performance-driven Flutter Developer with 1+ years of experience specializing in cross-platform mobile development and production-ready architectures. Proven track record of building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations.",
+        "Expert at translating complex designs into high-performance code while maintaining clean architecture and strict version control. Bachelor of Science in Computer Science from BRAC University, currently building enterprise mobile solutions at Catch Bangladesh Ltd."
       ],
       "highlightBadges": [
         "Flutter & Dart",
-        "Clean Architecture",
         "Riverpod",
-        "API Integration",
-        "Problem Solving"
+        "Offline-first",
+        "REST APIs",
+        "Accessibility"
       ],
       "education": {
         "heading": "Education",
         "degree": "Bachelor of Science in Computer Science",
-        "schoolLine": "BRAC University • 2018-2023",
+        "schoolLine": "BRAC University",
         "coursework": "Relevant Coursework: Data Structures & Algorithms, Database Systems, Web Development, Software Engineering"
       },
       "aboutContactCard": {
         "heading": "Contact Information",
-        "phone": "+88 01303310566",
+        "phone": "+88 01568202975",
         "email": "rafid0001@gmail.com",
-        "location": "Dhaka, Bangladesh"
+        "location": "Uttara, Dhaka, Bangladesh"
       }
     },
     "contact": {
       "title": "Get In Touch",
       "subtitle": "Ready to collaborate on your next mobile or web project? Let's discuss how we can work together.",
       "connectHeading": "Let's Connect",
-      "connectBody": "I'm always excited to discuss Flutter development, innovative AI projects, and professional collaborations. Feel free to reach out!",
+      "connectBody": "I'm always excited to discuss Flutter development, offline-first mobile architecture, and professional collaborations. Feel free to reach out!",
       "formTitle": "Send a Message"
     }
   },
@@ -313,64 +297,117 @@
   ],
   "keyProjects": [
     {
-      "title": "AI Agent",
-      "description": "Intelligent AI solution for automated product analysis and content generation",
+      "title": "Gram Adalat",
+      "description": "Legacy educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural communities",
+      "icon": "Scale",
+      "features": [
+        "Maintained and optimized a production Play Store application for legal literacy",
+        "Text-to-Speech pipelines for visually impaired or illiterate users",
+        "High-contrast UI layouts optimized for color-blind readability"
+      ],
+      "technologies": [
+        "Flutter",
+        "Text-to-Speech",
+        "Accessibility",
+        "Mobile UI/UX"
+      ],
+      "category": "Education"
+    },
+    {
+      "title": "Personal Life Analytics",
+      "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar",
       "icon": "Bot",
       "features": [
-        "Product image analysis from URLs using OpenAI API",
-        "Automated product name extraction",
-        "Concise description generation",
-        "Operational efficiency optimization"
+        "Unified monthly summaries from multiple personal data sources",
+        "Feature-based Riverpod architecture for rapid new source onboarding",
+        "AI analysis pipeline with OpenAI/Gemini support, structured insight parsing, and local caching"
       ],
       "technologies": [
+        "Flutter",
+        "Riverpod",
         "OpenAI API",
-        "Image Processing",
-        "AI/ML",
-        "Automation"
+        "Gemini API",
+        "Health Connect"
       ],
-      "category": "AI/ML",
-      "codeUrl": "https://github.com/rafidrahman1/ai_agent"
+      "category": "Personal Analytics",
+      "codeUrl": "https://github.com/rafidrahman1/ultimate"
     },
     {
-      "title": "Meta Post",
-      "description": "Cross-platform social media management tool with Meta Graph API integration",
-      "icon": "Share2",
-      "features": [
-        "Meta Graph API integration",
-        "Content scheduling and publishing",
-        "Intuitive UI for social media management",
-        "Cross-platform compatibility"
-      ],
-      "technologies": [
-        "React",
-        "Meta Graph API",
-        "Social Media APIs"
-      ],
-      "category": "Social Media",
-      "codeUrl": "https://github.com/rafidrahman1/meta_post.git"
-    },
-    {
-      "title": "WhatsApp Bulk Messenger",
-      "description": "Comprehensive messaging solution for businesses with analytics and tracking",
+      "title": "Deadshot",
+      "description": "Real-time squad coordination and group chat app for a Valorant friend group with daily 5-stack signup flow",
       "icon": "MessageSquare",
       "features": [
-        "Bulk messaging capabilities",
-        "Secure authentication system",
-        "Message history tracking",
-        "Analytics dashboard with insights"
+        "Shared chatroom with message bubbles, reactions, yes/no polls, and unread badges",
+        "Flutter Riverpod providers with Firestore transactions and presence tracking",
+        "Firebase Auth, FCM push notifications via Cloud Functions, and cross-platform local notifications"
+      ],
+      "technologies": [
+        "Flutter",
+        "Riverpod",
+        "Firebase",
+        "Cloud Firestore",
+        "FCM"
+      ],
+      "category": "Social",
+      "codeUrl": "https://github.com/rafidrahman1/chat_app"
+    },
+    {
+      "title": "Asset Management System",
+      "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning and checklist-driven inspections",
+      "icon": "Package",
+      "features": [
+        "Offline-first data layer with sqflite caching and queued checklist submissions",
+        "QR and UHF RFID scanning with photo capture and REST API sync",
+        "Scalable Riverpod architecture with EN/BN localization and volunteer/admin roles"
+      ],
+      "technologies": [
+        "Flutter",
+        "Riverpod",
+        "sqflite",
+        "QR/UHF RFID",
+        "REST APIs"
+      ],
+      "category": "Enterprise",
+      "codeUrl": "https://github.com/rafidrahman1/ams"
+    },
+    {
+      "title": "Hikma",
+      "description": "Story-reading app with reusable widgets, shimmer skeletons, and a custom green-backdrop layout system",
+      "icon": "BookOpen",
+      "features": [
+        "Shared component library and Figma-derived theme system",
+        "Reusable API service layer with token management and robust error handling",
+        "TTS reader, chapter progress tracking, bookmarking, and dynamic text-image layout"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "REST APIs",
+        "Text-to-Speech",
+        "Figma"
+      ],
+      "category": "Mobile App"
+    },
+    {
+      "title": "Beauty Line Bangladesh",
+      "description": "React application with reusable component libraries and modular API service layer",
+      "icon": "Share2",
+      "features": [
+        "Reusable component libraries to improve development efficiency",
+        "Service layer for APIs (media, news, posts, counts, health)",
+        "Modular hooks for data fetching and pagination"
       ],
       "technologies": [
         "React",
-        "Node.js",
-        "WhatsApp API",
-        "Analytics"
+        "REST APIs",
+        "Custom Hooks",
+        "Pagination"
       ],
-      "category": "Business Tools",
-      "codeUrl": "https://github.com/rafidrahman1/whatsapp.git"
+      "category": "Web App"
     }
   ],
   "hero": {
-    "description": "Flutter App Developer at Catch Bangladesh LTD. Focused on building scalable mobile applications with Clean Architecture, Riverpod, and Dart.",
+    "description": "Flutter Developer at Catch Bangladesh Ltd. Building scalable, offline-first mobile applications with Riverpod, RESTful APIs, and hardware integrations.",
     "socialGithubUrl": "https://github.com/rafidrahman1",
     "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
   }

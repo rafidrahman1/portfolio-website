@@ -1,13 +1,17 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  BookOpen,
   Bot,
   Circle,
   Code,
   Database,
   Github,
   MessageSquare,
+  Package,
+  Scale,
   Server,
   Share2,
+  Smartphone,
   Wrench,
 } from "lucide-react";
 
@@ -16,6 +20,9 @@ const projectIcons: Record<string, LucideIcon> = {
   Share2,
   MessageSquare,
   Github,
+  Scale,
+  Package,
+  BookOpen,
 };
 
 const skillIcons: Record<string, LucideIcon> = {
@@ -23,6 +30,7 @@ const skillIcons: Record<string, LucideIcon> = {
   Server,
   Database,
   Wrench,
+  Smartphone,
 };
 
 export function getProjectIcon(name: string, className?: string) {
