@@ -12,7 +12,63 @@
   },
   "showcaseProjects": [
     {
-      "codeUrl": "https://github.com/rafidrahman1/ams",
+      "codeUrl": "",
+      "technologies": [
+        "Flutter",
+        "Text-to-Speech",
+        "Accessibility",
+        "Mobile UI/UX"
+      ],
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.gram_adalot",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": true,
+      "title": "Gram Adalat",
+      "image": "/images/profile.jpg",
+      "description": "Educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural and marginalized communities.",
+      "category": "Education",
+      "codeButton": false
+    },
+    {
+      "codeUrl": "",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "REST APIs",
+        "Text-to-Speech",
+        "Figma"
+      ],
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.hikmah",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": true,
+      "title": "Hikma",
+      "image": "/images/profile.jpg",
+      "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
+      "category": "Mobile App",
+      "codeButton": false
+    },
+    {
+      "codeUrl": "https://github.com/rafidrahman1/ultimate.git",
+      "technologies": [
+        "Flutter",
+        "Riverpod",
+        "OpenAI API",
+        "Gemini API",
+        "Health Connect"
+      ],
+      "demoUrl": "",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": false,
+      "title": "Personal Life Analytics",
+      "image": "/images/profile.jpg",
+      "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar into unified monthly summaries.",
+      "category": "Personal Analytics",
+      "codeButton": true
+    },
+    {
+      "codeUrl": "https://github.com/rafidrahman1/ams.git",
       "technologies": [
         "Flutter",
         "Riverpod",
@@ -28,62 +84,6 @@
       "image": "/images/profile.jpg",
       "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning, offline-first caching, and queued sync workflows.",
       "category": "Enterprise Mobile",
-      "codeButton": true
-    },
-    {
-      "codeUrl": "",
-      "technologies": [
-        "Flutter",
-        "Dart",
-        "REST APIs",
-        "Text-to-Speech",
-        "Accessibility"
-      ],
-      "demoUrl": "",
-      "featured": true,
-      "deviceType": "mobile",
-      "demoButton": false,
-      "title": "Hikma",
-      "image": "/images/profile.jpg",
-      "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
-      "category": "Mobile App",
-      "codeButton": false
-    },
-    {
-      "codeUrl": "https://github.com/rafidrahman1/wake-up-frontend",
-      "technologies": [
-        "Next.js",
-        "App Router",
-        "Google OAuth",
-        "API Integration"
-      ],
-      "demoUrl": "https://wakeupbd.cloud/",
-      "featured": true,
-      "deviceType": "laptop",
-      "demoButton": true,
-      "title": "Wakeup BD",
-      "image": "/screenshots/wakeupbd.png",
-      "description": "High-performance community platform built with Next.js App Router, Google OAuth, and OTP-based admin verification.",
-      "category": "Community Platform",
-      "codeButton": true
-    },
-    {
-      "codeUrl": "https://github.com/rafidrahman1/rinzin_flutter",
-      "technologies": [
-        "Flutter",
-        "MobX",
-        "REST APIs",
-        "Push Notifications",
-        "Payments"
-      ],
-      "demoUrl": "",
-      "featured": true,
-      "deviceType": "mobile",
-      "demoButton": false,
-      "title": "Rinzin Beauty",
-      "image": "/images/profile.jpg",
-      "description": "Production salon and retail platform refactored from a legacy booking template with multi-gateway payments and live backend integration.",
-      "category": "E-commerce",
       "codeButton": true
     }
   ],
@@ -311,7 +311,8 @@
         "Accessibility",
         "Mobile UI/UX"
       ],
-      "category": "Education"
+      "category": "Education",
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.gram_adalot"
     },
     {
       "title": "Personal Life Analytics",
@@ -330,7 +331,7 @@
         "Health Connect"
       ],
       "category": "Personal Analytics",
-      "codeUrl": "https://github.com/rafidrahman1/ultimate"
+      "codeUrl": "https://github.com/rafidrahman1/ultimate.git"
     },
     {
       "title": "Deadshot",
@@ -368,7 +369,7 @@
         "REST APIs"
       ],
       "category": "Enterprise",
-      "codeUrl": "https://github.com/rafidrahman1/ams"
+      "codeUrl": "https://github.com/rafidrahman1/ams.git"
     },
     {
       "title": "Hikma",
@@ -386,7 +387,8 @@
         "Text-to-Speech",
         "Figma"
       ],
-      "category": "Mobile App"
+      "category": "Mobile App",
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.hikmah"
     },
     {
       "title": "Beauty Line Bangladesh",
