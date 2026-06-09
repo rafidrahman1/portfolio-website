@@ -65,7 +65,7 @@ export const ProjectShowcaseHybrid = () => {
                           <MobileScreenshotCarousel
                             title={project.title}
                             images={project.images ?? [project.image]}
-                            priority={project.featured}
+                            priority={showcaseProjects.indexOf(project) === 0}
                           />
                         </MobileFrame>
                     )}
