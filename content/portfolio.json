@@ -24,7 +24,7 @@
       "deviceType": "mobile",
       "demoButton": true,
       "title": "Gram Adalat",
-      "image": "/images/profile.jpg",
+      "image": "/screenshots/gram-adalat/2.jpg",
       "description": "Educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural and marginalized communities.",
       "category": "Education",
       "codeButton": false
@@ -43,7 +43,7 @@
       "deviceType": "mobile",
       "demoButton": true,
       "title": "Hikma",
-      "image": "/images/profile.jpg",
+      "image": "/screenshots/hikma/2.jpg",
       "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
       "category": "Mobile App",
       "codeButton": false
@@ -62,7 +62,7 @@
       "deviceType": "mobile",
       "demoButton": false,
       "title": "Personal Life Analytics",
-      "image": "/images/profile.jpg",
+      "image": "/screenshots/personal-life-analytics/01-home.png",
       "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar into unified monthly summaries.",
       "category": "Personal Analytics",
       "codeButton": true
@@ -81,7 +81,7 @@
       "deviceType": "mobile",
       "demoButton": false,
       "title": "Asset Management System",
-      "image": "/images/profile.jpg",
+      "image": "/screenshots/asset-management-system/Screenshot_20260512_111541.jpg",
       "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning, offline-first caching, and queued sync workflows.",
       "category": "Enterprise Mobile",
       "codeButton": true
