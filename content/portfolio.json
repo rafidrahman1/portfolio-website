@@ -323,7 +323,11 @@
       "href": "#experience"
     },
     {
-      "label": "Projects",
+      "label": "Featured Projects",
+      "href": "#showcase"
+    },
+    {
+      "label": "Key Projects",
       "href": "#projects"
     },
     {
