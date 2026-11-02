@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DiscordStatus } from "@/components/navigation/DiscordStatus";
-import { NowPlaying } from "@/components/navigation/NowPlaying";
 import GlassSurface from "@/components/GlassSurface";
 import { portfolio } from "@/lib/portfolio";
 
@@ -60,9 +59,6 @@ export const Navigation = () => {
           </div>
 
           <div className="flex items-center space-x-3">
-            <div className="hidden md:block">
-              <NowPlaying />
-            </div>
             <div className="md:hidden absolute right-8">
               <Button
                 variant="ghost"

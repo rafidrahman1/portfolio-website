@@ -48,7 +48,7 @@ export const Hero = () => {
             <div className="flex-1 flex flex-col items-center md:items-end w-full space-y-8">
               <div className="w-full max-w-lg  rounded-xl shadow-lg p-4 md:p-6">
                 <GitHubCalendarLoadingWrapper>
-                  <GitHubCalendar username={portfolio.github.calendarUsername} />
+                  <GitHubCalendar />
                 </GitHubCalendarLoadingWrapper>
               </div>
               <div className="w-full flex justify-center md:justify-end">

@@ -4,7 +4,6 @@ import { portfolio } from "@/lib/portfolio";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
-import { ClientThemeProvider } from "@/components/theme/ClientThemeProvider";
 import { WebVitals } from "@/components/performance/WebVitals";
 import DarkVeil from "@/components/DarkVeil";
 import { Inter, JetBrains_Mono } from "next/font/google";
@@ -91,29 +90,35 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
+// Structured data so search engines can understand who the site is about.
+function buildPersonJsonLd() {
+    const sameAs = [portfolio.hero.socialGithubUrl, portfolio.hero.socialLinkedinUrl].filter(Boolean);
+    return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: site.name,
+        jobTitle: site.title,
+        description: site.description,
+        url: site.url,
+        sameAs,
+    };
+}
+
+// "<" is escaped so content can never close the script tag.
+const personJsonLd = JSON.stringify(buildPersonJsonLd()).replace(/</g, "\\u003c");
+
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-        <head>
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        try {
-                            document.documentElement.classList.add('dark')
-                        } catch (_) {}
-                    `,
-                }}
-            />
-        </head>
+        <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
         <body suppressHydrationWarning={true} className="font-sans">
-        <ClientThemeProvider>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personJsonLd }} />
         <Providers>
             {/* Fixed background */}
-            <div className="fixed inset-0 z-0">
+            <div className="fixed inset-0 z-0" aria-hidden="true">
                 <DarkVeil />
             </div>
             {/* Content with relative positioning to appear above background */}
@@ -124,7 +129,6 @@ export default function RootLayout({
             <Analytics />
             <WebVitals />
         </Providers>
-        </ClientThemeProvider>
         </body>
         </html>
     );

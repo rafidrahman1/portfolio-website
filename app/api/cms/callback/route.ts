@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifySignedOAuthState } from "@/lib/oauth-state";
+import { STATE_COOKIE, verifySignedOAuthState } from "@/lib/oauth-state";
 
 export const dynamic = "force-dynamic";
 
-function buildSuccessHtml(accessToken: string): string {
-  const payloadLiteral = JSON.stringify({ token: accessToken, provider: "github" });
+// Escape characters that could terminate the inline <script> block.
+function jsLiteral(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+}
+
+function buildSuccessHtml(accessToken: string, targetOrigin: string): string {
+  const payloadLiteral = jsLiteral({ token: accessToken, provider: "github" });
+  const originLiteral = jsLiteral(targetOrigin);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -13,15 +19,16 @@ function buildSuccessHtml(accessToken: string): string {
 <script>
 (function () {
   var payload = ${payloadLiteral};
+  var ORIGIN = ${originLiteral};
   function receiveMessage() {
     window.opener.postMessage(
       "authorization:github:success:" + JSON.stringify(payload),
-      "*"
+      ORIGIN
     );
     window.removeEventListener("message", receiveMessage, false);
   }
   window.addEventListener("message", receiveMessage, false);
-  window.opener.postMessage("authorizing:github", "*");
+  window.opener.postMessage("authorizing:github", ORIGIN);
 })();
 </script>
 <p>Completing GitHub sign-in… You can close this window.</p>
@@ -42,7 +49,8 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get("code");
   const state = searchParams.get("state");
 
-  if (!code || !verifySignedOAuthState(state, clientSecret)) {
+  const cookieState = request.cookies.get(STATE_COOKIE)?.value;
+  if (!code || !state || state !== cookieState || !verifySignedOAuthState(state, clientSecret)) {
     return new NextResponse("Invalid OAuth callback", { status: 400 });
   }
 
@@ -73,9 +81,11 @@ export async function GET(request: NextRequest) {
     return new NextResponse(tokenJson.error ?? "No access_token from GitHub", { status: 502 });
   }
 
-  const html = buildSuccessHtml(accessToken);
-  return new NextResponse(html, {
+  const html = buildSuccessHtml(accessToken, origin);
+  const response = new NextResponse(html, {
     status: 200,
-    headers: { "Content-Type": "text/html; charset=utf-8" },
+    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
   });
+  response.cookies.delete({ name: STATE_COOKIE, path: "/api/cms" });
+  return response;
 }

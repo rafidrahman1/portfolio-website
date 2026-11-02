@@ -23,6 +23,7 @@ export const AskMeAnythingBubble = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const messageIdCounterRef = useRef(0);
+    const handleCloseRef = useRef<() => void>(() => {});
 
     const generateMessageId = () => {
         messageIdCounterRef.current += 1;
@@ -40,8 +41,7 @@ export const AskMeAnythingBubble = () => {
                 });
                 const data = await response.json().catch(() => ({}));
                 if (!response.ok || data?.ok !== true) setIsAIAvailable(false);
-            } catch (error) {
-                console.log('AI service not available:', error);
+            } catch {
                 setIsAIAvailable(false);
             }
         };
@@ -56,7 +56,7 @@ export const AskMeAnythingBubble = () => {
                 containerRef.current &&
                 !containerRef.current.contains(e.target as Node)
             ) {
-                handleClose();
+                handleCloseRef.current();
             }
         };
         if (open) document.addEventListener("mousedown", handleClick);
@@ -110,6 +110,7 @@ export const AskMeAnythingBubble = () => {
             setInputValue("");
         }, 200);
     };
+    handleCloseRef.current = handleClose;
 
     const handleToggle = () => {
         if (open && !isClosing) {
@@ -202,9 +203,7 @@ export const AskMeAnythingBubble = () => {
         }
 
         try {
-            console.log('Sending chat request:', { message: userMessage, conversationHistoryLength: conversationHistory.length });
             const response = await callChatApi(userMessage);
-            console.log('Chat response status:', response.status);
 
             if (!response.ok) {
                 const errorMessage = await getErrorMessageFromBadResponse(response);
@@ -215,7 +214,6 @@ export const AskMeAnythingBubble = () => {
             }
 
             const data = await response.json();
-            console.log('Chat response data:', data);
             addAssistantMessage(data.response);
             // Store conversation history with generated ids for stable keys
             setConversationHistory(
@@ -303,6 +301,7 @@ export const AskMeAnythingBubble = () => {
                         </div>
                         <Button
                             onClick={handleClose}
+                            aria-label="Close chat"
                             variant="ghost"
                             size="icon"
                             className="text-muted-foreground hover:text-foreground"
@@ -314,6 +313,9 @@ export const AskMeAnythingBubble = () => {
                     {/* Messages */}
                     <div 
                         ref={messagesContainerRef}
+                        role="log"
+                        aria-live="polite"
+                        aria-label="Chat messages"
                         className="flex-1 overflow-y-auto mb-3 max-h-[60dvh] sm:max-h-64 space-y-2 chat-scrollbar px-4 sm:px-0"
                     >
                         {messages.length === 0 ? (
@@ -361,12 +363,15 @@ export const AskMeAnythingBubble = () => {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Type your question..."
+                            aria-label="Your question"
+                            maxLength={1000}
                             className="flex-1 text-sm"
                             disabled={isLoading}
                         />
                         <Button
                             onClick={handleSendMessage}
                             disabled={!inputValue.trim() || isLoading}
+                            aria-label="Send message"
                             className="px-3"
                         >
                             {isLoading ? (

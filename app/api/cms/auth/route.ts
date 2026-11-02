@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createSignedOAuthState } from "@/lib/oauth-state";
+import { createSignedOAuthState, STATE_COOKIE } from "@/lib/oauth-state";
 
 export const dynamic = "force-dynamic";
 
@@ -12,8 +12,8 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const { searchParams } = new URL(request.url);
-  const scope = searchParams.get("scope") || "public_repo,user";
+  // The CMS repo is public, so the narrowest scope that can commit is enough.
+  const scope = process.env.GITHUB_OAUTH_SCOPE || "public_repo";
   const origin = request.nextUrl.origin;
   const redirectUri = `${origin}/api/cms/callback`;
   const state = createSignedOAuthState(clientSecret);
@@ -24,5 +24,14 @@ export async function GET(request: NextRequest) {
   github.searchParams.set("redirect_uri", redirectUri);
   github.searchParams.set("state", state);
 
-  return NextResponse.redirect(github.toString());
+  const response = NextResponse.redirect(github.toString());
+  // Bind the state to this browser so a leaked/forged callback URL is rejected.
+  response.cookies.set(STATE_COOKIE, state, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/api/cms",
+    maxAge: 10 * 60,
+  });
+  return response;
 }

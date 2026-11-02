@@ -39,6 +39,10 @@ async function fetchPlayDownloads(id: string): Promise<string | null> {
   if (!res.ok) return null;
   const html = await res.text();
   const m = html.match(/([\d.,]+[KMB]?\+)\s*<\/div>\s*<div[^>]*>\s*Downloads/i);
+  if (!m) {
+    // Google changed the markup (or served a consent page); the UI hides the stat when this happens.
+    console.warn(`[play-store] Could not find the download count for ${id}; the page markup may have changed.`);
+  }
   return m ? m[1] : null;
 }
 
@@ -53,7 +57,8 @@ export async function getAppDownloads(): Promise<AppDownloads[]> {
       try {
         const label = await fetchPlayDownloads(app.id);
         return label ? { title: app.title, label, count: parseBucket(label) } : null;
-      } catch {
+      } catch (error) {
+        console.warn(`[play-store] Failed to fetch downloads for ${app.id}:`, error);
         return null;
       }
     }),

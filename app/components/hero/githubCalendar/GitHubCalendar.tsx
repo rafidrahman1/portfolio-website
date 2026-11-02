@@ -5,33 +5,19 @@ import { fetchGitHubContributions, ContributionDay } from "./fetchGitHubContribu
 import { ContributionCell } from "./ContributionCell";
 import { CalendarLegend } from "./CalendarLegend";
 
-export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: string }) => {
+export const GitHubCalendar = () => {
   const [animatedCells, setAnimatedCells] = useState(0);
   const prevAnimatedCells = useRef(0);
   const [showStats, setShowStats] = useState(false);
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   const { data: contributions, isLoading, error } = useQuery({
-    queryKey: ['github-contributions', username],
-    queryFn: () => fetchGitHubContributions(username),
+    queryKey: ['github-contributions'],
+    queryFn: fetchGitHubContributions,
     staleTime: 1000 * 60 * 30,
     retry: 2,
     refetchOnWindowFocus: false,
   });
-
-  // Debug logging
-  useEffect(() => {
-    if (contributions) {
-      console.log('GitHub Calendar - Contributions loaded:', contributions.length);
-      console.log('Sample data:', contributions.slice(0, 3));
-    }
-    if (error) {
-      console.error('GitHub Calendar - Error:', error);
-    }
-    if (isLoading) {
-      console.log('GitHub Calendar - Loading...');
-    }
-  }, [contributions, error, isLoading]);
 
   // Arrange contributions into columns (weeks)
   const weeks: ContributionDay[][] = [];
@@ -45,7 +31,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
   useEffect(() => {
     if (!contributions) return;
     setAnimatedCells(0);
-    let totalCells = contributions.length;
+    const totalCells = contributions.length;
     let col = 0;
     const maxCols = weeks.length;
     const maxRows = 7;
@@ -91,7 +77,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
 
     if (isLoading) {
         // Create placeholder weeks array (same as loaded state)
-        const placeholderDays = Array.from({ length: 365 }, (_, i) => ({
+        const placeholderDays = Array.from({ length: 365 }, () => ({
             level: 0,
             count: 0,
             date: '',
@@ -154,7 +140,7 @@ export const GitHubCalendar = ({ username = "rafidrahman1" }: { username?: strin
           <div className="text-center">
             <h3 className="text-base sm:text-lg font-semibold mb-2 text-center">GitHub Contributions</h3>
             <p className="text-xs sm:text-sm text-muted-foreground mb-4">
-              Unable to load contribution data for @{username}
+              Unable to load contribution data right now
             </p>
             <div className="grid grid-flow-col gap-0.5 sm:gap-1 min-w-fit mx-auto opacity-50" style={{ gridTemplateRows: 'repeat(7, 1fr)', minWidth: '180px' }}>
               {Array.from({ length: 53 }).map((_, weekIdx) =>

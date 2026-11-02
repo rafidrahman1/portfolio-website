@@ -130,13 +130,13 @@ export default function DarkVeil({
       program.uniforms.uResolution.value.set(w, h);
     };
 
-    window.addEventListener('resize', resize);
     resize();
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const start = performance.now();
     let frame = 0;
 
-    const loop = () => {
+    const draw = () => {
       program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
       program.uniforms.uHueShift.value = hueShift;
       program.uniforms.uNoise.value = noiseIntensity;
@@ -144,14 +144,43 @@ export default function DarkVeil({
       program.uniforms.uScanFreq.value = scanlineFrequency;
       program.uniforms.uWarp.value = warpAmount;
       renderer.render({ scene: mesh });
+    };
+
+    const loop = () => {
+      draw();
       frame = requestAnimationFrame(loop);
     };
 
-    loop();
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    // Animate only while the tab is visible and the user has not asked for reduced motion.
+    const sync = () => {
+      stop();
+      if (reducedMotion.matches) {
+        draw(); // a single static frame
+      } else if (!document.hidden) {
+        loop();
+      }
+    };
+
+    const onResize = () => {
+      resize();
+      if (reducedMotion.matches) draw();
+    };
+
+    window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', sync);
+    reducedMotion.addEventListener('change', sync);
+    sync();
 
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('resize', resize);
+      stop();
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', sync);
+      reducedMotion.removeEventListener('change', sync);
     };
   }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
   return <canvas ref={ref} className="w-full h-full block" />;

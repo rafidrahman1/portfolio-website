@@ -20,32 +20,43 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `yarn dev` | Dev server (Turbopack) |
+| `yarn build` / `yarn start` | Production build / serve |
+| `yarn lint` | ESLint (`next lint`) |
+| `yarn typecheck` | `tsc --noEmit` |
+| `yarn test` | Unit tests (Vitest) |
+| `yarn analyze` | Bundle analysis build |
+
+CI (`.github/workflows/ci.yml`) runs typecheck, lint, tests and a build on every push and PR.
+
 ## Environment Variables
 
-To enable the AI chat functionality, you'll need to set up the following environment variables:
+Copy [`.env.example`](./.env.example) to `.env.local` and fill in what you need. Everything is optional; features whose variables are missing are disabled.
 
-Create a `.env.local` file in the root directory with:
+| Variable | Used by |
+| --- | --- |
+| `OPENAI_API_KEY`, `OPENAI_URL`, `OPENAI_MODEL` | AI chat (`/api/chat`). `OPENAI_URL` accepts any OpenAI-compatible endpoint (e.g. Ollama at `http://localhost:11434/v1`). |
+| `CHAT_SESSION_SECRET` | Signs the chat session cookie (falls back to `OPENAI_API_KEY`). |
+| `RESEND_API_KEY`, `TO_EMAIL` | Contact form (`/api/contact`). |
+| `GITHUB_TOKEN` | Optional, server-side only. Lets the contribution calendar use GitHub's GraphQL API. |
+| `GITHUB_OAUTH_CLIENT_ID`, `GITHUB_OAUTH_CLIENT_SECRET`, `GITHUB_OAUTH_SCOPE` | Decap CMS login. |
+
+Notes:
+
+- Rate limits (contact form, chat) are held in memory per server instance. They deter abuse but are not a hard guarantee on multi-instance or serverless hosting; use a shared store such as Upstash Redis if you need that.
+
+## Docker
 
 ```bash
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_URL=https://api.openai.com/v1
-# Optional: override default model (defaults to gpt-4o-mini if unset)
-OPENAI_MODEL=gpt-4o-mini
-
-# Email Configuration (for contact form)
-RESEND_API_KEY=your_resend_api_key_here
-TO_EMAIL=your_email@example.com
-
-# Decap CMS (optional — see "Content admin (Decap CMS)" below)
-GITHUB_OAUTH_CLIENT_ID=
-GITHUB_OAUTH_CLIENT_SECRET=
+docker build -t portfolio .
+docker run -p 3000:3000 --env-file .env.local portfolio
 ```
 
-### Getting API Keys
-
-1. **OpenAI API Key**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-2. **Resend API Key**: Get your API key from [Resend](https://resend.com) for email functionality
+The image is a multi-stage build using Next.js standalone output and runs as a non-root user.
 
 ## Content admin (Decap CMS)
 

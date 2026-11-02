@@ -202,7 +202,8 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   
     const el = document.createElement("div");
     el.style.backdropFilter = "url(#test)";
-    (el.style as any).webkitBackdropFilter = "url(#test)"; // Safari-friendly typecast
+    const style = el.style as CSSStyleDeclaration & { webkitBackdropFilter?: string };
+    style.webkitBackdropFilter = "url(#test)";
   
     // Safari <15 had partial support that breaks SVG filters
     const ua = navigator.userAgent;
@@ -212,7 +213,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     const isOldSafari = safariVersion !== null && safariVersion < 15;
   
     const hasSupport =
-      (el.style.backdropFilter !== "" || (el.style as any).webkitBackdropFilter !== "") &&
+      (el.style.backdropFilter !== "" || style.webkitBackdropFilter !== "") &&
       !isOldSafari;
   
     return hasSupport;

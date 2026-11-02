@@ -1,5 +1,8 @@
 import { createHmac, randomBytes, timingSafeEqual } from "crypto";
 
+/** Cookie that binds the OAuth state to the browser that started the flow. */
+export const STATE_COOKIE = "cms_oauth_state";
+
 export function createSignedOAuthState(secret: string): string {
   const nonce = randomBytes(16).toString("hex");
   const sig = createHmac("sha256", secret).update(nonce).digest("hex");
