@@ -62,42 +62,6 @@
       "featured": true
     },
     {
-      "codeUrl": "https://github.com/rafidrahman1/ultimate.git",
-      "technologies": [
-        "Flutter",
-        "Riverpod",
-        "OpenAI API",
-        "Gemini API",
-        "Health Connect"
-      ],
-      "demoUrl": "",
-      "featured": true,
-      "deviceType": "mobile",
-      "demoButton": false,
-      "title": "Personal Life Analytics",
-      "image": "/screenshots/personal-life-analytics/01-home.webp",
-      "images": [
-        "/screenshots/personal-life-analytics/01-home.webp",
-        "/screenshots/personal-life-analytics/02-health.webp",
-        "/screenshots/personal-life-analytics/03-expenses.webp",
-        "/screenshots/personal-life-analytics/04-location.webp",
-        "/screenshots/personal-life-analytics/05-game-activity.webp",
-        "/screenshots/personal-life-analytics/06-calendar.webp",
-        "/screenshots/personal-life-analytics/07-analysis-confirm.webp",
-        "/screenshots/personal-life-analytics/08-results.webp",
-        "/screenshots/personal-life-analytics/09-checklists.webp",
-        "/screenshots/personal-life-analytics/10-prompts.webp",
-        "/screenshots/personal-life-analytics/11-drawer.webp",
-        "/screenshots/personal-life-analytics/12-results-details.webp",
-        "/screenshots/personal-life-analytics/13-analyze-options.webp",
-        "/screenshots/personal-life-analytics/14-progress-review.webp",
-        "/screenshots/personal-life-analytics/15-general-settings.webp"
-      ],
-      "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar into unified monthly summaries.",
-      "category": "Personal Analytics",
-      "codeButton": true
-    },
-    {
       "codeUrl": "https://github.com/rafidrahman1/ams.git",
       "technologies": [
         "Flutter",
@@ -399,25 +363,6 @@
       ],
       "category": "Mobile App",
       "demoUrl": "https://play.google.com/store/apps/details?id=com.powern.motohealth"
-    },
-    {
-      "title": "Personal Life Analytics",
-      "description": "Modular Flutter data hub integrating Health Connect, Cashew CSV, location exports, gaming logs, and Google Calendar",
-      "icon": "Bot",
-      "features": [
-        "Unified monthly summaries from multiple personal data sources",
-        "Feature-based Riverpod architecture for rapid new source onboarding",
-        "AI analysis pipeline with OpenAI/Gemini support, structured insight parsing, and local caching"
-      ],
-      "technologies": [
-        "Flutter",
-        "Riverpod",
-        "OpenAI API",
-        "Gemini API",
-        "Health Connect"
-      ],
-      "category": "Personal Analytics",
-      "codeUrl": "https://github.com/rafidrahman1/ultimate.git"
     },
     {
       "title": "Asset Management System",
