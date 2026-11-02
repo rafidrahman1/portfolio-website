@@ -36,29 +36,30 @@
       "codeButton": false
     },
     {
-      "codeUrl": "",
+      "title": "MotoHealth",
+      "description": "Local-first motorcycle companion tracking odometer, mileage, maintenance schedules, costs, and expiring papers, with optional AI-assisted service planning.",
+      "image": "/screenshots/motohealth/01-home.webp",
+      "images": [
+        "/screenshots/motohealth/01-home.webp",
+        "/screenshots/motohealth/02-fuel.webp",
+        "/screenshots/motohealth/03-service.webp",
+        "/screenshots/motohealth/04-costs.webp",
+        "/screenshots/motohealth/05-papers.webp"
+      ],
       "technologies": [
         "Flutter",
-        "Dart",
-        "REST APIs",
-        "Text-to-Speech",
-        "Figma"
+        "Riverpod",
+        "Local-first",
+        "Local Notifications",
+        "OpenAI/Gemini/Claude APIs"
       ],
-      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.hikmah",
-      "featured": true,
-      "deviceType": "mobile",
-      "demoButton": true,
-      "title": "Hikma",
-      "image": "/screenshots/hikma/2.jpg",
-      "images": [
-        "/screenshots/hikma/1.jpg",
-        "/screenshots/hikma/2.jpg",
-        "/screenshots/hikma/3.jpg",
-        "/screenshots/hikma/4.jpg"
-      ],
-      "description": "Story-reading app with reusable widgets, shimmer skeletons, TTS reader features, and a Figma-derived design system.",
       "category": "Mobile App",
-      "codeButton": false
+      "demoUrl": "https://play.google.com/store/apps/details?id=com.powern.motohealth",
+      "codeUrl": "",
+      "deviceType": "mobile",
+      "codeButton": false,
+      "demoButton": true,
+      "featured": true
     },
     {
       "codeUrl": "https://github.com/rafidrahman1/ultimate.git",
@@ -341,6 +342,26 @@
   ],
   "keyProjects": [
     {
+      "title": "NextCart",
+      "description": "Bilingual (English/Bangla) POS and business-management app for shops, with an online store, inventory, finance, and multi-channel inbox",
+      "icon": "ShoppingCart",
+      "features": [
+        "Single-backend architecture with a repository layer over a shared API service, bearer-token sessions scoped to a business, and secure credential storage",
+        "POS, products and bulk CSV upload, inventory, customers, vendors, employees, finance, sales reports, and cross-shop product sourcing",
+        "Online-shop controls, subscription tiers with payment flow, theme purchases, Firebase push notifications, and a unified WhatsApp/Instagram/Facebook inbox module",
+        "CI-checked codebase: provider-based state across ~20 providers, lint gates, and a growing test suite; shipping to Android and iOS"
+      ],
+      "technologies": [
+        "Flutter",
+        "Provider",
+        "REST APIs",
+        "Firebase Cloud Messaging",
+        "POS",
+        "i18n (EN/BN)"
+      ],
+      "category": "Business App"
+    },
+    {
       "title": "Gram Adalat",
       "description": "Legacy educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural communities",
       "icon": "Scale",
@@ -357,6 +378,27 @@
       ],
       "category": "Education",
       "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.gram_adalot"
+    },
+    {
+      "title": "MotoHealth",
+      "description": "Private, local-first Flutter app for tracking everything about a motorcycle, live on Google Play",
+      "icon": "Bike",
+      "features": [
+        "Pure, unit-tested logic for odometer estimation, full-tank mileage, due-date maintenance countdowns, and a bike-health score",
+        "Atomic JSON file persistence with backup recovery, plus local notifications rebuilt from data before papers expire or jobs fall due",
+        "Optional AI (OpenAI, Gemini, Claude) that only selects jobs from a built-in maintenance catalog, validated and reviewed by the rider before applying; keys kept in secure storage",
+        "Automated Google Play releases via GitHub Actions, with architecture layering enforced by tests"
+      ],
+      "technologies": [
+        "Flutter",
+        "Riverpod",
+        "Local-first",
+        "Local Notifications",
+        "AI APIs",
+        "GitHub Actions"
+      ],
+      "category": "Mobile App",
+      "demoUrl": "https://play.google.com/store/apps/details?id=com.powern.motohealth"
     },
     {
       "title": "Personal Life Analytics",
@@ -378,25 +420,6 @@
       "codeUrl": "https://github.com/rafidrahman1/ultimate.git"
     },
     {
-      "title": "Deadshot",
-      "description": "Real-time squad coordination and group chat app for a Valorant friend group with daily 5-stack signup flow",
-      "icon": "MessageSquare",
-      "features": [
-        "Shared chatroom with message bubbles, reactions, yes/no polls, and unread badges",
-        "Flutter Riverpod providers with Firestore transactions and presence tracking",
-        "Firebase Auth, FCM push notifications via Cloud Functions, and cross-platform local notifications"
-      ],
-      "technologies": [
-        "Flutter",
-        "Riverpod",
-        "Firebase",
-        "Cloud Firestore",
-        "FCM"
-      ],
-      "category": "Social",
-      "codeUrl": "https://github.com/rafidrahman1/chat_app"
-    },
-    {
       "title": "Asset Management System",
       "description": "Field-ready Flutter app for on-site asset tracking with QR and UHF RFID scanning and checklist-driven inspections",
       "icon": "Package",
@@ -416,23 +439,23 @@
       "codeUrl": "https://github.com/rafidrahman1/ams.git"
     },
     {
-      "title": "Hikma",
-      "description": "Story-reading app with reusable widgets, shimmer skeletons, and a custom green-backdrop layout system",
-      "icon": "BookOpen",
+      "title": "Deadshot",
+      "description": "Real-time squad coordination and group chat app for a Valorant friend group with daily 5-stack signup flow",
+      "icon": "MessageSquare",
       "features": [
-        "Shared component library and Figma-derived theme system",
-        "Reusable API service layer with token management and robust error handling",
-        "TTS reader, chapter progress tracking, bookmarking, and dynamic text-image layout"
+        "Shared chatroom with message bubbles, reactions, yes/no polls, and unread badges",
+        "Flutter Riverpod providers with Firestore transactions and presence tracking",
+        "Firebase Auth, FCM push notifications via Cloud Functions, and cross-platform local notifications"
       ],
       "technologies": [
         "Flutter",
-        "Dart",
-        "REST APIs",
-        "Text-to-Speech",
-        "Figma"
+        "Riverpod",
+        "Firebase",
+        "Cloud Firestore",
+        "FCM"
       ],
-      "category": "Mobile App",
-      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.hikmah"
+      "category": "Social",
+      "codeUrl": "https://github.com/rafidrahman1/chat_app"
     },
     {
       "title": "Beauty Line Bangladesh",

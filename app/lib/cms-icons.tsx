@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   BookOpen,
+  Bike,
   Bot,
   Circle,
   Code,
@@ -11,11 +12,14 @@ import {
   Scale,
   Server,
   Share2,
+  ShoppingCart,
   Smartphone,
   Wrench,
 } from "lucide-react";
 
 const projectIcons: Record<string, LucideIcon> = {
+  Bike,
+  ShoppingCart,
   Bot,
   Share2,
   MessageSquare,
