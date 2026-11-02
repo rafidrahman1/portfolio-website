@@ -25,7 +25,7 @@ const PROMPT_JSON = {
         ],
     },
     expertise: {
-        mobile: ['Flutter', 'Dart', 'Riverpod', 'MobX', 'sqflite', 'offline-first architecture', 'QR/UHF RFID integration'],
+        mobile: ['Flutter', 'Dart', 'Riverpod', 'MobX', 'sqflite', 'QR/UHF RFID integration'],
         web: ['Next.js', 'React', 'REST APIs', 'Google OAuth'],
         backend: ['Firebase (Firestore, Auth)', 'REST APIs', 'SQL', 'Cloud Functions', 'FCM'],
         tools: ['Git', 'Figma UI translation'],
@@ -74,7 +74,7 @@ const PROMPT_JSON = {
         ],
         contextSpecific: {
             softwareDevelopment: 'Share from Flutter/mobile and React/Next.js experience with listed technologies',
-            mobileDevelopment: 'Reference Flutter, Riverpod, offline-first architecture, and hardware integrations',
+            mobileDevelopment: 'Reference Flutter, Riverpod, mobile architecture, and hardware integrations',
             gaming: 'Reference Valorant and Deadshot squad coordination app',
             techQuestions: 'Use experience with actual devices and background',
             cooking: 'Share pizza enthusiasm and cooking experiences',

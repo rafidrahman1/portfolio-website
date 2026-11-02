@@ -1,5 +1,5 @@
 /**
- * Small abstract diagram of the offline-first mobile architecture described in the
+ * Small abstract diagram of the mobile architecture described in the
  * experience section (Riverpod state, repository/service layer, sqflite cache, REST API).
  * Pure CSS animation: nodes stagger in once, a single dot travels the rail.
  */
@@ -7,7 +7,7 @@ const layers = [
   { key: "UI", value: "Flutter widgets", note: "Responsive, accessible" },
   { key: "State", value: "Riverpod", note: "Providers" },
   { key: "Repository", value: "REST service layer", note: "Token management" },
-  { key: "Local", value: "sqflite cache", note: "Offline-first" },
+  { key: "Local", value: "sqflite cache", note: "Local cache" },
   { key: "Remote", value: "REST APIs", note: "Queued sync" },
 ];
 
@@ -21,7 +21,7 @@ export const HeroDiagram = () => (
       <span className="eyebrow text-muted-foreground">Architecture</span>
       <span className="eyebrow flex items-center gap-2 text-muted-foreground">
         <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />
-        Offline-first
+        Flutter
       </span>
     </div>
 

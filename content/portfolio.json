@@ -128,7 +128,6 @@
       "Flutter Developer",
       "Dart",
       "Riverpod",
-      "Offline-first",
       "Mobile App Development",
       "Software Engineer Bangladesh",
       "REST APIs",
@@ -144,14 +143,14 @@
     "twitterHandle": "@rafidrahman1",
     "googleSiteVerification": "your-google-verification-code",
     "shortTitle": "Flutter Developer",
-    "description": "Performance-driven Flutter Developer with 1.5+ years of experience building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations."
+    "description": "Performance-driven Flutter Developer with 1.5+ years of experience building scalable mobile applications using Riverpod, RESTful APIs, and hardware integrations."
   },
   "experience": [
     {
       "title": "Software Engineer",
       "company": "Catch Bangladesh Ltd",
       "period": "April 2026 – Present",
-      "description": "Cross-platform mobile development with production-ready, offline-first architectures.",
+      "description": "Cross-platform mobile development with production-ready architectures.",
       "achievements": [
         "Architected a scalable offline-first codebase using Riverpod and sqflite local caching with a reusable REST API service layer featuring automated token management and secure session tracking, and robust error handling",
         "Engineered an enterprise Asset Management System integrating QR and UHF RFID scanning with queued synchronization workflows for seamless offline inspection tracking",
@@ -253,12 +252,12 @@
     },
     "skills": {
       "title": "Technical Skills",
-      "subtitle": "Cross-platform mobile development, offline-first architecture, and full-stack integration",
+      "subtitle": "Cross-platform mobile development, application architecture, and API integration",
       "expertiseTitle": "Specialized Expertise",
       "expertise": [
         {
-          "title": "Offline-First Architecture",
-          "description": "Riverpod, sqflite caching, queued sync workflows, and secure session handling"
+          "title": "Application Architecture",
+          "description": "Riverpod state management, a reusable REST service layer, secure session handling, and local caching with sqflite"
         },
         {
           "title": "Hardware Integration",
@@ -279,13 +278,13 @@
       "subtitle": "Translating complex designs into high-performance, production-ready mobile applications",
       "summaryHeading": "Professional Summary",
       "summaryParagraphs": [
-        "Performance-driven Flutter Developer with 1.5+ years of experience specializing in cross-platform mobile development and production-ready architectures. Proven track record of building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations.",
+        "Performance-driven Flutter Developer with 1.5+ years of experience specializing in cross-platform mobile development and production-ready architectures. Proven track record of building scalable mobile applications using Riverpod, RESTful APIs, and hardware integrations.",
         "Expert at translating complex designs into high-performance code while maintaining clean architecture and strict version control. Bachelor of Science in Computer Science from BRAC University, currently building enterprise mobile solutions at Catch Bangladesh Ltd."
       ],
       "highlightBadges": [
         "Flutter & Dart",
         "Riverpod",
-        "Offline-first",
+        "Clean architecture",
         "REST APIs",
         "Accessibility"
       ],
@@ -306,7 +305,7 @@
       "title": "Get In Touch",
       "subtitle": "Ready to collaborate on your next mobile or web project? Let's discuss how we can work together.",
       "connectHeading": "Let's Connect",
-      "connectBody": "I'm always excited to discuss Flutter development, offline-first mobile architecture, and professional collaborations. Feel free to reach out!",
+      "connectBody": "I'm always excited to discuss Flutter development, mobile architecture, and professional collaborations. Feel free to reach out!",
       "formTitle": "Send a Message"
     }
   },
@@ -446,7 +445,7 @@
     }
   ],
   "hero": {
-    "description": "Flutter Developer at Catch Bangladesh Ltd. Building scalable, offline-first mobile applications with Riverpod, RESTful APIs, and hardware integrations.",
+    "description": "Flutter Developer at Catch Bangladesh Ltd. Building scalable mobile applications with Riverpod, RESTful APIs, and hardware integrations.",
     "socialGithubUrl": "https://github.com/rafidrahman1",
     "socialLinkedinUrl": "https://linkedin.com/in/rafidrahman1"
   }
