@@ -127,11 +127,8 @@ export const MobileScreenshotCarousel = ({
 
   if (images.length === 0) return null;
 
-  const visibleIndexes = new Set([
-    index,
-    (index + 1) % images.length,
-    (index - 1 + images.length) % images.length,
-  ]);
+  const isNear = (i: number) =>
+    i === index || i === (index + 1) % images.length || i === (index - 1 + images.length) % images.length;
 
   return (
     <div
@@ -149,27 +146,30 @@ export const MobileScreenshotCarousel = ({
       onMouseLeave={resetAutoPlay}
     >
       <AspectRatio ratio={9 / 19.5}>
-        <div className="relative h-full w-full overflow-hidden">
-          {Array.from(visibleIndexes).map((imageIndex) => (
-            <div
-              key={images[imageIndex]}
-              className={`absolute inset-0 transition-opacity duration-200 ${
-                imageIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-              aria-hidden={imageIndex !== index}
-            >
-              <Image
-                src={images[imageIndex]}
-                alt={`${title} screenshot ${imageIndex + 1} of ${images.length}`}
-                fill
-                className="object-cover object-top"
-                sizes="17rem"
-                quality={75}
-                priority={priority && imageIndex === 0}
-                loading={priority && imageIndex === 0 ? "eager" : "lazy"}
-              />
-            </div>
-          ))}
+        <div className="h-full w-full overflow-hidden">
+          <div
+            className="flex h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {images.map((src, imageIndex) => (
+              <div
+                key={src}
+                className="relative h-full w-full shrink-0"
+                aria-hidden={imageIndex !== index}
+              >
+                <Image
+                  src={src}
+                  alt={`${title} screenshot ${imageIndex + 1} of ${images.length}`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="17rem"
+                  quality={75}
+                  priority={priority && imageIndex === 0}
+                  loading={(priority && imageIndex === 0) || isNear(imageIndex) ? "eager" : "lazy"}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </AspectRatio>
 

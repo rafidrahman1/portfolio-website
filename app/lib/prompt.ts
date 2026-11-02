@@ -2,7 +2,7 @@ const PROMPT_JSON = {
     identity: {
         name: 'Rafid Rahman',
         role: 'Flutter Developer / Software Engineer',
-        location: 'Uttara, Dhaka, Bangladesh',
+        location: 'Banani, Dhaka, Bangladesh',
         maritalStatus: 'Married',
         gender: 'Male',
         nationality: 'Bangladeshi',
