@@ -13,7 +13,7 @@
   "showcaseProjects": [
     {
       "title": "NextCart",
-      "description": "Bilingual (English/Bangla) POS and business-management app for shops, covering products, inventory, orders, finance, an online store, and multi-channel inbox.",
+      "description": "Bilingual (English/Bangla) ERP and POS system for shops on Android, Web, and Windows, spanning 10+ business modules including inventory, finance, vendors, and orders, with an online store and multi-channel inbox.",
       "image": "/screenshots/nextcart/01-home.webp",
       "images": [
         "/screenshots/nextcart/01-home.webp",
@@ -28,6 +28,8 @@
         "Provider",
         "REST APIs",
         "Firebase Cloud Messaging",
+        "Flutter Secure Storage",
+        "Barcode scanning",
         "POS"
       ],
       "category": "Business App",
@@ -37,30 +39,6 @@
       "codeButton": false,
       "demoButton": true,
       "featured": true
-    },
-    {
-      "codeUrl": "",
-      "technologies": [
-        "Flutter",
-        "Text-to-Speech",
-        "Accessibility",
-        "Mobile UI/UX"
-      ],
-      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.gram_adalot",
-      "featured": true,
-      "deviceType": "mobile",
-      "demoButton": true,
-      "title": "Gram Adalat",
-      "image": "/screenshots/gram-adalat/2.jpg",
-      "images": [
-        "/screenshots/gram-adalat/1.jpg",
-        "/screenshots/gram-adalat/2.jpg",
-        "/screenshots/gram-adalat/3.jpg",
-        "/screenshots/gram-adalat/4.jpg"
-      ],
-      "description": "Educational mobile application democratizing legal literacy regarding the Bangladesh Village Court Act for rural and marginalized communities.",
-      "category": "Education",
-      "codeButton": false
     },
     {
       "title": "MotoHealth",
@@ -87,6 +65,30 @@
       "codeButton": false,
       "demoButton": true,
       "featured": true
+    },
+    {
+      "codeUrl": "",
+      "technologies": [
+        "Flutter",
+        "Text-to-Speech",
+        "Accessibility",
+        "Mobile UI/UX"
+      ],
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.gram_adalot",
+      "featured": true,
+      "deviceType": "mobile",
+      "demoButton": true,
+      "title": "Gram Adalat",
+      "image": "/screenshots/gram-adalat/2.jpg",
+      "images": [
+        "/screenshots/gram-adalat/1.jpg",
+        "/screenshots/gram-adalat/2.jpg",
+        "/screenshots/gram-adalat/3.jpg",
+        "/screenshots/gram-adalat/4.jpg"
+      ],
+      "description": "Maintained and optimized this legacy educational app that democratizes legal literacy around the Bangladesh Village Court Act for rural communities, with Text-to-Speech and high-contrast layouts.",
+      "category": "Education",
+      "codeButton": false
     },
     {
       "codeUrl": "https://github.com/rafidrahman1/ams.git",
@@ -142,7 +144,7 @@
     "twitterHandle": "@rafidrahman1",
     "googleSiteVerification": "your-google-verification-code",
     "shortTitle": "Flutter Developer",
-    "description": "Performance-driven Flutter Developer with 1+ years of experience building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations."
+    "description": "Performance-driven Flutter Developer with 1.5+ years of experience building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations."
   },
   "experience": [
     {
@@ -151,7 +153,7 @@
       "period": "April 2026 – Present",
       "description": "Cross-platform mobile development with production-ready, offline-first architectures.",
       "achievements": [
-        "Architected a scalable offline-first codebase using Riverpod and sqflite local caching with a reusable REST API service layer featuring automated token management and secure session tracking",
+        "Architected a scalable offline-first codebase using Riverpod and sqflite local caching with a reusable REST API service layer featuring automated token management and secure session tracking, and robust error handling",
         "Engineered an enterprise Asset Management System integrating QR and UHF RFID scanning with queued synchronization workflows for seamless offline inspection tracking",
         "Standardized company-wide mobile UX design systems with a unified library of responsive widgets, TTS pipelines, and high-contrast UI layouts for legacy and localized applications"
       ],
@@ -225,12 +227,19 @@
       "title": "Web & Tools",
       "icon": "Wrench",
       "skills": [
-        "Next.js",
         "Git",
-        "Figma UI Translation",
-        "API Integration"
+        "Figma UI Translation"
       ],
       "color": "bg-orange-500/10 text-orange-600 border-orange-200"
+    },
+    {
+      "title": "Other Skills",
+      "icon": "Code",
+      "skills": [
+        "Next.js",
+        "React.js"
+      ],
+      "color": "bg-purple-500/10 text-purple-600 border-purple-200"
     }
   ],
   "sections": {
@@ -270,7 +279,7 @@
       "subtitle": "Translating complex designs into high-performance, production-ready mobile applications",
       "summaryHeading": "Professional Summary",
       "summaryParagraphs": [
-        "Performance-driven Flutter Developer with 1+ years of experience specializing in cross-platform mobile development and production-ready architectures. Proven track record of building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations.",
+        "Performance-driven Flutter Developer with 1.5+ years of experience specializing in cross-platform mobile development and production-ready architectures. Proven track record of building scalable mobile applications using Riverpod, RESTful APIs, offline-first caching, and hardware integrations.",
         "Expert at translating complex designs into high-performance code while maintaining clean architecture and strict version control. Bachelor of Science in Computer Science from BRAC University, currently building enterprise mobile solutions at Catch Bangladesh Ltd."
       ],
       "highlightBadges": [
@@ -328,7 +337,7 @@
         "Single-backend architecture with a repository layer over a shared API service, bearer-token sessions scoped to a business, and secure credential storage",
         "POS, products and bulk CSV upload, inventory, customers, vendors, employees, finance, sales reports, and cross-shop product sourcing",
         "Online-shop controls, subscription tiers with payment flow, theme purchases, Firebase push notifications, and a unified WhatsApp/Instagram/Facebook inbox module",
-        "CI-checked codebase: provider-based state across ~20 providers, lint gates, and a growing test suite; shipping to Android and iOS"
+        "CI-checked codebase: provider-based state across ~20 providers, lint gates, and a growing test suite; multi-platform: Android, Web, and Windows"
       ],
       "technologies": [
         "Flutter",

@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { portfolio } from "@/lib/portfolio";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -16,7 +17,7 @@ export const About = () => {
   const [lead, ...rest] = about.summaryParagraphs;
 
   return (
-    <section id="about" className="section-pad border-t border-border bg-[#111111]">
+    <section id="about" className="section-pad border-t border-border bg-surface">
       <div className="container-page">
         <SectionHeader index="04" label="About" title={<>Practical software, built to last.</>} />
 
@@ -32,6 +33,22 @@ export const About = () => {
           </Reveal>
 
           <Reveal delay={0.1} className="space-y-10 lg:col-span-4 lg:col-start-9">
+            <figure className="flex items-end gap-5">
+              <div className="relative aspect-[4/5] w-36 shrink-0 overflow-hidden rounded-md border border-border sm:w-44">
+                <Image
+                  src="/images/profile.jpg"
+                  alt={`Portrait of ${portfolio.site.name}`}
+                  fill
+                  sizes="176px"
+                  className="object-cover object-[50%_28%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
+                />
+              </div>
+              <figcaption className="eyebrow text-muted-foreground">
+                {portfolio.site.name}
+                <br />
+                <span className="text-foreground/70">{portfolio.site.shortTitle}</span>
+              </figcaption>
+            </figure>
             <div>
               <h3 className="eyebrow mb-4 text-muted-foreground">{about.education.heading}</h3>
               <p className="font-medium">{about.education.degree}</p>

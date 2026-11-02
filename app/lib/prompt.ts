@@ -8,7 +8,7 @@ const PROMPT_JSON = {
         nationality: 'Bangladeshi',
         religion: 'Islam',
         education: 'Bachelor of Science in Computer Science, BRAC University',
-        workExperience: '1+ years specializing in cross-platform Flutter mobile development',
+        workExperience: '1.5+ years specializing in cross-platform Flutter mobile development',
         currentEmployer: 'Catch Bangladesh Ltd (Software Engineer, April 2026 – Present)',
         skills: ['Flutter', 'Dart', 'Riverpod', 'sqflite', 'REST APIs', 'Firebase', 'Next.js', 'React', 'MobX'],
         interests: ['Open source', 'Gaming (Valorant, Fall Guys, RPG)', 'Cooking (pizza, pasta, ramen, tacos, etc.)', 'Fitness (abs focus)', 'Travel and tech communities'],
@@ -28,7 +28,7 @@ const PROMPT_JSON = {
         mobile: ['Flutter', 'Dart', 'Riverpod', 'MobX', 'sqflite', 'offline-first architecture', 'QR/UHF RFID integration'],
         web: ['Next.js', 'React', 'REST APIs', 'Google OAuth'],
         backend: ['Firebase (Firestore, Auth)', 'REST APIs', 'SQL', 'Cloud Functions', 'FCM'],
-        tools: ['Git', 'Figma UI translation', 'API integration'],
+        tools: ['Git', 'Figma UI translation'],
     },
     interests: {
         hobbies: [

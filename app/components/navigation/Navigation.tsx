@@ -47,20 +47,12 @@ export const Navigation = () => {
           <span className="hidden sm:inline">{portfolio.site.name}</span>
         </a>
 
-        <p className="eyebrow hidden items-center gap-2 text-muted-foreground lg:flex">
-          <span aria-hidden className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-          </span>
-          Available for work
-        </p>
-
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="relative py-1 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100"
               >
                 {link.label}
               </a>

@@ -13,7 +13,7 @@ export const Skills = () => {
           {sections.skills.subtitle}
         </SectionHeader>
 
-        <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((cat, i) => (
             <Reveal key={cat.title} delay={i * 0.08} className="bg-background">
               <div className="h-full p-6 sm:p-8">
@@ -21,9 +21,12 @@ export const Skills = () => {
                   <span className="text-primary">0{i + 1}</span>
                   {cat.title}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="flex flex-wrap gap-2">
                   {cat.skills.map((s) => (
-                    <li key={s} className="border-b border-border/60 pb-3 text-lg tracking-tight last:border-0">
+                    <li
+                      key={s}
+                      className="rounded-sm border border-border px-3 py-1.5 text-sm transition-colors duration-200 hover:border-primary/50 hover:text-primary"
+                    >
                       {s}
                     </li>
                   ))}
