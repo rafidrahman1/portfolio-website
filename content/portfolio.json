@@ -12,6 +12,33 @@
   },
   "showcaseProjects": [
     {
+      "title": "NextCart",
+      "description": "Bilingual (English/Bangla) POS and business-management app for shops, covering products, inventory, orders, finance, an online store, and multi-channel inbox.",
+      "image": "/screenshots/nextcart/01-home.webp",
+      "images": [
+        "/screenshots/nextcart/01-home.webp",
+        "/screenshots/nextcart/02-product-management.webp",
+        "/screenshots/nextcart/03-products.webp",
+        "/screenshots/nextcart/04-products-all.webp",
+        "/screenshots/nextcart/05-sales-orders.webp",
+        "/screenshots/nextcart/06-finance.webp"
+      ],
+      "technologies": [
+        "Flutter",
+        "Provider",
+        "REST APIs",
+        "Firebase Cloud Messaging",
+        "POS"
+      ],
+      "category": "Business App",
+      "demoUrl": "",
+      "codeUrl": "",
+      "deviceType": "mobile",
+      "codeButton": false,
+      "demoButton": false,
+      "featured": true
+    },
+    {
       "codeUrl": "",
       "technologies": [
         "Flutter",
