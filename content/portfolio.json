@@ -31,11 +31,11 @@
         "POS"
       ],
       "category": "Business App",
-      "demoUrl": "",
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.nextcart",
       "codeUrl": "",
       "deviceType": "mobile",
       "codeButton": false,
-      "demoButton": false,
+      "demoButton": true,
       "featured": true
     },
     {
@@ -338,7 +338,8 @@
         "POS",
         "i18n (EN/BN)"
       ],
-      "category": "Business App"
+      "category": "Business App",
+      "demoUrl": "https://play.google.com/store/apps/details?id=xyz.powern.nextcart"
     },
     {
       "title": "Gram Adalat",
