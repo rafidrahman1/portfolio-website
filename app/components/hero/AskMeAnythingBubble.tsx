@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Loader2, X } from "lucide-react";
+import { Send, Loader2, X, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import ElectricBorder from "../ElectricBorder";
 
 interface Message {
     id: string;
@@ -269,37 +268,40 @@ export const AskMeAnythingBubble = () => {
     return (
         <div className="relative flex items-center" ref={containerRef}>
             {!shouldRender && (
-                <ElectricBorder color="#7df9ff" speed={1} chaos={0.5} thickness={2} style={{ borderRadius: 20, padding: 4, paddingTop: 6} }>
-                <Button
+                <button
+                    type="button"
                     aria-label="Ask Me Anything"
                     onClick={handleToggle}
-                    variant="outline"
-                    className="rounded-full px-4 py-2 text-sm font-semibold flex items-center gap-2"
+                    className="group inline-flex h-11 items-center gap-3 rounded-full border border-border bg-surface/80 pl-4 pr-3 text-sm font-medium backdrop-blur-sm transition-[border-color,background-color,transform] duration-200 hover:border-primary/60 hover:bg-surface active:scale-[0.97]"
                 >
-                    <span className={`text-lg transition-transform duration-200`}>💬</span>
-                    <span>Ask Me</span>
-                </Button>
-                </ElectricBorder>
+                    <span aria-hidden className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-50 motion-reduce:animate-none" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                    </span>
+                    <span>Ask me anything</span>
+                    <span aria-hidden className="grid h-6 w-6 place-items-center rounded-full bg-foreground text-background transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
+                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px" />
+                    </span>
+                </button>
             )}
             
             {/* Popup Bubble */}
             {shouldRender && (
                 <div
                     className={`left-full ml-4 top-0 z-20
-                        bg-background rounded-2xl shadow-2xl border border-border p-0 sm:p-4 w-80 mx-auto sm:w-80 max-h-[100dvh] sm:max-h-96
+                        bg-surface rounded-md shadow-2xl border border-border p-0 sm:p-4 w-80 mx-auto sm:w-80 max-h-[100dvh] sm:max-h-96
                         ${isClosing ? 'animate-pop-out' : 'animate-pop-in'}
                         transform origin-left flex flex-col
-                        sm:rounded-2xl sm:p-4 sm:w-full sm:max-h-96
+                        sm:p-4 sm:w-full sm:max-h-96
                         transition-all duration-200
                     `}
                     style={{ minWidth: "0", maxWidth: "100vw" }}
                 >
-                    <div className="bubble-tail hidden sm:block"></div>
                     {/* Header */}
                     <div className="flex items-center justify-between mb-3 px-4 pt-4 sm:px-0 sm:pt-0">
-                        <div className="font-semibold text-foreground flex items-center gap-2 text-base sm:text-lg">
-                            <span className="text-primary animate-pulse">🤔</span>
-                            <span>Ask Me Anything</span>
+                        <div className="eyebrow flex items-center gap-2 text-muted-foreground">
+                            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />
+                            <span>Ask me anything</span>
                         </div>
                         <Button
                             onClick={handleClose}
@@ -334,7 +336,7 @@ export const AskMeAnythingBubble = () => {
                                     className={`flex message-slide-in ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
                                     <div
-                                        className={`max-w-[80%] px-3 py-2 rounded-lg text-sm sm:text-base ${
+                                        className={`max-w-[85%] px-3 py-2 rounded-md text-sm ${
                                             message.role === 'user'
                                                 ? 'bg-primary text-primary-foreground'
                                                 : 'bg-muted text-muted-foreground'
@@ -348,7 +350,7 @@ export const AskMeAnythingBubble = () => {
                         {/* Loading indicator */}
                         {isLoading && (
                             <div className="flex justify-start">
-                                <div className="bg-muted text-muted-foreground px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                                <div className="bg-muted text-muted-foreground px-3 py-2 rounded-md text-sm flex items-center gap-2">
                                     <Loader2 className="w-4 h-4 animate-spin" />
                                     <span className="typing-dots">Thinking</span>
                                 </div>
@@ -374,7 +376,7 @@ export const AskMeAnythingBubble = () => {
                             onClick={handleSendMessage}
                             disabled={!inputValue.trim() || isLoading}
                             aria-label="Send message"
-                            className="px-3"
+                            className="px-3 rounded-md"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />

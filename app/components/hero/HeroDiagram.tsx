@@ -25,21 +25,27 @@ export const HeroDiagram = () => (
       </span>
     </div>
 
-    <div className="relative px-5 py-6 sm:px-6">
-      {/* rail */}
-      <div aria-hidden className="absolute bottom-9 left-[1.65rem] top-9 w-px bg-border sm:left-[2.15rem]">
-        <span
-          className="flow-dot absolute -left-[3px] top-0 h-[7px] w-[7px] rounded-full bg-primary"
-          style={{ ["--travel" as string]: "calc(100% - 7px)" }}
-        />
-      </div>
-
-      <ol className="space-y-5">
+    <div className="px-5 py-6 sm:px-6">
+      <ol>
         {layers.map((l, i) => (
-          <li key={l.key} className="node-in relative flex items-center gap-5 pl-6" style={{ ["--i" as string]: i }}>
-            <span aria-hidden className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full border border-muted-foreground bg-background" />
-            <span className="eyebrow w-[5.5rem] shrink-0 text-muted-foreground">{l.key}</span>
-            <div className="min-w-0 flex-1 rounded-sm border border-border bg-background/60 px-3 py-2.5 transition-colors duration-200 hover:border-primary/50">
+          <li
+            key={l.key}
+            className="node-in relative grid grid-cols-[6.25rem_1fr] items-center gap-x-4 pb-5 pl-6 last:pb-0"
+            style={{ ["--i" as string]: i }}
+          >
+            {/* node + connector to the next layer */}
+            <span aria-hidden className={`absolute left-0 h-1.5 w-1.5 -translate-y-1/2 rounded-full border border-muted-foreground bg-background ${i < layers.length - 1 ? "top-[calc((100%-1.25rem)/2)]" : "top-1/2"}`} />
+            {i < layers.length - 1 && (
+              <span
+                aria-hidden
+                className="absolute left-[2.5px] top-[calc((100%-1.25rem)/2)] h-[calc(100%)] w-px bg-border"
+              />
+            )}
+            <span className="eyebrow text-muted-foreground">{l.key}</span>
+            <div
+              className="pulse-node min-w-0 rounded-sm border border-border bg-background/60 px-3 py-2.5 transition-colors duration-200 hover:border-primary/50"
+              style={{ ["--i" as string]: i }}
+            >
               <div className="truncate text-sm font-medium">{l.value}</div>
               <div className="truncate font-mono text-[11px] text-muted-foreground">{l.note}</div>
             </div>
