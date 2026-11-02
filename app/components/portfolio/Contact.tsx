@@ -1,19 +1,16 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2 } from "lucide-react";
+import { ArrowUpRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { motion } from "framer-motion";
 import { portfolio } from "@/lib/portfolio";
+import { Reveal } from "@/components/ui/Reveal";
+import { PrimaryLink } from "@/components/ui/cta";
 
 export const Contact = () => {
-  const section = portfolio.sections.contact;
   const details = portfolio.contact;
-  const site = portfolio.site;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -85,187 +82,117 @@ export const Contact = () => {
     });
   };
 
+  const links = [
+    { label: "LinkedIn", href: details.socialLinkedinUrl },
+    { label: "GitHub", href: details.socialGithubUrl },
+  ].filter((l) => l.href);
+
+  const fieldClass =
+    "h-12 rounded-none border-0 border-b border-border bg-transparent px-0 text-base focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0";
+
   return (
-      <motion.section
-        id="contact"
-        className="py-16 sm:py-20"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{section.title}</h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">
-              {section.subtitle}
-            </p>
-          </div>
+    <section id="contact" className="section-pad border-t border-border">
+      <div className="container-page">
+        <Reveal>
+          <p className="eyebrow mb-6 flex items-center gap-3 text-muted-foreground">
+            <span className="text-primary">05</span>
+            <span aria-hidden className="h-px w-8 bg-border" />
+            Contact
+          </p>
+          <h2 className="text-display max-w-[16ch]">
+            Have something <span className="text-primary">worth building?</span>
+          </h2>
+        </Reveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Contact Information */}
-            <div className="space-y-6 sm:space-y-8">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{section.connectHeading}</h3>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-8">
-                  {section.connectBody}
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <Card className="p-4 hover:shadow-md transition-shadow duration-300">
-                  <div className="flex items-center">
-                    <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
-                      <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="font-semibold text-sm sm:text-base">Email</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base break-all">{details.email}</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-4 hover:shadow-md transition-shadow duration-300">
-                  <div className="flex items-center">
-                    <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
-                      <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="font-semibold text-sm sm:text-base">Phone</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">{details.phone}</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-4 hover:shadow-md transition-shadow duration-300">
-                  <div className="flex items-center">
-                    <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
-                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="font-semibold text-sm sm:text-base">Location</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">{details.location}</p>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-4 text-sm sm:text-base">Connect on Social Media</h4>
-                <div className="flex gap-3 sm:gap-4">
-                  <Button variant="outline" size="lg" asChild className="flex-1 sm:flex-none">
-                    <a href={details.socialGithubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="lg" asChild className="flex-1 sm:flex-none">
-                    <a href={details.socialLinkedinUrl} target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </a>
-                  </Button>
-                </div>
-              </div>
+        <div className="mt-14 grid gap-14 sm:mt-20 lg:grid-cols-12 lg:gap-8">
+          <Reveal className="lg:col-span-5">
+            <p className="text-lead max-w-md text-muted-foreground">{portfolio.sections.contact.connectBody}</p>
+            <div className="mt-8">
+              <PrimaryLink href={`mailto:${details.email}`}>Email me</PrimaryLink>
             </div>
+            <dl className="mt-12 space-y-6 border-t border-border pt-8">
+              <div>
+                <dt className="eyebrow mb-1 text-muted-foreground">Email</dt>
+                <dd>
+                  <a href={`mailto:${details.email}`} className="break-all text-lg hover:text-primary">
+                    {details.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow mb-1 text-muted-foreground">Phone</dt>
+                <dd>
+                  <a href={`tel:${details.phone.replace(/\s/g, "")}`} className="text-lg hover:text-primary">
+                    {details.phone}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow mb-1 text-muted-foreground">Elsewhere</dt>
+                <dd className="flex flex-wrap gap-x-6 gap-y-2">
+                  {links.map((l) => (
+                    <a
+                      key={l.label}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1 text-lg hover:text-primary"
+                    >
+                      {l.label}
+                      <ArrowUpRight aria-hidden className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+          </Reveal>
 
-            {/* Contact Form */}
-            <Card className="p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-6">{section.formTitle}</h3>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Name *
-                    </label>
-                    <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your full name"
-                        required
-                        disabled={isLoading}
-                        className="text-sm sm:text-base"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email *
-                    </label>
-                    <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your.email@example.com"
-                        required
-                        disabled={isLoading}
-                        className="text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
-
+          <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
+            <h3 className="eyebrow mb-6 text-muted-foreground">{portfolio.sections.contact.formTitle}</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject *
-                  </label>
-                  <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="What's this about?"
-                      required
-                      disabled={isLoading}
-                      className="text-sm sm:text-base"
-                  />
+                  <label htmlFor="name" className="eyebrow text-muted-foreground">Name</label>
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange} autoComplete="name" required className={fieldClass} />
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
-                  </label>
-                  <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell me about your project or just say hello!"
-                      rows={5}
-                      required
-                      disabled={isLoading}
-                      className="text-sm sm:text-base resize-none"
-                  />
+                  <label htmlFor="email" className="eyebrow text-muted-foreground">Email</label>
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} autoComplete="email" required className={fieldClass} />
                 </div>
-
-                <Button 
-                    type="submit" 
-                    disabled={isLoading} 
-                    className="w-full sm:w-auto"
-                >
-                    {isLoading ? (
-                        <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Sending...
-                        </>
-                    ) : (
-                        <>
-                            <Send className="mr-2 h-4 w-4" />
-                            Send Message
-                        </>
-                    )}
-                </Button>
-              </form>
-            </Card>
-          </div>
-
-          {/* Footer */}
-          <div className="mt-20 pt-8 border-t border-border text-center">
-            <p className="text-muted-foreground">
-              © {site.footerYear} {site.name}. {site.footerNote}
-            </p>
-          </div>
+              </div>
+              <div>
+                <label htmlFor="subject" className="eyebrow text-muted-foreground">Subject</label>
+                <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required className={fieldClass} />
+              </div>
+              <div>
+                <label htmlFor="message" className="eyebrow text-muted-foreground">Message</label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="min-h-[8rem] rounded-none border-0 border-b border-border bg-transparent px-0 text-base focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-foreground/40 px-6 text-sm font-medium transition-colors hover:bg-foreground hover:text-background disabled:opacity-50"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 aria-hidden className="h-4 w-4 animate-spin" /> Sending…
+                  </>
+                ) : (
+                  "Send message"
+                )}
+              </button>
+            </form>
+          </Reveal>
         </div>
-      </motion.section>
+      </div>
+    </section>
   );
 };

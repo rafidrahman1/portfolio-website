@@ -5,24 +5,22 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
 import { WebVitals } from "@/components/performance/WebVitals";
-import DarkVeil from "@/components/DarkVeil";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 // Optimize fonts with next/font
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
-  preload: true,
-  fallback: ['system-ui', 'arial'],
+  variable: "--font-geist",
+  fallback: ["system-ui", "arial"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-jetbrains-mono",
-  preload: false, // Only load when needed
-  fallback: ['monospace'],
+  variable: "--font-geist-mono",
+  preload: false,
+  fallback: ["monospace"],
 });
 
 const { site } = portfolio;
@@ -113,18 +111,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
-        <body suppressHydrationWarning={true} className="font-sans">
+        <html lang="en" className={`dark ${geist.variable} ${geistMono.variable}`}>
+        <body suppressHydrationWarning={true} className="bg-background font-sans text-foreground">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personJsonLd }} />
         <Providers>
-            {/* Fixed background */}
-            <div className="fixed inset-0 z-0" aria-hidden="true">
-                <DarkVeil />
-            </div>
-            {/* Content with relative positioning to appear above background */}
-            <div className="relative z-10">
-                {children}
-            </div>
+            {children}
             <SpeedInsights />
             <Analytics />
             <WebVitals />

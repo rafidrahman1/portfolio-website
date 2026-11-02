@@ -50,6 +50,8 @@ export const MobileScreenshotCarousel = ({
       clearInterval(intervalRef.current);
     }
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     intervalRef.current = setInterval(goNext, intervalMs);
   }, [goNext, images.length, intervalMs]);
 
@@ -138,7 +140,7 @@ export const MobileScreenshotCarousel = ({
       role="region"
       aria-roledescription="carousel"
       aria-label={`${title} screenshots`}
-      className="group relative outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
+      className="group relative outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-[1.75rem]"
       onMouseEnter={() => {
         if (intervalRef.current) {
           clearInterval(intervalRef.current);
@@ -161,7 +163,7 @@ export const MobileScreenshotCarousel = ({
                 alt={`${title} screenshot ${imageIndex + 1} of ${images.length}`}
                 fill
                 className="object-cover object-top"
-                sizes="18rem"
+                sizes="17rem"
                 quality={75}
                 priority={priority && imageIndex === 0}
                 loading={priority && imageIndex === 0 ? "eager" : "lazy"}
@@ -180,7 +182,7 @@ export const MobileScreenshotCarousel = ({
               resetAutoPlay();
             }}
             aria-label="Previous screenshot"
-            className="absolute left-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 group-focus-within:opacity-100 sm:left-2 sm:p-2"
+            className="absolute left-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/60 p-1.5 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 group-focus-within:opacity-100 sm:left-2 sm:p-2"
           >
             <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
@@ -192,12 +194,12 @@ export const MobileScreenshotCarousel = ({
               resetAutoPlay();
             }}
             aria-label="Next screenshot"
-            className="absolute right-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 group-focus-within:opacity-100 sm:right-2 sm:p-2"
+            className="absolute right-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/60 p-1.5 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 group-focus-within:opacity-100 sm:right-2 sm:p-2"
           >
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
-          <div className="absolute bottom-2 right-2 z-20 rounded-md bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white/90 tabular-nums">
+          <div className="absolute bottom-2 right-2 z-20 rounded-full bg-black/60 px-2 py-0.5 font-mono text-[10px] font-medium text-white/90 tabular-nums">
             {index + 1} / {images.length}
           </div>
         </>

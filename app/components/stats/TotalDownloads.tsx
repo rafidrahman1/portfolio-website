@@ -1,18 +1,17 @@
 "use client";
 
-import { Download } from "lucide-react";
 import { formatCount } from "@/lib/play-store";
 import { useDownloads } from "./useDownloads";
 
+/** Total Play Store downloads, shown only once real data has loaded. */
 export const TotalDownloads = ({ className = "" }: { className?: string }) => {
   const { data } = useDownloads();
   if (!data || data.total <= 0) return null;
 
   return (
-    <div className={`inline-flex items-center gap-2 rounded-full border bg-card/50 px-4 py-2 backdrop-blur-sm ${className}`}>
-      <Download className="h-4 w-4 text-primary" aria-hidden />
-      <span className="font-semibold">{formatCount(data.total)}</span>
-      <span className="text-sm text-muted-foreground">total app downloads</span>
+    <div className={className}>
+      <div className="text-2xl font-semibold tracking-tight tabular-nums">{formatCount(data.total)}</div>
+      <div className="mt-1 text-sm text-muted-foreground">Total app downloads</div>
     </div>
   );
 };
@@ -22,10 +21,5 @@ export const AppDownloadsBadge = ({ title }: { title: string }) => {
   const app = data?.apps.find((a) => a.title === title);
   if (!app) return null;
 
-  return (
-    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-      <Download className="h-3 w-3" aria-hidden />
-      {app.label} downloads
-    </span>
-  );
+  return <span className="text-sm text-muted-foreground tabular-nums">{app.label} downloads</span>;
 };

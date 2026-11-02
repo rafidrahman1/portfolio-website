@@ -7,25 +7,26 @@
 @layer base {
   :root {
     /* Dark mode colors - applied by default */
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 0 0% 3.9%;          /* #0A0A0A */
+    --surface: 0 0% 6.7%;             /* #111111 */
+    --foreground: 0 0% 96%;           /* #F5F5F5 */
+    --card: 0 0% 9%;                  /* #171717 */
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 77 85% 69%;            /* #C5F467 lime accent */
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 57%;     /* #929292 */
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 96%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 0 0% 18%;               /* ~rgba(255,255,255,.10) on #0A0A0A */
+    --input: 0 0% 18%;
+    --ring: 77 85% 69%;
     --radius: 0.5rem;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -50,12 +51,14 @@
 
   /* Ensure consistent font rendering */
   html {
-    font-family: var(--font-inter), system-ui, sans-serif;  
+    font-family: var(--font-geist), system-ui, sans-serif;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background-color: #0A0A0A;
   }
 
   body {
-    background-color: transparent;
+    background-color: #0A0A0A;
     color: hsl(var(--foreground));
     /* Improve text rendering on mobile */
     -webkit-font-smoothing: antialiased;
@@ -76,22 +79,23 @@
     transform: none !important;
   }
 
-  /* Improve touch targets on mobile */
-  button, a, input, textarea, select {
-    min-height: 44px;
-    min-width: 44px;
-  }
 
   /* Better text selection */
   ::selection {
-    background-color: hsl(var(--primary) / 0.2);
-    color: hsl(var(--primary));
+    background-color: hsl(var(--primary));
+    color: #0A0A0A;
   }
  
 
   /* Responsive typography improvements */
   h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
   }
 
   p {
@@ -100,15 +104,8 @@
 
   /* Mobile-first responsive improvements */
   @media (max-width: 640px) {
-    body {
-      font-size: 14px;
-    }
     
     /* Ensure proper spacing on mobile */
-    section {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
   }
 }
 
@@ -305,3 +302,20 @@
 }
 
 
+
+
+/* Editorial type scale (fluid) */
+@layer utilities {
+  .text-display { font-size: clamp(2.75rem, 9.2vw, 8.25rem); line-height: 0.96; letter-spacing: -0.045em; font-weight: 600; }
+  .text-headline { font-size: clamp(2.25rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.04em; font-weight: 600; }
+  .text-title { font-size: clamp(1.75rem, 3.6vw, 3rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; }
+  .text-lead { font-size: clamp(1.0625rem, 1.5vw, 1.375rem); line-height: 1.5; }
+  .eyebrow { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .container-page { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2.5rem); }
+  .section-pad { padding-block: clamp(5rem, 11vw, 9rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-fade-in-up, .animate-fade-in { animation: none; }
+}

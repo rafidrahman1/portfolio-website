@@ -1,26 +1,31 @@
-"use client";
-
-import { Hero } from "@/components/hero/Hero";
-import { AboutWithAnimation } from "@/components/portfolio/AboutWithAnimation";
-import { Projects } from "@/components/portfolio/Projects";
-import { SkillsWithAnimation } from "@/components/portfolio/SkillsWithAnimation";
-import { Contact } from "@/components/portfolio/Contact";
 import { Navigation } from "@/components/navigation/Navigation";
+import { Hero } from "@/components/hero/Hero";
+import { Work } from "@/components/showcase/Work";
 import { Experience } from "@/components/portfolio/Experience";
-
-import { ProjectShowcaseHybrid } from "@/components/showcase/ProjectShowcaseHybrid";
+import { Skills } from "@/components/portfolio/Skills";
+import { About } from "@/components/portfolio/About";
+import { Contact } from "@/components/portfolio/Contact";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
-    return (
-        <div className="min-h-screen">
-            <Navigation />
-            <Hero />
-            <AboutWithAnimation />
-            <Experience />
-            <ProjectShowcaseHybrid />
-            <Projects />
-            <SkillsWithAnimation />
-            <Contact />
-        </div>
-    )
+  return (
+    <>
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
+      <Navigation />
+      <main>
+        <Hero />
+        <Work />
+        <Experience />
+        <Skills />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
 }

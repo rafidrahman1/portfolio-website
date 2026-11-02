@@ -1,77 +1,59 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Briefcase, Calendar } from "lucide-react";
-import { motion } from "framer-motion";
 import { portfolio } from "@/lib/portfolio";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const Experience = () => {
-  const { title, subtitle } = portfolio.sections.experience;
   const experiences = portfolio.experience;
 
   return (
-    <motion.section
-      id="experience"
-      className="py-16 sm:py-20"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{title}</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">{subtitle}</p>
-        </div>
+    <section id="experience" className="section-pad border-t border-border bg-[#111111]">
+      <div className="container-page">
+        <SectionHeader index="02" label="Experience" title={<>Where I&apos;ve worked.</>} />
 
-        <div className="space-y-6 sm:space-y-8">
-          {experiences.map((exp) => (
-            <Card
-              key={`${exp.title}-${exp.company}-${exp.period}`}
-              className="p-6 sm:p-8 hover:shadow-lg transition-all duration-300 hover:border-primary/20"
-            >
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                <div className="flex items-start mb-4 lg:mb-0">
-                  <div className="bg-primary/10 rounded-lg p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
-                    <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-xl sm:text-2xl font-bold text-foreground">{exp.title}</h3>
-                    <h4 className="text-lg sm:text-xl text-primary font-semibold">{exp.company}</h4>
-                    <p className="text-sm sm:text-base text-muted-foreground mt-1">{exp.description}</p>
-                  </div>
-                </div>
-                <div className="flex items-center text-muted-foreground">
-                  <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
-                  <span className="font-medium text-sm sm:text-base">{exp.period}</span>
-                </div>
-              </div>
+        <ol>
+          {experiences.map((job, i) => {
+            const current = i === 0;
+            return (
+              <li key={`${job.company}-${job.period}`}>
+                <Reveal>
+                  <article className="grid gap-6 border-t border-border py-10 lg:grid-cols-12 lg:gap-8 lg:py-14">
+                    <header className="lg:col-span-4">
+                      <p className="eyebrow flex items-center gap-2 text-muted-foreground">
+                        {current && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />}
+                        {job.period}
+                      </p>
+                      <h3 className={`mt-4 font-semibold tracking-tight ${current ? "text-title" : "text-2xl"}`}>
+                        {job.company}
+                      </h3>
+                      <p className="mt-2 text-muted-foreground">{job.title}</p>
+                    </header>
 
-              <div className="mb-6">
-                <h5 className="font-semibold mb-3 text-foreground text-sm sm:text-base">Key Achievements:</h5>
-                <ul className="space-y-2">
-                  {exp.achievements.map((achievement) => (
-                    <li key={achievement} className="flex items-start">
-                      <span className="text-primary mr-2 mt-1.5 flex-shrink-0">•</span>
-                      <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h5 className="font-semibold mb-3 text-foreground text-sm sm:text-base">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+                    <div className="lg:col-span-8">
+                      <p className={current ? "text-lead" : "text-muted-foreground"}>{job.description}</p>
+                      <ul className="mt-6 space-y-4">
+                        {job.achievements.map((a) => (
+                          <li key={a} className="flex gap-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                            <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-primary" />
+                            <span>{a}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="mt-6 flex flex-wrap gap-x-2 gap-y-1 font-mono text-xs text-foreground/70" aria-label="Technologies">
+                        {job.technologies.map((t, k) => (
+                          <li key={t}>
+                            {t}
+                            {k < job.technologies.length - 1 && <span aria-hidden className="ml-2 text-border">/</span>}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ol>
       </div>
-    </motion.section>
+    </section>
   );
 };

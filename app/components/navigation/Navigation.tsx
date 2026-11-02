@@ -1,94 +1,128 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { DiscordStatus } from "@/components/navigation/DiscordStatus";
-import GlassSurface from "@/components/GlassSurface";
 import { portfolio } from "@/lib/portfolio";
 
 export const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const links = portfolio.navigation;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navItems = portfolio.navigation;
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false);
-  };
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-7xl px-1 sm:px-2 lg:px-3">
-      <GlassSurface
-        width="100%"
-        height={isMobileMenuOpen ? "auto" : "64px"}
-        borderRadius={32}
-        backgroundOpacity={0.1}
-        blur={12}
-        brightness={isScrolled ? 50 : 30}
-        opacity={0.9}
-        className="transition-all duration-300"
-      >
-        <div className="flex items-center justify-between py-3 px-0">
-          <div className={`flex items-center absolute left-8 ${isMobileMenuOpen ? "hidden md:block" : ""}`}>
-            <DiscordStatus />
-          </div>
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-300 ${
+        scrolled || open
+          ? "border-b border-border bg-background/80 backdrop-blur-md"
+          : "border-b border-transparent"
+      }`}
+    >
+      <nav aria-label="Primary" className="container-page flex h-16 items-center justify-between">
+        <a
+          href="#home"
+          aria-label="Rafid Rahman — home"
+          className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+        >
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-foreground text-xs font-bold text-background">
+            RR
+          </span>
+          <span className="hidden sm:inline">{portfolio.site.name}</span>
+        </a>
 
-          <div className="hidden md:flex items-center space-x-12">
-            {navItems.map((item) => (
-              <Button
-                key={item.href}
-                variant="ghost"
-                onClick={() => scrollToSection(item.href)}
-                className="font-medium hover:bg-background/20 transition-colors duration-200"
+        <p className="eyebrow hidden items-center gap-2 text-muted-foreground lg:flex">
+          <span aria-hidden className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+          </span>
+          Available for work
+        </p>
+
+        <ul className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {item.label}
-              </Button>
+                {link.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="/CV-1.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center rounded-full border border-foreground/40 px-4 text-sm font-medium transition-colors hover:bg-foreground hover:text-background"
+            >
+              Resume
+            </a>
+          </li>
+        </ul>
+
+        <button
+          type="button"
+          className="grid h-10 w-10 place-items-center rounded-md border border-border md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {open && (
+        <div id="mobile-menu" className="container-page border-t border-border pb-8 pt-4 md:hidden">
+          <ul>
+            {links.map((link, i) => (
+              <li key={link.href} className="border-b border-border">
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-baseline gap-4 py-5 text-3xl font-semibold tracking-tight"
+                >
+                  <span className="eyebrow text-primary">0{i + 1}</span>
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </div>
-
-          <div className="flex items-center space-x-3">
-            <div className="md:hidden absolute right-8">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="hover:bg-background/20 transition-colors duration-200"
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </Button>
-            </div>
+          </ul>
+          <div className="mt-6 flex items-center justify-between">
+            <p className="eyebrow flex items-center gap-2 text-muted-foreground">
+              <span aria-hidden className="h-2 w-2 rounded-full bg-primary" />
+              Available for work
+            </p>
+            <a
+              href="/CV-1.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="inline-flex h-10 items-center rounded-full border border-foreground/40 px-5 text-sm font-medium"
+            >
+              Resume
+            </a>
           </div>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 px-0 border-t border-border/20">
-            <div className="flex flex-col space-y-3">
-              {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="ghost"
-                  className="justify-start py-2 hover:bg-background/20 transition-colors duration-200"
-                  onClick={() => scrollToSection(item.href)}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-        )}
-      </GlassSurface>
-    </nav>
+      )}
+    </header>
   );
 };

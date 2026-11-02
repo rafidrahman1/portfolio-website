@@ -303,28 +303,16 @@
   },
   "navigation": [
     {
-      "label": "Home",
-      "href": "#home"
-    },
-    {
-      "label": "About",
-      "href": "#about"
+      "label": "Work",
+      "href": "#work"
     },
     {
       "label": "Experience",
       "href": "#experience"
     },
     {
-      "label": "Featured Projects",
-      "href": "#showcase"
-    },
-    {
-      "label": "Key Projects",
-      "href": "#projects"
-    },
-    {
-      "label": "Skills",
-      "href": "#skills"
+      "label": "About",
+      "href": "#about"
     },
     {
       "label": "Contact",
