@@ -7,6 +7,7 @@ import { GitHubCalendarLoadingWrapper } from "@/components/ui/loading-wrapper";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { portfolio } from "@/lib/portfolio";
+import { TotalDownloads } from "@/components/stats/TotalDownloads";
 
 // Dynamic import for heavy GitHub Calendar component
 const GitHubCalendar = dynamic(() => import("@/components/hero/githubCalendar/GitHubCalendar").then(mod => ({ default: mod.GitHubCalendar })), {
@@ -41,6 +42,7 @@ export const Hero = () => {
             <div className="text-center md:text-left">
               <HeroHeading name={portfolio.site.name} subtitle={portfolio.site.shortTitle} />
               <HeroDescription text={portfolio.hero.description} />
+              <TotalDownloads className="mt-6" />
             </div>
             {/* RIGHT COLUMN */}
             <div className="flex-1 flex flex-col items-center md:items-end w-full space-y-8">

@@ -10,6 +10,7 @@ import { getStaticProjects } from "@/lib/github-data";
 import { portfolio } from "@/lib/portfolio";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { TotalDownloads, AppDownloadsBadge } from "@/components/stats/TotalDownloads";
 
 export const ProjectShowcaseHybrid = () => {
   const showcaseProjects = getStaticProjects();
@@ -31,6 +32,7 @@ export const ProjectShowcaseHybrid = () => {
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               {subtitle}
             </p>
+            <TotalDownloads className="mt-6" />
           </div>
           <div className="space-y-16 sm:space-y-24 lg:space-y-32">
             {showcaseProjects.map((project) => (
@@ -75,6 +77,7 @@ export const ProjectShowcaseHybrid = () => {
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
                       {project.title}
                     </h3>
+                    <AppDownloadsBadge title={project.title} />
                     <div className="bg-card/50 backdrop-blur-sm border rounded-lg p-4 sm:p-6 shadow-lg">
                       <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                         {project.description}
