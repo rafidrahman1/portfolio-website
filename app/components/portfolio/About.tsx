@@ -36,7 +36,7 @@ export const About = () => {
             <figure className="flex items-end gap-5">
               <div className="relative aspect-[4/5] w-36 shrink-0 overflow-hidden rounded-md border border-border sm:w-44">
                 <Image
-                  src="/images/profile.jpg"
+                  src="/images/Propic.png"
                   alt={`Portrait of ${portfolio.site.name}`}
                   fill
                   sizes="176px"
